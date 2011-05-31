@@ -1,0 +1,7 @@
+DirectoryIndex index.ctp
+AuthUserFile /home/flippr/www/cake_1_2/.htpasswd
+AuthType Basic
+AuthName "Web access"
+Require valid-user
+Satisfy any
+Order deny,allow

@@ -1,0 +1,61 @@
+/* CSS Document */
+dl,dt,dd{padding:0; margin:0; list-style:none; line-height:1.8em}
+form{margin:0; padding:0;}
+.marginup2down10{margin:2px 0px 10px 0px;}
+.closebtn{ text-align:right; float:right;}
+.formbox{width:230px; float:left;}
+.fb_btnbox{float:left; width:260px; padding-top:114px;}
+.t-hide{display:none;}
+
+p{line-height:1.8em;
+}
+
+#signupbox{
+clear:both;
+background:url(../images/bg_signup.gif) top no-repeat;
+width:700px;
+height:365px;
+}
+
+#signupbox .inbox{
+width:700px;
+height:325px;
+margin:0 auto;
+padding:20px 30px
+}
+
+#signupbox .signup_inbox01{
+width:300px;
+height:250px;
+margin:0;
+margin-right:40px;
+padding:0;
+text-align:left;
+float:left;
+}
+
+#signupbox .signup_inbox02{
+width:300px;
+margin:0;
+padding:0;
+text-align:left;
+float:left;
+background-color:#f0f1f0;
+}
+
+#btn_signup{
+background:url(../images/btn_createmyaccount.gif) top no-repeat;
+margin:0;
+padding:0;
+width:144px;
+height:29px;
+}
+
+.inbox_padding10{
+padding:10px 10px;
+}
+
+.inbox_padding15{
+padding:15px 15px;
+}
+
