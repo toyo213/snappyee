@@ -3,8 +3,9 @@ class UsersController extends AppController {
 
     var $helpers = array('Form', 'Html', 'Javascript', 'Time', 'Session', 'Facebook.Facebook');
     var $name = 'Users';
-    var $uses = array('User', 'People', 'PeopleFind');
-    
+    var $uses = array('User','Photo' ,'People', 'PeopleFind');
+    // アクセストークン
+    var $ac = '';
     var $needAuth = true;
 
     // ログイン必須のフラグ
@@ -31,36 +32,58 @@ class UsersController extends AppController {
         }
         // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 
-
+ 
         // FB基本設定
         $this->Auth->allow('*');
         $this->set('user', $this->Auth->user());
         $this->set('fbuser',$this->Connect->user());
+        
+        $this->fbuser = $this->Connect->user();
         App::import('Lib', 'Facebook.FB');
         $Facebook = new FB();
         $this->fb = $Facebook;
         
         $this->ac = $this->fb->getAccessToken();
         $this->set('ac', $this->ac);
+        $this->layout = "default.bak0602";
 
-
-        // ホワイトリスト設定
-        //$this->Auth->allow('people', 'index', 'add', 'fbtry');
     }
 
     //Add an email field to be saved along with creation.
     function beforeFacebookSave() {
-        var_dump($this->Connect);
         $this->Connect->authUser['User']['email'] = $this->Connect->user('email');
         return true; //Must return true or will not save.
     }
 
-    function fbtest() {
+    function fbphoto_upload() {
+                      
+        if (isset($this->params['url']['aid'])) {
+            $fql_query = array(
+                'method' => 'fql.query',
+                'query' => sprintf('SELECT src,src_big,pid,aid,src_small  FROM photo WHERE aid IN  ( SELECT aid FROM album WHERE aid = %s )', $this->params['url']['aid']
+                )
+            );
+        } elseif (isset($this->params['url']['pid'])) {
+            $fql_query = array(
+                'method' => 'fql.query',
+                'query' => sprintf('SELECT src,src_big,pid,aid  FROM photo WHERE pid =%s )', $this->params['url']['pid']
+                )
+            );
+        } else {
+            // TODO visibleがeveryone or custmor のものだけ表示させる
+            $fql_query = array(
+                'method' => 'fql.query',
+                'query' => sprintf('SELECT src,src_big,src_small,pid,aid  FROM photo WHERE pid IN ( SELECT cover_pid FROM album WHERE owner=%s )',
+                        //$this->params['url']['aid'],
+                        $this->fbuser['id']
+                )
+            );
+        }
         
-
-
-        $ac_tk = $this->fb->getAccessToken();
-        $friends = $this->fb->api('/me/friends','GET',array('access_token'=>$ac_tk),array('fields'=>'id,name,picture'));
+        //pr($fql_query);
+        $albums =  $this->fb->api($fql_query, array('access_token' => $this->ac));   
+        //var_dump($albums);
+        $friends = $this->fb->api('/me/friends', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,picture'));
         // facebook album一覧を取得する
         // album一覧からalbumの中身をみる
         // 選んだ写真を投票する(DBにいれる)
@@ -69,16 +92,40 @@ class UsersController extends AppController {
         // 投票データを集計する
         // ランキングを一覧で表示する
         // 写真に似ている洋服名をタグ付けできる
-        $albums  = $this->fb->api('/me/albums','GET',array('access_token'=>$ac_tk),array('fields'=>'id,name,location,description'));
-$url = file_get_contents('https://graph.facebook.com/1713040105885/photos?access_token='.$ac_tk);
-$data = (json_decode($url));
-#1713040105885
-
-//pr($albums);
+        //$albums = $this->fb->api('/me/albums', 'GET', array('access_token' => $this->ac), array('fields' => 'id,aid,name,location,description'));
+        //$url = file_get_contents('https://graph.facebook.com/1713040105885/photos?access_token=' . $this->ac);
+        //$data = (json_decode($url));
+        $this->set('prm',$this->params['url']);
         $this->set('friends',$friends);
         $this->set('albums',$albums);
     }
+    
+    function fbpict_up() {
+        if (isset($this->params['url']['pid'])) {
+            $fql_query = array(
+                'method' => 'fql.query',
+                'query' => sprintf('SELECT pid,aid,src,src_big  FROM photo WHERE pid IN (%s)', $this->params['url']['pid']),
+                'access_token' => $this->ac
+            );
+        }
+        $albums =  $this->fb->api($fql_query);   
+        var_dump($albums);
+        $this->set('albums',$albums);
+   }
 
+    function fbpict_add() {
+    // validate
+    // save 
+    // redirect
+                pr($this->params);
+                $data['Photo']['category_id']  = $this->params['data']['users']['category_id'][0];
+                $data['Photo']['fbpath']  = $this->params['data']['Photo']['fb_path'];
+                $data['Photo']['fb_id']  =  $this->fbuser['id'];
+                $this->Photo->save($data);
+        
+        
+    }
+    
     function twitter() {
         $options['fields'] = array('people.name', 
                                    'PeopleFind.comment',
@@ -112,6 +159,9 @@ $data = (json_decode($url));
 
     function login()
     {
+       $list = $this->Photo->find('all');
+       $this->set('list',$list);
+        
         // ページタイトルの設定
         $this->pageTitle = 'Web-local.community「local.SNS」';
         // データが送られてきたら
@@ -181,10 +231,60 @@ $data = (json_decode($url));
          $this->set('list',$list);
     }
 
-    function fbtry()
-    {
-    }
+    function photo_upload() {
 
+    }
+    
+    function photo_up() {
+        $img_name = $_FILES["img_path"]["name"];
+        $img_size = $_FILES["img_path"]["size"];
+        $img_type = $_FILES["img_path"]["type"];
+        $img_tmp = $_FILES["img_path"]["tmp_name"];
+
+        //At the timpre of writing it is necessary to enable upload support in the Facebook SDK, you do this with the line:
+        $this->fb->setFileUploadSupport(true);
+
+        $albums = $this->fb->api('/me/albums', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,location,description'));
+        $alb = array();
+
+        foreach ($albums['data'] as $key => $val) {
+            $alb[$val['name']] = $val['id'];
+        }
+        //Create an album
+        $album_details = array(
+            'message' => 'junle',
+            'name' => 'geegee'
+        );
+
+        if (!isset($alb['geegee'])) {
+            $create_album = $this->fb->api('/me/albums', 'post', $album_details);
+            //Get album ID of the album you've just created
+            $album_uid = $create_album['id'];
+        } else {
+            $album_uid = $alb['geegee'];
+            //$album_uid = '205722169464685';
+            // ここをfanpageのalbumidにすれば動くはずなのだが。。ｓ
+        }
+
+        //Upload a photo to album of ID...
+        $photo_details = array(
+            'message' => 'Photo message'
+        );
+
+        $photo_details['image'] = $img_tmp . '/' . $img_name;
+
+        if (is_uploaded_file($img_tmp)) {
+            if (!is_dir(sprintf('/home/soogle/tmp/pict/%s', $this->fbuser['id']))) {
+                mkdir(sprintf('/home/soogle/tmp/pict/%s', $this->fbuser['id']), 0777);
+            }
+            $path = sprintf('/home/soogle/tmp/pict/%s/%s', $this->fbuser['id'], $img_name);
+            copy($img_tmp, $path);
+        }
+        $photo_details['image'] = '@' . $path;
+        $photo_details['access_token'] = $this->ac;
+        
+        $this->fb->api('/' . $album_uid . '/photos', 'post',$photo_details);
+    }
 
     function people_confirm()
     {
@@ -242,5 +342,3 @@ $data = (json_decode($url));
         }
 
 }
-
-?>

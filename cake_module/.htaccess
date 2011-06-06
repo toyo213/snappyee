@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+   RewriteBase /cake_module
+   RewriteEngine on
+   RewriteRule    ^$ /www/cake_app    [L]
+   RewriteRule    (.*) /www/cake_app/$1 [L]
+</IfModule>

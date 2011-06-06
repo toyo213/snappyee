@@ -1,0 +1,51 @@
+<h1>Urllists all</h1>
+
+<table class="inav" cellpadding="0" cellspacing="0">
+<thead>
+<tr>
+	<th>number</th>
+	<th>title</th>
+	<th>adress</th>
+	<th>other</th>
+	<th>make day</th>
+	<th>modify day</th>
+<th>make it!!</th>
+</tr>
+</thead>
+<tbody>
+<?php foreach ($urllists as $urllist): 
+$id=$urllist['Urllist']['id'];
+?>
+
+
+<tr>
+<td>
+<?php echo $id; ?>
+</td>
+<td>
+<?php echo $urllist['Urllist']['title']; ?>
+</td>
+<td>
+<?php echo $urllist['Urllist']['url']; ?>
+</td>
+<td>
+<?php echo $urllist['Urllist']['comment']; ?>
+</td>
+<td>
+<?php echo $urllist['Urllist']['created']; ?>
+</td>
+<td>
+<?php echo $urllist['Urllist']['modified']; ?>
+</td>
+<td class="listactions"><a href="/cake/urllists/view/<?php echo $id;?>/" >detail</a>
+<a href="/cake/urllists/edit/<?php echo $id?>/" >henshu</a>
+<a href="/cake/urllists/delete/<?php echo $id?>/"  onclick="return confirm('erace?');">delete</a>
+</td>
+		</tr>
+<?php endforeach; ?>
+
+</tbody>
+</table>
+<ul class="actions">
+	<li><a href="/cake/urllists/add" >add </a></li>
+</ul>

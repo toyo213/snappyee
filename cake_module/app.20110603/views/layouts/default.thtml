@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><?php echo $title_for_layout?></title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- 外部ファイルやスクリプトをここで読み込む（詳細は HTML ヘルパーを参照） -->
+<?php echo $scripts_for_layout ?>
+</head>
+<body>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+  FB.init({
+    appId  : '27665943374',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
+</script>
+<?php
+echo Configure::version();
+?>
+
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=27665943374&amp;amp;xfbml=1"></script><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+<!-- すべてのビューで表示するための何らかのメニューがある場合、ここでそれを読み込む -->
+<div id="header">
+    <div id="menu">...</div>
+
+
+
+&nbsp;<?php echo $html->link('twitterログイン', '/oauths/twitter' ); ?>
+&nbsp;<?php echo $html->link('fbtest', '/users/fbtest' ); ?>
+&nbsp;<?php echo $html->link('mixiログイン', '/users/input' ); ?>
+&nbsp;<?php echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
+
+&nbsp;<?php echo $html->link('入力', '/users/input' ); ?>
+&nbsp;<?php echo $html->link('リアルタイム表示', '/users/twitter' ); ?>
+&nbsp;<?php echo $html->link('地図表示', '/users/map' ); ?>
+&nbsp;<?php echo $html->link('ディレクトリ表示', '/users/people' ); ?>
+&nbsp;<?php echo $html->link('ログアウト', '/users/logout' ); ?>
+
+
+</div>
+
+
+
+
+<!-- ここがビューを表示させたい場所 -->
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=27665943374&amp;amp;xfbml=1"></script><fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+<?php echo $content_for_layout ?>
+
+<!-- 各表示ページにフッターを追加する -->
+<div id="footer">...</div>
+
+</body>
+</html>

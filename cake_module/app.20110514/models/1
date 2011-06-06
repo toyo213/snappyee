@@ -1,0 +1,51 @@
+<?php
+class UsersController extends AppController
+{
+    var $helpers = array('Form', 'Html', 'Javascript', 'Time');
+    var $name = 'Users';
+    var $uses = array('User'); // Userモデルを使用
+    var $needAuth = true;      // ログイン必須のフラグ
+
+    /*
+     * ログインページ
+     */
+    function login()
+    {
+        // ページタイトルの設定
+        $this->pageTitle = 'Web-local.community「local.SNS」';
+var_dump($this->data);
+exit;
+        // データが送られてきたら
+        if (!empty($this->data)) {
+            // パスワードを暗号化
+            $this->data['User']['pwd'] = md5($this->data['User']['pwd']);
+            // 入力された[id]と[pwd]がデータベースにある場合のみ[$user_data]に値が入る
+            $user_data = $this->User->findByEmailAndPwd($this->data['User']['email'], $this->data['User']['pwd']);
+            // [$user_data]が空じゃなければ
+            if (!empty($user_data)) {
+                // 値をセッションに格納
+                $this->Session->write('auth', $user_data['User']);
+                // リダイレクトする
+                $this->redirect('/users/home');
+                exit;
+            } else { // [$user_data]が空ならログイン画面へ
+                // エラーメッセージをビューに渡す
+                $this->set('login_error', 'ログインできませんでした・・・');
+                // ログイン画面の呼出
+                $this->render('login');
+            }
+        }
+    }
+
+    /*
+     * ログアウト処理
+     */
+    function logout()
+    {
+        // セッションを破棄してログイン画面へ
+        $this->Session->delete('auth');
+        $this->redirect('/users/login');
+        exit;
+    }
+}
+
