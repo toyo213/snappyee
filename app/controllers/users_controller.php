@@ -12,33 +12,65 @@ class UsersController extends AppController {
     var $components = array('Auth','Facebook.Connect');
 
     function beforeFilter() {
+        // 認証対象外
+        //$this->Auth->allow('regist','regist_end');
+        
+        
+        //$list = $this->Photo->find('all',array('Photo.category_id' => $junle,'order' => array('Photo.id DESC'), 'limit' => '10'));
 
+       $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'), 'limit' => '20'));
+       $this->set('list', $list);
+        
+        // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
+        // ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
+        $this->fbuser = $this->Connect->user();
+        $user_data = $this->Connect->user();
+        $this->set('fbuser',$this->Connect->user());
+
+        
+        //TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
+        $user_list = $this->User->findByFbId($user_data['id']);
+        // FBにログインがあってかつDBに登録がないユーザは初回登録が必要
+        if (empty($user_list) && $this->Connect->user()) {
+            if ($this->params['action'] == 'regist_end') {
+                $this->render('/users/regist_end', 'default.bak0602');
+            } else {
+                $this->render('/users/regist', 'default.bak0602');
+            }
+        }else {
+               $this->Session->write('auth','111');
+        }
+
+
+        // TODO ユーザデータ登録
+        // TODO 認証済みのユーザはログインボタンは出さない
+        // 
         // ユーザー画面用
         if ($this->name == "Users") {
             // 認証通ってればセッション保持
             if ($this->Auth->user()) {
                $this->Session->write('auth',$this->Auth->user());
             }
-            //var_dump($this->Auth->user());
-            //var_dump($this->Session->read('auth'));
-            //
+                        
             // ログイン必須の機能でログインされていない場合はログイン画面へ転送
-            if ($this->needAuth && $this->action != 'login') {
-                if (!$this->Session->read('auth')) {
+            if ($this->needAuth && $this->action != 'login' ) {
+//pr($this->Auth->user()); 
+//pr($this->Session->read('auth')); 
+//pr($this->params);
+               if (!$this->Session->read('auth')&& $this->action != 'regist_end' ) {
                          $this->redirect('/users/login/');
                          exit;
                 }
             }
         }
-        // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 
- 
+
         // FB基本設定
         $this->Auth->allow('*');
         $this->set('user', $this->Auth->user());
-        $this->set('fbuser',$this->Connect->user());
+
         
-        $this->fbuser = $this->Connect->user();
+
         App::import('Lib', 'Facebook.FB');
         $Facebook = new FB();
         $this->fb = $Facebook;
@@ -55,6 +87,19 @@ class UsersController extends AppController {
         return true; //Must return true or will not save.
     }
 
+   function regist() {
+       
+   }
+   
+   function regist_end() {
+                $data['User']['nickname']  =  $this->params['data']['User']['nickname'];
+                $data['User']['fb_id']  =  $this->fbuser['id'];
+                // TODOエラーハンドリング
+                $data = $this->User->save($data);
+                // 登録に成功したら値をセッションに格納
+                if ($data) $this->Session->write('auth', $data['User']);                
+   }
+   
     function fbphoto_upload() {
                       
         if (isset($this->params['url']['aid'])) {
@@ -98,6 +143,21 @@ class UsersController extends AppController {
         $this->set('prm',$this->params['url']);
         $this->set('friends',$friends);
         $this->set('albums',$albums);
+    }
+    function fbpict_like() {
+             $list = $this->Photo->find('first', array('conditions' => array('Photo.id' => $this->params['pass'][0]),
+                                  ));   
+        $this->set('lists',$list);
+    }
+    function top() {
+        Configure::load('messages');
+        $junle_param = 'junle.'.$this->params['pass']['0'];
+        $junle = Configure::read($junle_param);
+        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle),
+                                          'order' => array('Photo.id DESC'), 
+                                          'limit' => '20'
+                                  ));
+        $this->set('list',$list);
     }
     
     function fbpict_up() {
@@ -159,36 +219,34 @@ class UsersController extends AppController {
 
     function login()
     {
-       $list = $this->Photo->find('all');
-       $this->set('list',$list);
         
-        // ページタイトルの設定
-        $this->pageTitle = 'Web-local.community「local.SNS」';
-        // データが送られてきたら
-        if (!empty($this->data)) {
-            // パスワードを暗号化
-            $this->data['User']['password'] = md5($this->params['form']['password']);
-
-            // 入力された[id]と[pwd]がデータベースにある場合のみ[$user_data]に値が入る
-            $user_data = $this->User->findByUsernameAndPassword($this->data['User']['username'], $this->data['User']['password']);
-            ##$user_data = $this->User->findByPassword($this->data['User']['password']);
-
-
-            // [$user_data]が空じゃなければ
-            if (!empty($user_data)) {
-                // 値をセッションに格納
-                $this->Session->write('auth', $user_data['User']);
-
-                // リダイレクトする
-                $this->redirect('/users/people');
-                exit;
-            } else { // [$user_data]が空ならログイン画面へ
-                // エラーメッセージをビューに渡す
-                $this->set('login_error', 'ログインできませんでした・・・');
-                // ログイン画面の呼出
-                $this->render('login');
-            }
-        }
+//        // ページタイトルの設定
+//        $this->pageTitle = 'Web-local.community「local.SNS」';
+//        // データが送られてきたら
+//        if (!empty($this->data)) {
+//            // パスワードを暗号化
+//            $this->data['User']['password'] = md5($this->params['form']['password']);
+//
+//            // 入力された[id]と[pwd]がデータベースにある場合のみ[$user_data]に値が入る
+//            $user_data = $this->User->findByUsernameAndPassword($this->data['User']['username'], $this->data['User']['password']);
+//            ##$user_data = $this->User->findByPassword($this->data['User']['password']);
+//
+//
+//            // [$user_data]が空じゃなければ
+//            if (!empty($user_data)) {
+//                // 値をセッションに格納
+//                $this->Session->write('auth', $user_data['User']);
+//
+//                // リダイレクトする
+//                $this->redirect('/users/people');
+//                exit;
+//            } else { // [$user_data]が空ならログイン画面へ
+//                // エラーメッセージをビューに渡す
+//                $this->set('login_error', 'ログインできませんでした・・・');
+//                // ログイン画面の呼出
+//                $this->render('login');
+//            }
+//       }
     }
 
     function add() {
@@ -225,7 +283,6 @@ class UsersController extends AppController {
     function people_add()
     {
          $name = $this->params['named']['name'];
-//var_dump($this->params);
          $list = $this->People->findAll(array('name' => $name));
          $this->set('name',$name);
          $this->set('list',$list);

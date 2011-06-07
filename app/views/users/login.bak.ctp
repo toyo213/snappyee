@@ -54,4 +54,3 @@ shuffle($numbers);
     <?php endwhile; ?>
 </div>     
 <!-- /photo list Normal 2 -->      
-

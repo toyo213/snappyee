@@ -1,4 +1,4 @@
-<? echo $facebook->html(); ?>
+<?php echo $facebook->html(); ?>
 <head>
 <title>Gee Gee prototype</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="ja" />
@@ -8,15 +8,29 @@
 </head>
 <body>
 <?= $facebook->init(); ?>
+<!-- Jquery /-->
+<link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
+<link href="/css/login.css" rel="stylesheet" type="text/css" />
+<script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>
+<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+//$('#dialog').jqm();
+$('#dialog').jqm({ modal: true });
+});
+</script>
+<!-- /jQuery-->
     <div id="header">
 	<div class="headerInnner">
-    	<a href="/users/login"><h1 class="leftcol">gee gee [ジージー]</h1></a>
+    	<a href="/"><h1 class="leftcol">gee gee [ジージー]</h1></a>
         <div id="gnavi" class="leftcol">
-            <a href="/users/fbphoto_upload">フォトをアップロード</a><span class="delimiter">|</span><!--
+            <a href="/users/fbphoto_upload">facebookフォトをアップロード</a><span class="delimiter">|</span><!--
+            --><a href="/users/photo_upload">PCからフォトをアップロード</a><span class="delimiter">|</span><!--
             --><a href="#">ジージーの楽しみ方</a>
         </div>
         <div id="userStatus" class="radiux3px leftcol">
-            <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?><?php echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
+            <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?>
+        <br/><?php echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
 
         </div>  
     </div>
@@ -30,16 +44,16 @@
 
 <div id="content" class="clearfix">
 	<div id="topContent" class="radiux5px clearfix">ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！</div>
-    <div id="leftContent" class="radiux5px leftcol">
+    <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">
             <div class="tagList radiux5px">
                 ジャンル別にチェック！
-                <a href="#">ネイル</a><span class="delimiter">|</span><!--
-                --><a href="#">メイク</a><span class="delimiter">|</span><!--
-                --><a href="#">ヘアスタイル</a><span class="delimiter">|</span><!--
-                --><a href="#">ファッション</a><span class="delimiter">|</span><!--
-                --><a href="#">アクセ</a><span class="delimiter">|</span><!--
-                --><a href="#">バッグ</a>
+                <a href="/users/top/nail">ネイル</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/makeup">メイク</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/hair">ヘアスタイル</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/fashion">ファッション</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/accessory">アクセ</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/bag">バッグ</a>
             </div> 
 <!-- ここがビューを表示させたい場所 -->
 <?php echo $content_for_layout ?>
@@ -49,7 +63,7 @@
     <div id="rightContent" class="leftcol">
         <div class="bgWhile">
             <div id="fb-root"></div>
-            <script src="http://connect.facebook.net/ja_JP/all.js#xfbml=1"></script><fb:like-box href="#" width="240" show_faces="true" stream="false" header="false"></fb:like-box>
+           <!-- <script src="http://connect.facebook.net/ja_JP/all.js#xfbml=1"></script><fb:like-box href="#" width="240" show_faces="true" stream="false" header="false"></fb:like-box> -->
         </div>
     	<div class="partTitle" style="margin-top:10px;">みんなのランキング</div>
     	<div class="partContent">	
