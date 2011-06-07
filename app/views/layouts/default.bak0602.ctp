@@ -22,11 +22,11 @@ $('#dialog').jqm({ modal: true });
 <!-- /jQuery-->
     <div id="header">
 	<div class="headerInnner">
-    	<a href="/"><h1 class="leftcol">gee gee [ジージー]</h1></a>
+    	<a href="/"><h1 class="leftcol">Gee Gee [ジージー]</h1></a>
         <div id="gnavi" class="leftcol">
-            <a href="/users/fbphoto_upload">facebookフォトをアップロード</a><span class="delimiter">|</span><!--
-            --><a href="/users/photo_upload">PCからフォトをアップロード</a><span class="delimiter">|</span><!--
-            --><a href="#">ジージーの楽しみ方</a>
+            <a href="/users/fbphoto_upload">Facebookフォトをアップロード  </a><span class="delimiter">|</span><!--
+            --><a href="/users/photo_upload">PC/MACからフォトをアップロード  </a><span class="delimiter">|</span><!--
+            --><a href="#">Gee Geeの楽しみ方  </a>
         </div>
         <div id="userStatus" class="radiux3px leftcol">
             <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?>
@@ -43,7 +43,8 @@ $('#dialog').jqm({ modal: true });
 &nbsp;<?php //echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
 
 <div id="content" class="clearfix">
-	<div id="topContent" class="radiux5px clearfix">ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！</div>
+	<div id="topContent" class="radiux5px clearfix">ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
+	Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.</div>
     <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">
             <div class="tagList radiux5px">
@@ -65,7 +66,7 @@ $('#dialog').jqm({ modal: true });
             <div id="fb-root"></div>
            <!-- <script src="http://connect.facebook.net/ja_JP/all.js#xfbml=1"></script><fb:like-box href="#" width="240" show_faces="true" stream="false" header="false"></fb:like-box> -->
         </div>
-    	<div class="partTitle" style="margin-top:10px;">みんなのランキング</div>
+    	<div class="partTitle" style="margin-top:10px;">Gee Gee ランキング</div>
     	<div class="partContent">	
      <?php $i = 1;?>  
      <?php foreach ($list as $key => $val): ?>
@@ -131,7 +132,7 @@ $('#dialog').jqm({ modal: true });
 </div>
 <div id="footer" class="clearfix">
 	<div class="footerInner">
-    	&copy;2011 gee-gee. All Rights Reserved.
+    <a href="http://213stomperz.com/">	&copy;2011 gee-gee. All Rights Reserved. </a>
     </div>
 </div>
 </body>

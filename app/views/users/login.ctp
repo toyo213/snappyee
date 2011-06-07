@@ -5,6 +5,7 @@
 shuffle($numbers);
     
     ?>
+    
     <?php $i = 0; ?>
     <?php while ($i < 5): ?>
     <div class="photo radiux3px">
