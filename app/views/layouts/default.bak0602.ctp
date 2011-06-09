@@ -4,10 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="ja" />
 <?php echo $html->css('/css/style.css'); ?>  
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
 <?php echo $scripts_for_layout ?>
-</head>
-<body>
-<?= $facebook->init(); ?>
+
 <!-- Jquery /-->
 <link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
 <link href="/css/login.css" rel="stylesheet" type="text/css" />
@@ -20,6 +19,10 @@ $('#dialog').jqm({ modal: true });
 });
 </script>
 <!-- /jQuery-->
+
+</head>
+<body>
+<?= $facebook->init(); ?>
     <div id="header">
 	<div class="headerInnner">
     	<a href="/"><h1 class="leftcol">Gee Gee [ジージー]</h1></a>
@@ -31,10 +34,12 @@ $('#dialog').jqm({ modal: true });
         <div id="userStatus" class="radiux3px leftcol">
             <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?>
         <br/><?php echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
+        
 
         </div>  
     </div>
 </div>
+
     
 <br>
 &nbsp;<?php //echo $html->link('写真投稿テスト', '/users/fbtry' ); ?>
@@ -43,7 +48,9 @@ $('#dialog').jqm({ modal: true });
 &nbsp;<?php //echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
 
 <div id="content" class="clearfix">
-	<div id="topContent" class="radiux5px clearfix"><?php echo  $user['User']['nickname']; ?>さん こんにちは!! ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
+	<div id="topContent" class="radiux5px clearfix">
+	User Name: <font color="red"><?php echo  $user['User']['nickname']; ?></font>
+	<br/> ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
 	Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.</div>
     <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">
@@ -56,6 +63,8 @@ $('#dialog').jqm({ modal: true });
                 --><a href="/users/top/accessory">アクセ</a><span class="delimiter">|</span><!--
                 --><a href="/users/top/bag">バッグ</a>
             </div> 
+           
+            
 <!-- ここがビューを表示させたい場所 -->
 <?php echo $content_for_layout ?>
         </div>
@@ -71,7 +80,7 @@ $('#dialog').jqm({ modal: true });
      <?php $i = 1;?>  
      <?php foreach ($list as $key => $val): ?>
             <div class="photo radiux3px">
-            <a href="#"><img src="<?php echo $val['Photo']['fbpath']; ?>" width="210px" alt="" /></a>
+            <a href="/users/fbpict_like/<?php echo $val['Photo']['id'];?>"><img src="<?php echo $val['Photo']['fbpath']; ?>" width="210px" alt="" /></a>
                 <div class="crown">No.<?php echo $i;?></div>
             </div>
      <?php $i++;if($i ==6 ) break;  ?>

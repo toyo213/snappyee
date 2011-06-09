@@ -92,6 +92,10 @@ class UsersController extends AppController {
                 if ($data) $this->Session->write('auth', $data['User']);                
    }
    
+   function signup(){
+   	
+   }
+   
     function fbphoto_upload() {
                       
         if (isset($this->params['url']['aid'])) {
