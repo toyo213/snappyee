@@ -1,4 +1,4 @@
-fbtestだよー
+
 
 
 <form name="form" action="/users/photo_up" method="POST" 

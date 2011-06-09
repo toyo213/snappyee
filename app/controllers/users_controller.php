@@ -349,6 +349,10 @@ class UsersController extends AppController {
         
         $this->fb->api('/' . $album_uid . '/photos', 'post',$photo_details);
     }
+    
+    function profile(){
+    	
+    }
 
     function people_confirm()
     {

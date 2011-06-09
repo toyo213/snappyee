@@ -33,9 +33,18 @@ $('#dialog').jqm({ modal: true });
         </div>
         <div id="userStatus" class="radiux3px leftcol">
             <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?>
-        <br/><?php echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
-        
-
+    	<br/>
+    	<a href="http://<?php echo $_SERVER["SERVER_NAME"]."/users/profile"; ?>">	
+        <font size="2" color="red"><?php echo  $user['User']['nickname']; ?></font>
+        </a>
+        <?php 	if(!empty($user)){
+    		echo "<h3>";	
+		 	echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); 
+        	echo "</h3>";
+    		}else{ echo "";} ?>
+       
+	
+     <?php //echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
         </div>  
     </div>
 </div>
@@ -48,8 +57,7 @@ $('#dialog').jqm({ modal: true });
 &nbsp;<?php //echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
 
 <div id="content" class="clearfix">
-	<div id="topContent" class="radiux5px clearfix">
-	User Name: <font color="red"><?php echo  $user['User']['nickname']; ?></font>
+	<div id="topContent" class="radiux5px clearfix"> 
 	<br/> ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
 	Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.</div>
     <div id="leftContent" class="radiux5px leftcol">    
