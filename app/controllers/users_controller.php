@@ -13,11 +13,8 @@ class UsersController extends AppController {
 
     function beforeFilter() {
         // 認証対象外
-        //$this->Auth->allow('regist','regist_end');
+        $this->Auth->allow('regist','regist_end');
         
-        
-        //$list = $this->Photo->find('all',array('Photo.category_id' => $junle,'order' => array('Photo.id DESC'), 'limit' => '10'));
-
        $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'), 'limit' => '20'));
        $this->set('list', $list);
         
@@ -38,10 +35,13 @@ class UsersController extends AppController {
                 $this->render('/users/regist', 'default.bak0602');
             }
         }else {
-               $this->Session->write('auth','111');
+         // FB基本設定
+            $this->Session->write('auth','111');
+            $this->Session->write('user',$user_list);
+            //$this->Auth->login($this->Connect->user());
+            //$this->set('user', $this->Auth->user());
         }
-
-
+            
         // TODO ユーザデータ登録
         // TODO 認証済みのユーザはログインボタンは出さない
         // 
@@ -54,31 +54,22 @@ class UsersController extends AppController {
                         
             // ログイン必須の機能でログインされていない場合はログイン画面へ転送
             if ($this->needAuth && $this->action != 'login' ) {
-//pr($this->Auth->user()); 
-//pr($this->Session->read('auth')); 
-//pr($this->params);
-               if (!$this->Session->read('auth')&& $this->action != 'regist_end' ) {
-                         $this->redirect('/users/login/');
+               if (!$this->Session->read('auth') && $this->action != 'regist_end' ) {
+                         exit;$this->redirect('/users/login/');
                          exit;
                 }
             }
         }
 
-
-        // FB基本設定
         $this->Auth->allow('*');
-        $this->set('user', $this->Auth->user());
-
-        
-
         App::import('Lib', 'Facebook.FB');
         $Facebook = new FB();
         $this->fb = $Facebook;
-        
         $this->ac = $this->fb->getAccessToken();
         $this->set('ac', $this->ac);
+        $this->set('user', $this->Session->read('user'));        
         $this->layout = "default.bak0602";
-
+//pr($this->params);exit;
     }
 
     //Add an email field to be saved along with creation.
@@ -93,6 +84,7 @@ class UsersController extends AppController {
    
    function regist_end() {
                 $data['User']['nickname']  =  $this->params['data']['User']['nickname'];
+                $data['User']['blogurl']  =  $this->params['data']['User']['blogurl'];
                 $data['User']['fb_id']  =  $this->fbuser['id'];
                 // TODOエラーハンドリング
                 $data = $this->User->save($data);
@@ -145,9 +137,19 @@ class UsersController extends AppController {
         $this->set('albums',$albums);
     }
     function fbpict_like() {
-             $list = $this->Photo->find('first', array('conditions' => array('Photo.id' => $this->params['pass'][0]),
-                                  ));   
-        $this->set('lists',$list);
+       $list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
+                                                 'conditions' => array('Photo.id' => $this->params['pass'][0]),
+                 'joins' => array(array(
+                        'table' => 'users',
+                        'alias' =>'User',
+                        'type' => 'LEFT',
+                        'conditions' => array(
+                            'Photo.fb_id = User.fb_id'
+                        )
+                    )
+                )));
+
+        $this->set('lists', $list);
     }
     function top() {
         Configure::load('messages');
@@ -219,6 +221,7 @@ class UsersController extends AppController {
 
     function login()
     {
+//pr($this->params);exit;
         
 //        // ページタイトルの設定
 //        $this->pageTitle = 'Web-local.community「local.SNS」';

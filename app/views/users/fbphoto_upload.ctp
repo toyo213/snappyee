@@ -4,7 +4,7 @@ if (isset($prm['aid'])) {
     echo '<h1>Please choice your best picture</h1>';
     foreach ($albums as $key => $val) {
         $pt = '<a href="/users/fbpict_up?pid=%s&aid=%s"><img src="%s" /></a>';
-        echo sprintf($pt, $val['pid'],$prm['aid'],$val['src_big']);
+        echo sprintf($pt, $val['pid'],$prm['aid'],$val['src']);
     }
 } else {
     echo '<h1>Please find your best album</h1>';

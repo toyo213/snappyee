@@ -8,6 +8,8 @@ echo $form->create('User',array('type' => 'post','url' =>   '/users/regist_end')
 //echo $form->input('ido');
 //echo $form->input('kdo');
 echo $form->input('nickname');
+echo $form->input('blogurl');
+
 //echo $form->hidden('id', array('value'=>$list[0]['People']['id']));
 echo $form->end('ユーザ登録');
 ?>

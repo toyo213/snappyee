@@ -43,7 +43,7 @@ $('#dialog').jqm({ modal: true });
 &nbsp;<?php //echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
 
 <div id="content" class="clearfix">
-	<div id="topContent" class="radiux5px clearfix">ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
+	<div id="topContent" class="radiux5px clearfix"><?php echo  $user['User']['nickname']; ?>さん こんにちは!! ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
 	Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.</div>
     <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">
