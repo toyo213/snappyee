@@ -351,7 +351,8 @@ class UsersController extends AppController {
     }
     
     function profile(){
-    	
+		$t= $this->params;
+    	$this->set('t',$t);  	
     }
 
     function people_confirm()

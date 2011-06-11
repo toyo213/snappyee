@@ -7,11 +7,12 @@
 
 <?php echo $scripts_for_layout ?>
 
-<!-- Jquery /-->
+<link rel="stylesheet" href="/css/login.css" type="text/css" media="screen, projection" />   
+<link href="/css/signup.css" rel="stylesheet" type="text/css" />	 
 <link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
 <link href="/css/login.css" rel="stylesheet" type="text/css" />
-<script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>
-<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>
+<script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
+<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>  
 <script type="text/javascript">
 $(function() {
 //$('#dialog').jqm();
@@ -19,20 +20,20 @@ $('#dialog').jqm({ modal: true });
 });
 </script>
 <!-- /jQuery-->
-
 </head>
-<body>
+<body id="home" onLoad="MM_preloadImages('img/images/btn_createmyaccount_on.gif')">
 <?= $facebook->init(); ?>
     <div id="header">
 	<div class="headerInnner">
-    	<a href="/"><h1 class="leftcol">Gee Gee [ジージー]</h1></a>
+    	<a href="/"><h1 class="leftcol">Gee Gee</h1></a>
         <div id="gnavi" class="leftcol">
-            <a href="/users/fbphoto_upload">Facebookフォトをアップロード  </a><span class="delimiter">|</span><!--
-            --><a href="/users/photo_upload">PC/MACからフォトをアップロード  </a><span class="delimiter">|</span><!--
-            --><a href="#">Gee Geeの楽しみ方  </a>
+            <a href="/users/fbphoto_upload"><?php echo __('Upload FB photo'); ?></a><span class="delimiter">|</span><!--
+            --><a href="/users/photo_upload"><?php echo __('Upload photo from your PC'); ?></a><span class="delimiter">|</span><!--
+            --><a href="#"><?php echo __('How to Gee Gee!'); ?></a>
         </div>
         <div id="userStatus" class="radiux3px leftcol">
-            <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?><? echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); ?>
+            <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?>
+            <? if(empty($user)){echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); }?>
     	<br/>
     	<a href="http://<?php echo $_SERVER["SERVER_NAME"]."/users/profile"; ?>">	
         <font size="2" color="red"><?php echo  $user['User']['nickname']; ?></font>
@@ -51,25 +52,21 @@ $('#dialog').jqm({ modal: true });
 
     
 <br>
-&nbsp;<?php //echo $html->link('写真投稿テスト', '/users/fbtry' ); ?>
-&nbsp;<?php //echo $html->link('写真をgeegeeにアップ', '/users/fbtest' ); ?>
-&nbsp;<?php //echo $html->link('アップした写真を確認する', '/photos/main' ); ?>
-&nbsp;<?php //echo $html->link('facebookログイン', 'http://www.facebook.com/connect/uiserver.php?app_id=102978646442980&perms=user_location&next=http://apps.facebook.com/stamita/&display=page&next=http://apps.facebook.com/stamita/&method=permissions.request&return_session=1' ); ?>
 
 <div id="content" class="clearfix">
 	<div id="topContent" class="radiux5px clearfix"> 
-	<br/> ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！<br/>
-	Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.</div>
+         <?php echo __('Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.');?>   <br/>
+	</div>
     <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">
             <div class="tagList radiux5px">
-                ジャンル別にチェック！
-                <a href="/users/top/nail">ネイル</a><span class="delimiter">|</span><!--
-                --><a href="/users/top/makeup">メイク</a><span class="delimiter">|</span><!--
-                --><a href="/users/top/hair">ヘアスタイル</a><span class="delimiter">|</span><!--
-                --><a href="/users/top/fashion">ファッション</a><span class="delimiter">|</span><!--
-                --><a href="/users/top/accessory">アクセ</a><span class="delimiter">|</span><!--
-                --><a href="/users/top/bag">バッグ</a>
+                <?php echo __('Check Trending Photos!'); ?>
+                <a href="/users/top/nail"><?php echo __('Nail'); ?></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/makeup"><?php echo __('Make-up'); ?></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/hair"><?php echo __('Hair Style'); ?></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/fashion"><?php echo __('Fashion'); ?></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/accessory"><?php echo __('Accessory'); ?></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/bag"><?php echo __('Bag'); ?></a>
             </div> 
            
             
@@ -83,11 +80,11 @@ $('#dialog').jqm({ modal: true });
             <div id="fb-root"></div>
            <!-- <script src="http://connect.facebook.net/ja_JP/all.js#xfbml=1"></script><fb:like-box href="#" width="240" show_faces="true" stream="false" header="false"></fb:like-box> -->
         </div>
-    	<div class="partTitle" style="margin-top:10px;">Gee Gee ランキング</div>
+    	<div class="partTitle" ><?php echo __('Gee Gee Ranking'); ?></div>
     	<div class="partContent">	
      <?php $i = 1;?>  
      <?php foreach ($list as $key => $val): ?>
-            <div class="photo radiux3px">
+            <div class="photo photoRanking radiux3px">
             <a href="/users/fbpict_like/<?php echo $val['Photo']['id'];?>"><img src="<?php echo $val['Photo']['fbpath']; ?>" width="210px" alt="" /></a>
                 <div class="crown">No.<?php echo $i;?></div>
             </div>
