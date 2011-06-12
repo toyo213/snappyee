@@ -31,27 +31,29 @@ $('#dialog').jqm({ modal: true });
             --><a href="/users/photo_upload"><?php echo __('Upload photo from your PC'); ?></a><span class="delimiter">|</span><!--
             --><a href="#"><?php echo __('How to Gee Gee!'); ?></a>
         </div>
-        <div id="userStatus" class="radiux3px leftcol">
-            <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?>
-            <? if(empty($user)){echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream')); }?>
-    	<br/>
-    	<a href="http://<?php echo $_SERVER["SERVER_NAME"]."/users/profile"; ?>">	
-        <font size="2" color="red"><?php echo  $user['User']['nickname']; ?></font>
-        </a>
-        <?php 	if(!empty($user)){
-    		echo "<h3>";	
-		 	echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); 
-        	echo "</h3>";
-    		}else{ echo "";} ?>
-       
-	
-     <?php //echo $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))); ?>
-        </div>  
-    </div>
-</div>
+        <div id="userStatus" class="leftcol">
 
-    
-<br>
+            <?
+            if (empty($user)) {
+                echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream'));
+            } else {
+                echo sprintf('<div class="pic leftcol">%s</div>',$facebook->picture($fbuser['id'], array('width' => '26', 'height' => '26')));
+                echo sprintf('<div class="username leftcol">%s</div>', $user['User']['nickname']);
+                echo sprintf('<div class="logout radiux3px leftcol">%s</div>', $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))));
+            }
+            ?>            
+            </div>
+        <!--
+                <div id="userStatus" class="radiux3px leftcol">
+                    <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?>
+    	<br/>
+    	<a href="http://<?php echo $_SERVER["SERVER_NAME"] . "/users/profile"; ?>">	
+                <font size="2" color="red"><?php echo $user['User']['nickname']; ?></font>
+                </a>
+        -->
+            
+        </div>
+    </div>
 
 <div id="content" class="clearfix">
 	<div id="topContent" class="radiux5px clearfix"> 
@@ -89,24 +91,7 @@ $('#dialog').jqm({ modal: true });
                 <div class="crown">No.<?php echo $i;?></div>
             </div>
      <?php $i++;if($i ==6 ) break;  ?>
-     <?php endforeach; ?><!-- 
-            <div class="photo radiux3px">
-                <a href="#"><img src="img/sample_pic/3.jpg" width="210px" alt="" /></a>
-                <div class="crown">2nd</div>
-            </div>
-            <div class="photo radiux3px">
-                <a href="#"><img src="img/sample_pic/276.jpg" width="210px" alt="" /></a>
-                <div class="crown">3rd</div>
-            </div>
-            <div class="photo radiux3px">
-                <a href="#"><img src="img/sample_pic/321.jpg" width="210px" alt="" /></a>
-                <div class="crown">4th</div>
-            </div>
-             <div class="photo radiux3px">
-                <a href="#"><img src="img/sample_pic/35.jpg" width="210px" alt="" /></a>
-                <div class="crown">5th</div>
-            </div>             
-                         -->
+     <?php endforeach; ?>
         </div>
 
         <div class="bgWhile" style="margin-top:10px;">    

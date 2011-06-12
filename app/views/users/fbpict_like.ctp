@@ -10,7 +10,7 @@ Uploaded by <a href="../profile/"><?php echo $lists['User']['nickname'];?> </a> 
 <?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id'])); ?>
 
 <?php //var_dump($_SERVER["SERVER_NAME"]); ?>
-<?php echo "http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']; ?>
+<?php //echo "http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']; ?>
 
 
 <!--  
