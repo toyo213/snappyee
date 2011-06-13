@@ -37,7 +37,7 @@ $numbers = range(1, 19);
 shuffle($numbers);
 ?>
     <!-- Dialog -->
-    <div class="jqmWindow" id="dialog" ref="lightbox">
+    <div class="jqmWindow" id="dialog" >
         <div id="lightbox_wrap">
             <div class="closebtn"><a href="" class="jqmClose"><img src="/img/images/btn_close.gif" alt="Close" border="0" id="Image1" /></a></div>
             <!-- /closebtn -->

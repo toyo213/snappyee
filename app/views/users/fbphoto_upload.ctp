@@ -2,10 +2,13 @@
 //var_dump($prm);
 if (isset($prm['aid'])) {
     echo '<h1>Please choice your best picture</h1>';
+    echo '<ul id="banner">';
     foreach ($albums as $key => $val) {
-        $pt = '<a href="/users/fbpict_up?pid=%s&aid=%s"><img src="%s" /></a>';
-        echo sprintf($pt, $val['pid'],$prm['aid'],$val['src']);
-    }
+        $pt = '<li><a href="/users/fbpict_up?pid=%s&aid=%s"><img src="%s" width="110px" /></a></li>';
+        echo sprintf($pt, $val['pid'],$prm['aid'],$val['src'])."\n";
+        }
+    echo '</ul>';
+    
 } else {
     echo '<h1>Please find your best album</h1>';
     foreach ($albums as $key => $val) {    

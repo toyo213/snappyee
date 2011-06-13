@@ -23,10 +23,10 @@ class UsersController extends AppController {
         $this->fbuser = $this->Connect->user();
         $user_data = $this->Connect->user();
         $this->set('fbuser',$this->Connect->user());
-
         
         //TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
         $user_list = $this->User->findByFbId($user_data['id']);
+
         // FBにログインがあってかつDBに登録がないユーザは初回登録が必要
         if (empty($user_list) && $this->Connect->user()) {
             if ($this->params['action'] == 'regist_end') {
@@ -140,6 +140,17 @@ class UsersController extends AppController {
         $this->set('friends',$friends);
         $this->set('albums',$albums);
     }
+    
+    // ユーザがuploadした画像を表示する
+    function upict_up($fb_id) {
+                    $path = sprintf('/home/soogle/tmp/pict/%s/%s', $this->fbuser['id'], $img_name);
+    }   
+    
+    
+    // ユーザがuploadした画像を表示する
+    function upict_add() {  
+    }
+    
     function fbpict_like() {
        $list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
                                                  'conditions' => array('Photo.id' => $this->params['pass'][0]),
@@ -175,7 +186,6 @@ class UsersController extends AppController {
             );
         }
         $albums =  $this->fb->api($fql_query);   
-        var_dump($albums);
         $this->set('albums',$albums);
    }
 
@@ -183,12 +193,10 @@ class UsersController extends AppController {
     // validate
     // save 
     // redirect
-                pr($this->params);
                 $data['Photo']['category_id']  = $this->params['data']['users']['category_id'][0];
                 $data['Photo']['fbpath']  = $this->params['data']['Photo']['fb_path'];
                 $data['Photo']['fb_id']  =  $this->fbuser['id'];
                 $this->Photo->save($data);
-        
         
     }
     
@@ -210,7 +218,6 @@ class UsersController extends AppController {
                 )
             )
         );
-
         $list = $this->PeopleFind->find('all', $options);
 
         //$list     = $this->PeopleFind->findAll();
@@ -346,8 +353,18 @@ class UsersController extends AppController {
         }
         $photo_details['image'] = '@' . $path;
         $photo_details['access_token'] = $this->ac;
-        
-        $this->fb->api('/' . $album_uid . '/photos', 'post',$photo_details);
+
+        $this->fb->api('/' . $album_uid . '/photos', 'post', $photo_details);
+
+        // DB保存
+        //$data['Photo']['category_id']  = $this->params['data']['users']['category_id'][0];
+        $data['Photo']['path'] = $path;
+        $data['Photo']['fb_id'] = $this->fbuser['id'];
+        $this->Photo->save($data);
+        $l_id = $this->Photo->getLastInsertID();
+        //$this->Photo->findById($l_id);
+        $this->set('img_path', sprintf('http://%s/users/uphoto/id/%s', $_SERVER['HTTP_HOST'], $l_id));
+        $this->set('l_id', $l_id);
     }
     
     function profile(){
@@ -410,4 +427,40 @@ class UsersController extends AppController {
             $this->set('me', $me);
         }
 
+        function uphoto() {
+            $this->layout = false;
+            $this->autoRender = false;
+            //pr($this->params);
+           if (isset($this->params['pass'][1])) {
+               $data = $this->Photo->findById($this->params['pass'][1]);
+           }
+           $file = $data['Photo']['path'];
+           if (is_null($file )) {
+               return;
+           } 
+          
+        Configure::write('debug', 0);
+
+        if ($img = @imagecreatefromjpeg($file)) {
+            header('Content-type: image/jpeg');
+            imagejpeg($img, null, 100);
+            imagedestroy($img);
+        } else {
+            $this->cakeError('error404');
+        }
+    }
+    
+    function photo_update() {
+        // validate
+        // save 
+        // redirect
+        pr($this->params);
+        $data['Photo']['category_id'] = $this->params['data']['users']['category_id'][0];
+        $data['Photo']['fbpath'] = $this->params['data']['Photo']['fb_path'];
+        //$data['Photo']['fb_id'] = $this->fbuser['id'];
+        //$this->Photo->save($data);
+    }
+
 }
+
+
