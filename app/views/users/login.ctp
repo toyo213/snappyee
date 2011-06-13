@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script type="text/javascript" src="/js/window.js">
     <!--
     $(function() {  
         //$('#dialog').jqm();  
@@ -37,7 +37,7 @@ $numbers = range(1, 19);
 shuffle($numbers);
 ?>
     <!-- Dialog -->
-    <div class="jqmWindow" id="dialog">
+    <div class="jqmWindow" id="dialog" ref="lightbox">
         <div id="lightbox_wrap">
             <div class="closebtn"><a href="" class="jqmClose"><img src="/img/images/btn_close.gif" alt="Close" border="0" id="Image1" /></a></div>
             <!-- /closebtn -->
@@ -72,6 +72,12 @@ shuffle($numbers);
         <li class="navlistbox"><a href="#" accesskey="s" class="jqModal">Sign in</a></li>
     </ul>
     
+<?php
+$numbers = range(1, 19);
+shuffle($numbers);
+?>
+
+    
     <!-- photo list Big -->
 <div class="photoList rightMarginS leftcol">
     
@@ -89,7 +95,7 @@ shuffle($numbers);
 <!-- photo list Normal 1 -->
 <div class="photoList rightMarginS leftcol">
     <?php $i = 6; ?>
-    <?php while ($i < 13): ?>
+    <?php while ($i < 10): ?>
         <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
         </div>
@@ -100,7 +106,7 @@ shuffle($numbers);
 
 <!-- photo list Normal 1 -->
 <div class="photoList rightMarginS leftcol">
-    <?php $i = 6; ?>
+    <?php $i = 10; ?>
     <?php while ($i < 13): ?>
         <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
