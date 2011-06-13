@@ -28,7 +28,7 @@
             if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
         }
         //-->
-</script>  
+</script> 
 <!-- /jQuery-->
 <!-- jQuery /-->
         
@@ -36,9 +36,6 @@
 $numbers = range(1, 19);
 shuffle($numbers);
 ?>
-        
-
-        
     <!-- Dialog -->
     <div class="jqmWindow" id="dialog">
         <div id="lightbox_wrap">
@@ -48,11 +45,11 @@ shuffle($numbers);
             <p class="up5down5">Gee Geeアカウント登録</p>
             <div id="lightbox_frame">
                 <div id="lightbox_inbox01">
-                    <form action="#" method="post" class="formbox">
+                    <form action="#" method="post" class="formbox" >
                         <dl>
                             <dt><span class="t-hide">SingUp</span></dt>
-                            <dt class="txtbold">ユーザネーム</dt>
-                            <dd><input name="login_username" type="text" class="marginup2down10" id="login_username" size="25" />
+                            <dt class="txtbold">Gee Geeユーザネーム</dt>
+                            <dd><input name="username" type="text" class="marginup2down10" id="login_username" size="25" />
                             </dd>
                             <dt class="txtbold">ブログ URL</dt>
                             <dd><input name="blog_url" type="text" class="marginup2down10" id="blog_url" size="25" />
@@ -64,6 +61,7 @@ shuffle($numbers);
                             <dd><input name="signup" type="submit" value="アカウント登録" /></dd>
                         </dl>
                     </form>
+                    
                 </div><!-- /lightbox_inbox01 -->
                 
                         
@@ -73,7 +71,7 @@ shuffle($numbers);
     <ul id="nav">
         <li class="navlistbox"><a href="#" accesskey="s" class="jqModal">Sign in</a></li>
     </ul>
-
+    
     <!-- photo list Big -->
 <div class="photoList rightMarginS leftcol">
     
