@@ -4,40 +4,15 @@ text-align:right;
 float:right;
 }
  
-dl,dt,dd{padding:0; margin:0; list-style:none; line-height:1.8em}
-form{margin:0; padding:0;}
+dl,dt,dd{padding:0; margin:0; list-style:none; line-height:1.8em;}
+form{margin:0; padding:0; text-align:center;}
 
 #lightbox_wrap{margin:0 auto; padding:20px 20px 20px 18px; background:#fff;}
 #lightbox_frame{border: 1px solid #224466; width:520px; height:250px;}
 
-#lightbox_inbox01{width:230px; margin:15px 15px;}
-#lightbox_inbox02{
-float:left;
-padding:0;
-margin:0;
-vertical-align:middle;
-text-align:left;
+#lightbox_inbox01{width:230px; margin:15px 15px; }
 
-position:absolute;
-top:45%;
-left:50%;
-
-}
-#lightbox_inbox03{ 
-background:url(/img/images/bg_h220px.gif) top no-repeat;
-width:230px;
-height:230px;
-vertical-align:middle;
-text-align:left;
-
-position:absolute;
-top:45%;
-left:60%;
-
-}
-
-.marginup2down10{margin:2px 0px 10px 0px; width:100px;}
+.marginup2down10{margin:2px 0px 10px 0px; width:200px;}
 .closebtn{ text-align:right; float:right;}
-.formbox{width:230px; float:left;}
-.fb_btnbox{float:left; width:260px; padding-top:114px;}
+.formbox{text-align:center; vertical-align:center;}
 .t-hide{display:none;}

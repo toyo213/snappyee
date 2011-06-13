@@ -44,32 +44,28 @@ shuffle($numbers);
         <div id="lightbox_wrap">
             <div class="closebtn"><a href="" class="jqmClose"><img src="/img/images/btn_close.gif" alt="Close" border="0" id="Image1" /></a></div>
             <!-- /closebtn -->
-            <img src="/img/images/img_login_txt01welcome.gif" alt="Welcome to Gee Gee!" /><br />
-            <p class="up5down5">Hey there! Welcome back. Login with your account.</p>
+            <img src="/img/geegee_title_pink.png" alt="Welcome to Gee Gee!" width="180" height="59" /><br />
+            <p class="up5down5">Gee Geeアカウント登録</p>
             <div id="lightbox_frame">
                 <div id="lightbox_inbox01">
                     <form action="#" method="post" class="formbox">
                         <dl>
-                            <dt><span class="t-hide">Login or Sinup?</span></dt>
-                            <dd class="downmargin20"><img src="/img/images/img_login_txt02loginwith.gif" alt="Login with JobTiger ID."/></dd>
-                            <dt class="txtbold">Username</dt>
+                            <dt><span class="t-hide">SingUp</span></dt>
+                            <dt class="txtbold">ユーザネーム</dt>
                             <dd><input name="login_username" type="text" class="marginup2down10" id="login_username" size="25" />
                             </dd>
-                            <dt class="txtbold">Password</dt>
-                            <dd><input name="login_pass" type="password" class="marginup2down10" id="login_pass" size="25" />
+                            <dt class="txtbold">ブログ URL</dt>
+                            <dd><input name="blog_url" type="text" class="marginup2down10" id="blog_url" size="25" />
                             </dd>
-                            <dt><span class="t-hide">Login</span></dt>
-                            <dd><input name="login" type="submit" value="Login" /></dd>
+                            <dt class="txtbold">Email</dt>
+                            <dd><input name="email" type="text" class="marginup2down10" id="email" size="25" />
+                            </dd>     
+                            <dt><span class="t-hide">signup</span></dt>
+                            <dd><input name="signup" type="submit" value="アカウント登録" /></dd>
                         </dl>
                     </form>
                 </div><!-- /lightbox_inbox01 -->
-                <img src="/img/images/bg_h220px.gif">
-                <div id="lightbox_inbox02">
-                    <img src="/img/images/img_txt_or.gif" alt="or" width="40" height="22">
-                </div><!-- /lightbox_inbox02 -->
-                <div id="lightbox_inbox03">
-                    <a href="#"><img src="/img/images/btn_facebooklogin.gif" alt="Login with facebook" /></a></div>
-                <!-- /lightbox_inbox03 -->
+                
                         
             </div><!-- /lightbox_frame -->
         </div><!-- /lightbox_wrap -->
