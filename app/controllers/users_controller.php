@@ -90,6 +90,7 @@ class UsersController extends AppController {
                 $data['User']['fb_id']  =  $this->fbuser['id'];
                 $data['User']['email'] = $this->fbuser['email'];
                 $data['User']['location'] = $this->fbuser['hometown']['name'];
+                //$data['User']['fb_pic'] = $facebook->picture($fbuser['id'], array('width' => '26', 'height' => '26'));
                 
                 /*
                 $last = end($this->fbuser['work']);
@@ -392,10 +393,13 @@ class UsersController extends AppController {
     
     function profile(){
     	$pid = $_GET['pid'];
-		$photo = $this->Photo->find('first',array('Photo.id' =>$pid));
+		$photo = $this->Photo->find('first',array('conditions' => array('Photo.id' =>$pid)));
 		$fb_id = $photo['Photo']['fb_id'];
-		$u = $this->User->find('first',array('User.fb_id' =>$fb_id)); 
+		$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
+		$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id))); 
+		$this->set('photo_list',$photo_list);
 		$this->set('u',$u);	
+		$this->set('fb_id',$fb_id);
     }
 
     function people_confirm()
