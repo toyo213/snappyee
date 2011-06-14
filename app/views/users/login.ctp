@@ -68,10 +68,11 @@ shuffle($numbers);
             </div><!-- /lightbox_frame -->
         </div><!-- /lightbox_wrap -->
     </div><!-- /Dialog -->
+  <!--  link to singin JS  
     <ul id="nav">
         <li class="navlistbox"><a href="#" accesskey="s" class="jqModal">Sign in</a></li>
     </ul>
-    
+    -->
 <?php
 $numbers = range(1, 19);
 shuffle($numbers);

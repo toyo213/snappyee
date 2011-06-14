@@ -29,7 +29,7 @@ $('#dialog').jqm({ modal: true });
         <div id="gnavi" class="leftcol">
             <a href="/users/fbphoto_upload"><?php echo __('Upload FB photo'); ?></a><span class="delimiter">|</span><!--
             --><a href="/users/photo_upload"><?php echo __('Upload photo from your PC'); ?></a><span class="delimiter">|</span><!--
-            --><a href="#"><?php echo __('How to Gee Gee!'); ?></a>
+            --><a href="/users/howto"><?php echo __('How to Gee Gee!'); ?></a>
         </div>
         <div id="userStatus" class="leftcol">
 

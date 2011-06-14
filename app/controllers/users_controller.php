@@ -113,6 +113,11 @@ class UsersController extends AppController {
    	
    }
    
+   function howto(){
+   	
+   }
+   
+   
     function fbphoto_upload() {
                       
         if (isset($this->params['url']['aid'])) {
@@ -386,8 +391,9 @@ class UsersController extends AppController {
     }
     
     function profile(){
-		$t= $this->params;
-    	$this->set('t',$t);  	
+    	$id = $_GET['uid'];
+		$u = $this->User->find('first',array('User.id' =>$id)); 
+		$this->set('u',$u);	
     }
 
     function people_confirm()
