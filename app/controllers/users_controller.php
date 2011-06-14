@@ -88,6 +88,21 @@ class UsersController extends AppController {
                 $data['User']['nickname']  =  $this->params['data']['User']['nickname'];
                 $data['User']['blogurl']  =  $this->params['data']['User']['blogurl'];
                 $data['User']['fb_id']  =  $this->fbuser['id'];
+                $data['User']['email'] = $this->fbuser['email'];
+                $data['User']['location'] = $this->fbuser['hometown']['name'];
+                
+                /*
+                $last = end($this->fbuser['work']);
+                $location = $last['location']['name'];
+                
+                if(!empty($location)){
+                $data['User']['location'] = $location;
+                }else{
+               	$data['User']['location'] = $this->fbuser['hometown']['name'];
+                }
+                somehow garbled with the above  */
+                
+                //$data['User']['fb_pic'] = $this->fbuser[''];
                 // TODOエラーハンドリング
                 $data = $this->User->save($data);
                 // 登録に成功したら値をセッションに格納

@@ -6,7 +6,7 @@
 <?php foreach ($fbuser as $key => $val):?>
 <?php // echo $key.' : '.$val; ?>
 <?php endforeach;?>
-<?php //var_dump($fbuser);?>
+
 
 <?php
 echo $form->create('User',array('type' => 'post','url' =>   '/users/regist_end'));
