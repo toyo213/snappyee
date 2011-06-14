@@ -114,7 +114,7 @@ class UsersController extends AppController {
    }
    
    function howto(){
-   	
+   	$this->layout = "default";
    }
    
    
@@ -391,8 +391,10 @@ class UsersController extends AppController {
     }
     
     function profile(){
-    	$id = $_GET['uid'];
-		$u = $this->User->find('first',array('User.id' =>$id)); 
+    	$pid = $_GET['pid'];
+		$photo = $this->Photo->find('first',array('Photo.id' =>$pid));
+		$fb_id = $photo['Photo']['fb_id'];
+		$u = $this->User->find('first',array('User.fb_id' =>$fb_id)); 
 		$this->set('u',$u);	
     }
 
