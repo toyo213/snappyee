@@ -15,7 +15,9 @@ class UsersController extends AppController {
         // 認証対象外
         $this->Auth->allow('regist','regist_end');
         
-       $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'), 'limit' => '20'));
+       $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'),  
+                                              'conditions' => array('Photo.path' => ''),
+                                    'limit' => '20'));
        $this->set('list', $list);
         
         // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
@@ -170,7 +172,8 @@ class UsersController extends AppController {
         Configure::load('messages');
         $junle_param = 'junle.'.$this->params['pass']['0'];
         $junle = Configure::read($junle_param);
-        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle),
+        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle,
+                                                                      'Photo.path'     => ''),
                                           'order' => array('Photo.id DESC'), 
                                           'limit' => '20'
                                   ));
@@ -456,9 +459,9 @@ class UsersController extends AppController {
         // redirect
         pr($this->params);
         $data['Photo']['category_id'] = $this->params['data']['users']['category_id'][0];
-        $data['Photo']['fbpath'] = $this->params['data']['Photo']['fb_path'];
-        //$data['Photo']['fb_id'] = $this->fbuser['id'];
-        //$this->Photo->save($data);
+        $data['Photo']['id'] = $this->params['data']['Photo']['id'];
+        $data['Photo']['fb_id'] = $this->fbuser['id'];
+        $this->Photo->save($data);
     }
 
 }
