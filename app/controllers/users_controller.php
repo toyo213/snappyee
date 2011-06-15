@@ -401,6 +401,10 @@ class UsersController extends AppController {
 		$this->set('u',$u);	
 		$this->set('fb_id',$fb_id);
     }
+    
+    function like(){
+    	
+    }
 
     function people_confirm()
     {

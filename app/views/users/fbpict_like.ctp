@@ -3,9 +3,13 @@
 Uploaded by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><?php echo $lists['User']['nickname'];?> </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo $lists['User']['blogurl'];?>">Blog </a> <br>
 
 <?php //var_dump($lists);?>
+
 <img src="<?php echo $lists['Photo']['fbpath'];?>"></img>
-
-
+<br/>
+<a href="/users/like?pid=<?php echo $lists['Photo']['id'];?>"><img src="/img/btn_like.png"></img></a>
+<br/>
+<br/>
+<br/>
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']));?>
 
 <?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id'])); ?>

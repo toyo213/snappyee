@@ -59,23 +59,14 @@ $('#dialog').jqm({ modal: true });
 	<div id="topContent" class="radiux5px clearfix"> 
          <?php echo __('Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.');?>   <br/>
 	</div>
-    <div id="leftContent" class="radiux5px leftcol">    
-        <div id="photoContent" class="radiux5px clearfix">
-            <div class="tagList radiux5px">
-                <?php echo __('Check Trending Photos!'); ?>
-                <a href="/users/top/nail"><?php echo __('Nail'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/makeup"><?php echo __('Make-up'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/hair"><?php echo __('Hair Style'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/fashion"><?php echo __('Fashion'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/accessory"><?php echo __('Accessory'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/bag"><?php echo __('Bag'); ?></a>
-            </div> 
-           
+        
+        
+            
             
 <!-- ここがビューを表示させたい場所 -->
 <?php echo $content_for_layout ?>
-        </div>
-    </div>
+        
+    
 </div>
 
 <div id="footer" class="clearfix">
