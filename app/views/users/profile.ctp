@@ -1,5 +1,12 @@
-<?php // var_dump($u);?>
+<?php //var_dump($u); ?>
 <table border=2 width=500 align=center>
+<?php echo "<font color=red>".$session->flash()."</font>"; ?>
+<?php if($user['User']['id']==$u['User']['id']){
+echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロフィールを編集</a></p>";
+}
+?>
+
+
 <caption><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのプロフィール</caption>
 <tr>
 <td bgcolor="#FFF0F5">ユーザネーム</td>
@@ -10,7 +17,7 @@
 <td><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5">アナタについて</td>
+<td bgcolor="#FFF0F5">プロフィール</td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
 <tr>
@@ -18,6 +25,7 @@
 <td><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
 </tr>
 </table>
+
 
 <?php //var_dump($photo_list);?>
 <?php //echo $fb_id;?>

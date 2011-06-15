@@ -391,7 +391,10 @@ class UsersController extends AppController {
         $this->set('l_id', $l_id);
     }
     
+    /*-- Author Toyo --*/
     function profile(){
+    	/* others view someones profile from fb_pict like*/
+    	if(!empty($_GET['pid'])){
     	$pid = $_GET['pid'];
 		$photo = $this->Photo->find('first',array('conditions' => array('Photo.id' =>$pid)));
 		$fb_id = $photo['Photo']['fb_id'];
@@ -400,11 +403,46 @@ class UsersController extends AppController {
 		$this->set('photo_list',$photo_list);
 		$this->set('u',$u);	
 		$this->set('fb_id',$fb_id);
+    	}else{
+    	$fb_id = $this->fbuser['id'];
+    	$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id)));
+    	$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
+    	$this->set('photo_list',$photo_list);
+    	$this->set('u',$u);
+    	$this->set('fb_id',$fb_id);
+    	}
+    }
+    
+    function edit_profile(){
+    	if(!empty($_GET['uid'])){
+    	$uid = $_GET['uid'];
+    	$u = $this->User->find('first',array('conditions' => array('User.id' =>$uid)));
+    	$this->set('u',$u);
+    	}
+    	
+    	$d = $this->data;
+    	
+    	if(!empty($d)){	
+    	$id = $d['User']['id'];
+    	$name = $d['User']['nickname']; 
+        $location = $d['User']['location'];
+        $profile = $d['User']['profile'];  
+        
+        $this->User->id = $id;
+        $this->User->saveField('nickname',$name);
+        $this->User->saveField('location',$location);
+        $this->User->saveField('profile',$profile);
+        
+    	$this->Session->setFlash(__('プロフィールがアップデートされました', true));
+		$this->redirect(array('action'=>'profile'));
+		        
+    	}
     }
     
     function like(){
     	
     }
+    /*-- Author Toyo --*/
 
     function people_confirm()
     {
