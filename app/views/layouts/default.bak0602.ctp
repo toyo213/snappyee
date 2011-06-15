@@ -38,7 +38,7 @@ $('#dialog').jqm({ modal: true });
                 echo $facebook->login(array('perms' => 'offline_access,email,user_photos,friends_photos,read_stream,publish_stream'));
             } else {
                 echo sprintf('<div class="pic leftcol">%s</div>',$facebook->picture($fbuser['id'], array('width' => '26', 'height' => '26')));
-                echo sprintf('<div class="username leftcol">%s</div>', $user['User']['nickname']);
+                echo sprintf('<div class="username leftcol">%s</div>', '<!--morelink--><a href=/users/profile><font color=white size=2>'.$user['User']['nickname'].'</font></a><!--morelink-->');
                 echo sprintf('<div class="logout radiux3px leftcol">%s</div>', $facebook->logout(array('redirect' => array('controller' => 'users', 'action' => 'logout'))));
             }
             ?>            
