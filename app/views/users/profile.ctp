@@ -1,5 +1,3 @@
-
-
 <?php // var_dump($u);?>
 <table border=2 width=500 align=center>
 <caption><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのプロフィール</caption>
@@ -22,16 +20,24 @@
 </table>
 
 <?php //var_dump($photo_list);?>
-<?php echo $fb_id;?>
+<?php //echo $fb_id;?>
 <br/>
 <br/>
 <h2><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのフォト</h2>
+
 <div class="photoList rightMarginS leftcol">
 	<?php $i = 0; ?>
     <?php while ($i < 5): ?>
-    <div class="photo radiux3px">
-            <a href="/users/fbpict_like/<?php echo $photo_list[$i]['Photo']['id'];?>"><img src="<?php echo $photo_list[$i]['Photo']['fbpath'];?>" width="163px" alt="" /></a>
-    </div>
+    <?php if(!empty($photo_list[$i])){	
+    echo "<div class=photo radiux3px>";
+   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
+   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
+   	echo "</img>";
+   	echo "</a>";
+   	echo "</div>";
+    }
+    
+    ?>
     <?php  $i++; ?>
     <?php endwhile; ?>
 </div>
@@ -39,9 +45,15 @@
 <div class="photoList rightMarginS leftcol">
     <?php $i = 6; ?>
     <?php while ($i < 10): ?>
-        <div class="photo radiux3px">
-            <a href="/users/fbpict_like/<?php echo $photo_list[$i]['Photo']['id'];?>"><img src="<?php echo $photo_list[$i]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
-        </div>
+        <?php if(!empty($photo_list[$i])){	
+    echo "<div class=photo radiux3px>";
+   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
+   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
+   	echo "</img>";
+   	echo "</a>";
+   	echo "</div>";
+    } 
+    ?>
     <?php  $i++; ?>
     <?php endwhile; ?>
 </div>
@@ -51,9 +63,15 @@
 <div class="photoList rightMarginS leftcol">
     <?php $i = 10; ?>
     <?php while ($i < 13): ?>
-        <div class="photo radiux3px">
-            <a href="/users/fbpict_like/<?php echo $photo_list[$i]['Photo']['id'];?>"><img src="<?php echo $photo_list[$i]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
-        </div>
+        <?php if(!empty($photo_list[$i])){	
+    echo "<div class=photo radiux3px>";
+   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
+   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
+   	echo "</img>";
+   	echo "</a>";
+   	echo "</div>";
+    } 
+    ?>
     <?php  $i++; ?>
     <?php endwhile; ?>
 </div>
@@ -63,10 +81,15 @@
 <div class="photoList leftcol">
     <?php $i = 13; ?>
     <?php while ($i < 18): ?>
-    <div class="photo radiux3px">
-            <a href="/users/fbpict_like/<?php echo $photo_list[$i]['Photo']['id'];?>"><img src="<?php echo $photo_list[$i]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
-        </div>
-    <?php  $i++; ?>
+      <?php if(!empty($photo_list[$i])){	
+    echo "<div class=photo radiux3px>";
+   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
+   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
+   	echo "</img>";
+   	echo "</a>";
+   	echo "</div>";
+    } 
+    ?>
+  <?php  $i++; ?>
     <?php endwhile; ?>
-</div>     
-
+</div>
