@@ -11,6 +11,11 @@
 <link href="/css/signup.css" rel="stylesheet" type="text/css" />	 
 <link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
 <link href="/css/login.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/DropDownMenu.css" rel="stylesheet" type="text/css" media="all">
+<script src="/js/navi.js" type="text/javascript"></script>
+<script src="/js/DropDownMenu.js" type="text/javascript"></script>
+
 <script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
 <script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>  
 <script type="text/javascript">
@@ -76,6 +81,9 @@ $('#dialog').jqm({ modal: true });
 <?php echo $content_for_layout ?>
         </div>
     </div>
+      
+    
+    
 
     <div id="rightContent" class="leftcol">
         <div class="bgWhile">

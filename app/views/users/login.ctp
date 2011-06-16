@@ -78,6 +78,67 @@ $numbers = range(1, 19);
 shuffle($numbers);
 ?>
 
+<!-- Sample Pulldown menu -->
+    <!--  image pull down
+    <div id="navi">
+	<ul id="dd">
+    <li class="mainmenu"><a href="#" class="menu" id="mmenu1" onMouseOver="mopen(1);" onMouseOut="mclosetime();"><img src="/img/cake.icon.gif" alt="" width="100" height="20" border="0" class="imgover"></a>
+	<div class="submenu" id="menu1" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime();">
+	<a href="#"><img src="/img/cake.icon.gif" alt="" width="99" height="18" border="0" class="imgover"></a>
+	<a href="#"><img src="/img/cake.icon.gif" alt="" width="99" height="18" border="0" class="imgover"></a>
+	<a href="#"><img src="/img/cake.icon.gif" alt="" width="99" height="18" border="0" class="imgover"></a>
+	<a href="#"><img src="/img/cake.icon.gif" alt="" width="99" height="18" border="0" class="imgover"></a>
+	</div>
+	</li>
+	</div>
+	</ul>
+	-->
+	
+	<!--  
+	text pull down
+    <ul id="dd">
+  	<li>
+    <a href="#" class="menu" id="mmenu1" 
+      onmouseover="mopen(1);"
+      onmouseout="mclosetime();">Home</a>
+    <div class="submenu" id="menu1"
+      onmouseover="mcancelclosetime()"
+      onmouseout="mclosetime();">
+        <a href="#">HTML Tutorials</a>
+        <a href="#">DHTML Tutorials</a>
+        <a href="#">JavaScript Tutorials</a>
+        <a href="#">CSS Tutorials</a>
+    </div>
+  </li>
+  <li>
+    <a href="#" class="menu" id="mmenu2" 
+      onmouseover="mopen(2);"
+      onmouseout="mclosetime();">Download</a>
+    <div class="submenu" id="menu2"
+      onmouseover="mcancelclosetime()"
+      onmouseout="mclosetime();">
+        <a href="#">ASP Scripts</a>
+        <a href="#">PHP Scripts</a>
+        <a href="#">Ajax Scripts</a>
+        <a href="#">Perl Scripts</a>
+    </div>
+  </li>  
+  <li>
+    <a href="#" class="menu" id="mmenu3" 
+      onmouseover="mopen(3);"
+      onmouseout="mclosetime();">Contact</a>
+    <div class="submenu a" id="menu3"
+      onmouseover="mcancelclosetime()"
+      onmouseout="mclosetime();">
+        <a href="#">Office</a>
+        <a href="#">Sales</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Shipping</a>
+    </div>
+  </li>
+</ul>
+    -->
+    <!-- Sample Pulldown menu -->
     
     <!-- photo list Big -->
 <div class="photoList rightMarginS leftcol">
