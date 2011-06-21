@@ -1,7 +1,8 @@
 <?php
 //var_dump($prm);
 if (isset($prm['aid'])) {
-    echo '<h1>Please choice your best picture</h1>';
+    echo __('test');
+	echo '<h1>Please choice your best picture</h1>';
     echo '<ul id="banner">';
     foreach ($albums as $key => $val) {
         $pt = '<li><a href="/users/fbpict_up?pid=%s&aid=%s"><img src="%s" width="110px" /></a></li>';

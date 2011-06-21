@@ -1,5 +1,7 @@
 
-この画像をgee geeに登録しますか？
+<?php echo __('Upload FB photo to Gee Gee'); ?>
+<?php echo __('Upload this photo to Gee Gee?');?>
+
 <?php
 echo $form->create('users', array('type' => 'post', 'action' => 'fbpict_add'));
 foreach ($albums as $key => $val) {

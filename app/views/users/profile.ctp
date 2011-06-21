@@ -36,7 +36,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 <div class="photoList rightMarginS leftcol">
 	<?php $i = 0; ?>
     <?php while ($i < 5): ?>
-    <?php if(!empty($photo_list[$i])){	
+    <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
     echo "<div class=photo radiux3px>";
    	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
    	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
@@ -53,7 +53,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 <div class="photoList rightMarginS leftcol">
     <?php $i = 6; ?>
     <?php while ($i < 10): ?>
-        <?php if(!empty($photo_list[$i])){	
+        <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
     echo "<div class=photo radiux3px>";
    	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
    	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
@@ -71,7 +71,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 <div class="photoList rightMarginS leftcol">
     <?php $i = 10; ?>
     <?php while ($i < 13): ?>
-        <?php if(!empty($photo_list[$i])){	
+        <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
     echo "<div class=photo radiux3px>";
    	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
    	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
@@ -89,7 +89,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 <div class="photoList leftcol">
     <?php $i = 13; ?>
     <?php while ($i < 18): ?>
-      <?php if(!empty($photo_list[$i])){	
+      <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
     echo "<div class=photo radiux3px>";
    	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
    	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";

@@ -66,6 +66,18 @@ msgstr "Gee Geeランキング"
 msgid "upload"
 msgstr "アップロードする"
 
+#: /views/users/fbphoto_upload.ctp:4
+msgid "test"
+msgstr "テスト"
+
+#: /views/users/fbpict_up.ctp:2
+msgid "Upload FB photo to Gee Gee"
+msgstr "Gee Geeにアップロード"
+
+#: /views/users/fbpict_up.ctp:3
+msgid "Upload this photo to Gee Gee?"
+msgstr "Gee Geeにアップロードしますか"
+
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."
 msgstr ""
