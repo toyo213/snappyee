@@ -1,0 +1,83 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-06-15 00:52+0900\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /views/layouts/default.bak0602.ctp:30
+#: /views/layouts/default.ctp:30
+msgid "Upload FB photo"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:31
+#: /views/layouts/default.ctp:31
+msgid "Upload photo from your PC"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:32
+#: /views/layouts/default.ctp:32
+msgid "How to Gee Gee!"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:60
+#: /views/layouts/default.ctp:60
+msgid "Gee Gee is a web service where you can upload fashion photos in your style and share it with the world."
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:65
+#: /views/layouts/default.ctp:65
+msgid "Check Trending Photos!"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:66
+#: /views/layouts/default.ctp:66
+msgid "Nail"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:67
+#: /views/layouts/default.ctp:67
+msgid "Make-up"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:68
+#: /views/layouts/default.ctp:68
+msgid "Hair Style"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:69
+#: /views/layouts/default.ctp:69
+msgid "Fashion"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:70
+#: /views/layouts/default.ctp:70
+msgid "Accessory"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:71
+#: /views/layouts/default.ctp:71
+msgid "Bag"
+msgstr ""
+
+#: /views/layouts/default.bak0602.ctp:85
+msgid "Gee Gee Ranking"
+msgstr ""
+
+#: /views/users/photo_upload.ctp:5
+msgid "upload"
+msgstr ""
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+

@@ -12,7 +12,7 @@ class UsersController extends AppController {
     var $components = array('Auth','Facebook.Connect');
 
     function beforeFilter() {
-        // 認証対象外
+        pr(Configure::read('uname'));
         $this->Auth->allow('regist','regist_end');
         
        $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'),  
@@ -215,9 +215,9 @@ class UsersController extends AppController {
 
     function fbpict_add() {
     // validate
-    // save 
+    // sazz
     // redirect
-                $data['Photo']['category_id']  = $this->params['data']['users']['category_id'][0];
+                $data['Photo']['category_id']  = $this->params['data']['users']['category_id'];
                 $data['Photo']['fbpath']  = $this->params['data']['Photo']['fb_path'];
                 $data['Photo']['fb_id']  =  $this->fbuser['id'];
                 $this->Photo->save($data);
@@ -440,7 +440,9 @@ class UsersController extends AppController {
     }
     
     function like(){
-    	
+     // validate 
+     $this->set('pid',$this->params['pass'][0]);
+      $this->layout = false;
     }
     /*-- Author Toyo --*/
 

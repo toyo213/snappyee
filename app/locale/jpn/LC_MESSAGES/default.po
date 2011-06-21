@@ -1,0 +1,72 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-06-11 18:03+0900\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /views/layouts/default.bak0602.ctp:30
+msgid "Upload FB photo"
+msgstr "Facebookにフォトをアップロード"
+
+#: /views/layouts/default.bak0602.ctp:31
+msgid "Upload photo from your PC"
+msgstr "PCからフォトをアップロード"
+
+#: /views/layouts/default.bak0602.ctp:32
+msgid "How to Gee Gee!"
+msgstr "Gee Geeの楽しみ方"
+
+#: /views/layouts/default.bak0602.ctp:57
+msgid "Gee Gee is a web service where you can upload fashion photos in your style and share it with the world."
+msgstr "ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！"
+
+#: /views/layouts/default.bak0602.ctp:62
+msgid "Check Trending Photos!"
+msgstr "ジャンル別にチェック！"
+
+#: /views/layouts/default.bak0602.ctp:63
+msgid "Nail"
+msgstr "ネイル"
+
+#: /views/layouts/default.bak0602.ctp:64
+msgid "Make-up"
+msgstr "メイク"
+
+#: /views/layouts/default.bak0602.ctp:65
+msgid "Hair Style"
+msgstr "ヘアスタイル"
+
+#: /views/layouts/default.bak0602.ctp:66
+msgid "Fashion"
+msgstr "ファッション"
+
+#: /views/layouts/default.bak0602.ctp:67
+msgid "Accessory"
+msgstr "アクセサリー"
+
+#: /views/layouts/default.bak0602.ctp:68
+msgid "Bag"
+msgstr "バッグ"
+
+#: /views/layouts/default.bak0602.ctp:82
+msgid "Gee Gee Ranking"
+msgstr "Gee Geeランキング"
+
+#: /views/users/photo_upload.ctp:5
+msgid "upload"
+msgstr "アップロードする"
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
