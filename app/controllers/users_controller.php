@@ -3,7 +3,9 @@ class UsersController extends AppController {
 
     var $helpers = array('Form', 'Html', 'Javascript', 'Time', 'Session', 'Facebook.Facebook');
     var $name = 'Users';
-    var $uses = array('User','Photo' ,'People', 'PeopleFind');
+    //var $uses = array('User','Photo' ,'People','Photo_like');
+    var $uses = array('User','Photo' ,'Photo_like');
+
     // アクセストークン
     var $ac = '';
     var $needAuth = true;
@@ -441,8 +443,13 @@ class UsersController extends AppController {
     
     function like(){
      // validate 
-     $this->set('pid',$this->params['pass'][0]);
-      $this->layout = false;
+     $pid = $this->params['pass'][0];
+     $data['Photo_like']['fb_id']  =  $this->fbuser['id'];
+     $data['Photo_like']['photo_id']  = $pid;
+     $this->Photo_like->save($data);
+     //var_dump($this->fbuser);
+     $this->set('pid',$pid);
+     $this->layout = false;
     }
     /*-- Author Toyo --*/
 

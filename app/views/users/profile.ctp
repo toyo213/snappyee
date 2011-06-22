@@ -9,19 +9,19 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 
 <caption><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのプロフィール</caption>
 <tr>
-<td bgcolor="#FFF0F5">ユーザネーム</td>
+<td bgcolor="#FFF0F5"><?php echo __('User Name'); ?></td>
 <td><?php echo $u['User']['nickname']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5">ロケーション</td>
+<td bgcolor="#FFF0F5"><?php echo __('Location'); ?></td>
 <td><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5">プロフィール</td>
+<td bgcolor="#FFF0F5"><?php echo __('Profile'); ?></td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5">プロフィールURL</td>
+<td bgcolor="#FFF0F5"><?php echo __('Profile URL'); ?></td>
 <td><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
 </tr>
 </table>
