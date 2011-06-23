@@ -3,8 +3,8 @@ class UsersController extends AppController {
 
     var $helpers = array('Form', 'Html', 'Javascript', 'Time', 'Session', 'Facebook.Facebook');
     var $name = 'Users';
-    //var $uses = array('User','Photo' ,'People','Photo_like');
-    var $uses = array('User','Photo' ,'Photo_like');
+    var $uses = array('User','Photo' ,'People','Photo_like','Photo_like_log');
+    //var $uses = array('User','Photo' ,'Photo_like');
 
     // アクセストークン
     var $ac = '';
@@ -177,7 +177,14 @@ class UsersController extends AppController {
     }
     
     function fbpict_like() {
-       $list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
+     
+     $pid = $this->params['pass'][0];
+     $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid,$this->fbuser['id']);
+     
+     $this->set('isLike', $res);
+     
+        
+        $list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
                                                  'conditions' => array('Photo.id' => $this->params['pass'][0]),
                  'joins' => array(array(
                         'table' => 'users',
@@ -444,22 +451,16 @@ class UsersController extends AppController {
     function like(){
      // validate 
      $pid = $this->params['pass'][0];
-     $data['Photo_like']['fb_id']  =  $this->fbuser['id'];
-     $data['Photo_like']['photo_id']  = $pid;
-     $this->Photo_like->save($data);
+     $data['Photo_like_log']['fb_id']  =  $this->fbuser['id'];
+     $data['Photo_like_log']['photo_id']  = $pid;
+
+     $res = $this->Photo_like_log->findByPhotoIDAndFbId($pid,$this->fbuser['id']);
+     
+     var_dump($this->Photo_like_log->save($data));
      //var_dump($this->fbuser);
      $this->set('pid',$pid);
      $this->layout = false;
     }
-    /*-- Author Toyo --*/
-
-    function people_confirm()
-    {
-        var_dump($this->data);
-        var_dump($this->PeopleFind->save($this->data));
-    }
-
-
 
     function people($name = NULL ,$selectname =NULL)
     {

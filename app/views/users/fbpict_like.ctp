@@ -6,6 +6,7 @@ Uploaded by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><?php e
 <img src="<?php echo $lists['Photo']['fbpath'];?>"></img>
 <br/>
 
+<?php if($isLike==false):  ?>
 <script>
 $(function() {
     $('#change_btn').click(function() {
@@ -29,20 +30,10 @@ function callBack(data) {
 <form action="" id="form1" method="post">
 <button type="button" src="/img/icn_yes.gif" id="change_btn" value="like" /> 
 <img src="/img/icn_yes.gif" />
-</button>
-    
+</button>    
 </form>
 </div>
     
+<?php endif;  ?>
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']));?>
 <?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id'])); ?>
-
-<!--  
-<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=216286761727505&amp;xfbml=1"></script><fb:like href="http://ck.soogle.me/users/fbpict_like/10" send="true" width="450" show_faces="true" font=""></fb:like>
-
-http://ck.soogle.me/users/fbpict_like/.$lists["Photo"]["id"]
-
-http://.$_SERVER['SERVER_NAME']./users/fbpict_like/.$lists['Photo']['id']
-<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="http://ck.soogle.me/users/fbpict_like/10" num_posts="2" width="500"></fb:comments>
-
--->

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2011-06-22 01:00+0900\n"
+"POT-Creation-Date: 2011-06-23 22:45+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/users_controller.php:436
+#: /controllers/users_controller.php:445
 msgid "プロフィールがアップデートされました"
 msgstr ""
 
@@ -70,12 +70,40 @@ msgstr ""
 msgid "Gee Gee Ranking"
 msgstr ""
 
+#: /views/users/fbphoto_upload.ctp:4
+msgid "test"
+msgstr ""
+
+#: /views/users/fbpict_up.ctp:2
+msgid "Upload FB photo to Gee Gee"
+msgstr ""
+
 #: /views/users/fbpict_up.ctp:3
 msgid "Upload this photo to Gee Gee?"
 msgstr ""
 
 #: /views/users/photo_upload.ctp:5
 msgid "upload"
+msgstr ""
+
+#: /views/users/profile.ctp:9
+msgid "TEST"
+msgstr ""
+
+#: /views/users/profile.ctp:13
+msgid "User Name"
+msgstr ""
+
+#: /views/users/profile.ctp:17
+msgid "Location"
+msgstr ""
+
+#: /views/users/profile.ctp:21
+msgid "Profile"
+msgstr ""
+
+#: /views/users/profile.ctp:25
+msgid "Profile URL"
 msgstr ""
 
 #: /webroot/test.php:99

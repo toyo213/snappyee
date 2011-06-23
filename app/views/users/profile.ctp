@@ -6,6 +6,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 }
 ?>
 
+<?php echo __('TEST'); ?>
 
 <caption><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのプロフィール</caption>
 <tr>
