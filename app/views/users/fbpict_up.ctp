@@ -1,6 +1,6 @@
 
-<?php echo __('Upload FB photo to Gee Gee'); ?>
-<?php echo __('Upload this photo to Gee Gee?');?>
+
+
 
 <?php
 echo $form->create('users', array('type' => 'post', 'action' => 'fbpict_add'));
@@ -16,7 +16,8 @@ echo $form->input(
 	array('type' => 'select', 'options' => $category_id),
 	array(''=>'--')
 );
-echo $form->submit('登録する', array('div' => 'false')); 
+echo "<br/><br/>";
+echo $form->submit('Upload', array('div' => 'false')); 
 echo $form->hidden('Photo.fb_path' ,array('value' =>$val['src_big'] ));
 echo $form->end();
  ?>

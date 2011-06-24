@@ -2,13 +2,15 @@
 <table border=2 width=500 align=center>
 <?php echo "<font color=red>".$session->flash()."</font>"; ?>
 <?php if($user['User']['id']==$u['User']['id']){
-echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロフィールを編集</a></p>";
+echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">";
+echo __('Edit Profile');
+echo "</a></p>";
 }
 ?>
 
-<?php echo __('TEST'); ?>
 
-<caption><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのプロフィール</caption>
+
+<caption><font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Profile');?></caption>
 <tr>
 <td bgcolor="#FFF0F5"><?php echo __('User Name'); ?></td>
 <td><?php echo $u['User']['nickname']; ?></td>
@@ -32,7 +34,7 @@ echo "<p align=right><a href=/users/edit_profile?uid=".$u['User']['id'].">プロ
 <?php //echo $fb_id;?>
 <br/>
 <br/>
-<h2><font color="red"><?php echo $u['User']['nickname']; ?></font>さんのフォト</h2>
+<h2><font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Photos');?></h2>
 
 <div class="photoList rightMarginS leftcol">
 	<?php $i = 0; ?>

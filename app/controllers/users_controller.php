@@ -442,13 +442,15 @@ class UsersController extends AppController {
         $this->User->saveField('location',$location);
         $this->User->saveField('profile',$profile);
         
-    	$this->Session->setFlash(__('プロフィールがアップデートされました', true));
-		$this->redirect(array('action'=>'profile'));
+    	//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
+		$this->Session->setFlash(__('Updated!', true));
+        $this->redirect(array('action'=>'profile'));
 		        
     	}
     }
     
-    function like(){
+    function like()
+    {
      // validate 
      $pid = $this->params['pass'][0];
      $data['Photo_like_log']['fb_id']  =  $this->fbuser['id'];
@@ -456,8 +458,18 @@ class UsersController extends AppController {
 
      $res = $this->Photo_like_log->findByPhotoIDAndFbId($pid,$this->fbuser['id']);
      
-     var_dump($this->Photo_like_log->save($data));
-     //var_dump($this->fbuser);
+     if ($res == false) {
+         $res = $this->Photo_like->findByPhotoId($pid);
+         var_dump($res);
+
+         //var_dump($this->Photo_like_log->save($data));
+$this->Photo_like->create(null);         
+            var_dump($this->Photo_like->set('photo_id',$pid));
+            var_dump($this->Photo_like->saveField('cnt', ++$res['Photo_like']['cnt']));
+
+            }
+
+        //var_dump($this->fbuser);
      $this->set('pid',$pid);
      $this->layout = false;
     }

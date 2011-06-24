@@ -66,6 +66,22 @@ msgstr "Gee Geeランキング!!"
 msgid "upload"
 msgstr "アップロードする"
 
+#: /views/users/photo_upload.ctp:4
+msgid "<h1>Select Photos to Upload</h1>"
+msgstr "<h1>アップロードする写真を選んでください</h1>"
+
+#: /views/users/photo_upload.ctp:13
+msgid "<h1>Select Albums</h1>"
+msgstr "<h1>アルバムを選んでください</h1>"
+
+#: /controllers/users_controller.php:446
+msgid "Updated"
+msgstr "アップデートされました。"
+
+#: /views/users/profile.ctp:6
+msgid "Edit Profile"
+msgstr "プロフィールを編集"
+
 #: /views/users/profile.ctp:13
 msgid "User Name"
 msgstr "ユーザネーム"
@@ -74,7 +90,7 @@ msgstr "ユーザネーム"
 msgid "Location"
 msgstr "ロケーション"
 
-#: /views/users/profile.ctp:21
+#: /views/users/profile.ctp:23
 msgid "Profile"
 msgstr "プロフィール"
 
@@ -82,10 +98,42 @@ msgstr "プロフィール"
 msgid "Profile URL"
 msgstr "プロフィールURL"
 
+#: /views/users/profile.ctp:13
+msgid "Profile"
+msgstr "さんのプロフィール"
 
-#: /views/users/profile.ctp:9
-msgid "TEST"
-msgstr "テスト"
+#: /views/users/profile.ctp:37
+msgid "Photos"
+msgstr "さんのフォト"
+
+#: /views/users/edit_profile.ctp:4
+msgid "User Name"
+msgstr "ユーザネーム"
+
+#: /views/users/edit_profile.ctp:7
+msgid "Location"
+msgstr "ロケーション"
+
+#: /views/users/edit_profile.ctp:10
+msgid "Profile"
+msgstr "プロフィール"
+
+#: /views/users/edit_profile.ctp:13
+msgid "Profile URL"
+msgstr "プロフィールURL"
+
+#: /views/users/howto.ctp:5
+msgid "/img/howto_en.jpg"
+msgstr "/img/howto_jp.jpg"
+
+#: /views/users/fbpict_like.ctp:1
+msgid "You Like This Photo?"
+msgstr "この写真は好きですか？"
+
+#: /views/users/fbpict_like.ctp:3
+msgid "Uploaded"
+msgstr "アップロード"
+
 
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."

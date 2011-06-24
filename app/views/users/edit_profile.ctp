@@ -1,17 +1,21 @@
 
 <?php e($form->create('User', array('action'=>'edit_profile'))); ?>
 
-<p><font color="#FFF0F5">ユーザネーム</font></p>
-<?php e($form->input('nickname', array('type' => 'text', 'value' => $u['User']['nickname'] ,'div'=>true,'required'=>true,'label' =>'ユーザネーム')));?>
-<?php e($form->input('location', array('type' => 'text', 'value' => $u['User']['location'] ,'div'=>true,'label' =>'ロケーション')));?>
+<p><?php echo __('User Name');?></p>
+<?php e($form->input('nickname', array('type' => 'text', 'value' => $u['User']['nickname'] ,'div'=>false,'required'=>true,'label' =>'','size'=>30)));?>
 
-<?php e($form->input('profile', array('type' => 'text','style'=>'width:21em;height:10em','maxlength'=>200, 'value' => $u['User']['profile'] ,'div'=>true,'label' =>'プロフィール')));?>
-
-<?php e($form->input('blogurl', array('type' => 'text', 'value' => $u['User']['blogurl'] ,'div'=>true,'label' =>'URL　　 　　')));?>
+<p><?php echo __('Location');?></p>
+<?php e($form->input('location', array('type' => 'text', 'value' => $u['User']['location'] ,'div'=>false,'label' =>'','size'=>30)));?>
+<br/>
+<p><?php echo __('Profile');?></p>
+<?php e($form->input('profile', array('type' => 'text','style'=>'width:21em;height:10em','maxlength'=>200, 'value' => $u['User']['profile'] ,'div'=>true,'label' =>'','size'=>30)));?>
+<br/>
+<p><?php echo __('Profile URL');?></p>
+<?php e($form->input('blogurl', array('type' => 'text', 'value' => $u['User']['blogurl'] ,'div'=>true,'label' =>'','size'=>30)));?>
 <?php e($form->input('id', array('type' => 'hidden', 'value' => $u['User']['id'])));?>
 <br/>
 
-<?php e($form->submit('アップデート')); ?>
+<?php e($form->submit('Update')); ?>
 <?php e($form->end()); ?>
 
 <?php // var_dump($u);?>

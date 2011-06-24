@@ -1,6 +1,7 @@
-<h1>写真の評価をする You like this photo?</h1>
+<h1><font size="4"><?php echo __('You Like This Photo?');?></font></h1>
 <?php //echo $facebook->picture($fbuser['id']); ?>
-Uploaded by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><?php echo $lists['User']['nickname'];?> </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo $lists['User']['blogurl'];?>">Blog </a> <br>
+<br/>
+<?php echo __('Uploaded');?> by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><?php echo $lists['User']['nickname'];?> </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo $lists['User']['blogurl'];?>">Blog </a> <br>
 
 
 <img src="<?php echo $lists['Photo']['fbpath'];?>"></img>
