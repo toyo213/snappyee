@@ -16,7 +16,7 @@ msgstr ""
 
 #: /views/layouts/default.bak0602.ctp:30
 msgid "Upload FB photo"
-msgstr "Facebookにフォトをアップロード"
+msgstr "Facebookフォトをアップロード"
 
 #: /views/layouts/default.bak0602.ctp:31
 msgid "Upload photo from your PC"
@@ -122,6 +122,10 @@ msgstr "プロフィール"
 msgid "Profile URL"
 msgstr "プロフィールURL"
 
+#: /views/users/edit_profile.ctp:17
+msgid "Update"
+msgstr "アップデート"
+
 #: /views/users/howto.ctp:5
 msgid "/img/howto_en.jpg"
 msgstr "/img/howto_jp.jpg"
@@ -132,6 +136,22 @@ msgstr "この写真は好きですか？"
 
 #: /views/users/fbpict_like.ctp:3
 msgid "Uploaded"
+msgstr "アップロード"
+
+#: /views/users/fbpict_up.ctp:22
+msgid "Upload"
+msgstr "アップロード"
+
+#: /views/users/photo_update.ctp:1
+msgid "Photos successfully uploaded!"
+msgstr "Gee Geeにフォトがアップロードされました"
+
+#: /views/users/fbpict_add.ctp:1
+msgid "Photos successfully uploaded!"
+msgstr "Gee Geeにフォトがアップロードされました"
+
+#: /views/users/photo_up.ctp:15
+msgid "Upload"
 msgstr "アップロード"
 
 

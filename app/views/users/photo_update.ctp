@@ -1,1 +1,1 @@
-<h3>photo update is done</h3>
+<h3><?php echo __('Photos successfully uploaded!');?></h3>

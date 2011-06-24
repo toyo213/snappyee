@@ -1,2 +1,1 @@
-
-この画像をgee geeに登録完了しました
+<?php echo __('Photos successfully uploaded!'); ?>

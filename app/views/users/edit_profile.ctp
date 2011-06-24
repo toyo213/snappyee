@@ -14,8 +14,8 @@
 <?php e($form->input('blogurl', array('type' => 'text', 'value' => $u['User']['blogurl'] ,'div'=>true,'label' =>'','size'=>30)));?>
 <?php e($form->input('id', array('type' => 'hidden', 'value' => $u['User']['id'])));?>
 <br/>
+ <input type="submit" value="<?php echo __('Update'); ?>" />
 
-<?php e($form->submit('Update')); ?>
 <?php e($form->end()); ?>
 
 <?php // var_dump($u);?>

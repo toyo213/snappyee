@@ -17,7 +17,10 @@ echo $form->input(
 	array(''=>'--')
 );
 echo "<br/><br/>";
-echo $form->submit('Upload', array('div' => 'false')); 
+//echo $form->submit('Upload', array('div' => 'false')); ?>
+
+ <input type="submit" value="<?php echo __('Upload'); ?>" />
+<?php 
 echo $form->hidden('Photo.fb_path' ,array('value' =>$val['src_big'] ));
 echo $form->end();
  ?>

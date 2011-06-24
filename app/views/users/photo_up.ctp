@@ -1,5 +1,5 @@
-<h3>photo upload is done</h3>
-<img src="<?php echo $img_path; ?>"></img>
+
+<img src="<?php echo $img_path; ?>" width="600" height="600"></img>
 
 <?php
 echo $form->create('users', array('type' => 'post', 'action' => 'photo_update'));
@@ -10,8 +10,12 @@ echo $form->input(
 	'category_id',
 	array('type' => 'select', 'options' => $category_id),
 	array(''=>'--')
-);
-echo $form->submit('登録する', array('div' => 'false')); 
+);?>
+<br/>
+
+<input type="submit" value="<?php echo __('Upload'); ?>" />
+<?php 
+//echo $form->submit('登録する', array('div' => 'false')); 
 echo $form->hidden('Photo.id' ,array('value' =>$l_id ));
 echo $form->end();
  ?>
