@@ -6,6 +6,7 @@
 
 <img src="<?php echo $lists['Photo']['fbpath'];?>"></img>
 <br/>
+<?php echo $result['Photo_like']['cnt']+1;?>members like this.
 
 <?php if($isLike==false):  ?>
 <script>
@@ -25,7 +26,6 @@ function callBack(data) {
     $('#b_erace').hide();
 }
 </script>
-
 <span id="change_area"></span>
 <div id="b_erace">
 <form action="" id="form1" method="post">

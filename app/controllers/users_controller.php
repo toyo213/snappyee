@@ -12,12 +12,18 @@ class UsersController extends AppController {
 
     // ログイン必須のフラグ
     var $components = array('Auth','Facebook.Connect');
-
     function beforeFilter() {
-        //pr(Configure::read('uname'));
+        
         Configure::load('messages');
-        $this->set('junle_param',Configure::read('junle'));
-		
+        preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
+        if(count($match) > 0 ) {
+        //App::import('core', 'l10n');
+        //$this->L10n = new L10n();
+        //var_dump($this->L10n->get());
+            $this->set('category',Configure::read('category.jpn'));
+        } else {            
+           $this->set('category',Configure::read('category.en'));
+        }
         
         $this->Auth->allow('regist','regist_end');
         
@@ -77,7 +83,6 @@ class UsersController extends AppController {
         $this->set('ac', $this->ac);
         $this->set('user', $this->Session->read('user'));        
         $this->layout = "default.bak0602";
-//pr($this->params);exit;
     }
 
     //Add an email field to be saved along with creation.
@@ -187,10 +192,10 @@ class UsersController extends AppController {
      
      $pid = $this->params['pass'][0];
      $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid,$this->fbuser['id']);
+     $result = $this->Photo_like->findByPhotoId($pid);
      
-     $this->set('isLike', $res);
      
-        
+     $this->set('isLike', $res);    
         $list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
                                                  'conditions' => array('Photo.id' => $this->params['pass'][0]),
                  'joins' => array(array(
@@ -202,7 +207,7 @@ class UsersController extends AppController {
                         )
                     )
                 )));
-
+        $this->set('result', $result);
         $this->set('lists', $list);
     }
     function top() {

@@ -10,18 +10,18 @@ $config['junle']['shoes'] = '700';
 
 $config['category']['en']['100']='Nail';
 $config['category']['en']['200']='Make-up';
-$config['category']['en']['200']='Hair';
-$config['category']['en']['200']='Fashion';
-$config['category']['en']['200']='Accessory';
-$config['category']['en']['200']='Bag';
-$config['category']['en']['200']='Shoes';
+$config['category']['en']['300']='Hair';
+$config['category']['en']['400']='Fashion';
+$config['category']['en']['500']='Accessory';
+$config['category']['en']['600']='Bag';
+$config['category']['en']['700']='Shoes';
 
-$config['category']['jp']['200']='ネイル';
-$config['category']['jp']['200']='メイク';
-$config['category']['jp']['200']='ヘア';
-$config['category']['jp']['200']='ファッション';
-$config['category']['jp']['200']='アクセサリー';
-$config['category']['jp']['200']='バック';
-$config['category']['jp']['200']='シューズ';
+$config['category']['jpn']['100']='ネイル';
+$config['category']['jpn']['200']='メイク';
+$config['category']['jpn']['300']='ヘア';
+$config['category']['jpn']['400']='ファッション';
+$config['category']['jpn']['500']='アクセサリー';
+$config['category']['jpn']['600']='バック';
+$config['category']['jpn']['700']='シューズ';
 
 ?>

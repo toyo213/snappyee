@@ -154,6 +154,25 @@ msgstr "Gee Geeにフォトがアップロードされました"
 msgid "Upload"
 msgstr "アップロード"
 
+#: /views/users/regist.ctp:20
+msgid "Gee Gee Create Account"
+msgstr "Gee Geeアカウント登録"
+
+#: /views/users/regist.ctp:27
+msgid "User Name"
+msgstr "ユーザネーム"
+
+#: /views/users/regist.ctp:32
+msgid "Profile URL"
+msgstr "プロフィール URL"
+
+#: /views/users/regist.ctp:39
+msgid "Create Account"
+msgstr "アカウント登録"
+
+#: /views/users/regist_end.ctp:2
+msgid "Your Account has been created and now you are ready to Gee Gee!"
+msgstr "Gee Geeのアカウント登録が完了しました。Let's Gee Gee!"
 
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."

@@ -8,7 +8,7 @@ echo '<br>';
 $category_id = array(100=>'ネイル', 200=>'メイク', 300=>'ヘアスタイル',400=>'ファッション',500=>'アクセ',600=>'バック',700=>'サンダル&パンプス');
 echo $form->input(
 	'category_id',
-	array('type' => 'select', 'options' => $category_id),
+	array('type' => 'select', 'options' => $category),
 	array(''=>'--')
 );?>
 <br/>
@@ -20,4 +20,4 @@ echo $form->hidden('Photo.id' ,array('value' =>$l_id ));
 echo $form->end();
  ?>
 
- <?php var_dump($junle_param);?>
+ <?php //var_dump($category);?>
