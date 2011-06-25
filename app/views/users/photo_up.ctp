@@ -19,3 +19,5 @@ echo $form->input(
 echo $form->hidden('Photo.id' ,array('value' =>$l_id ));
 echo $form->end();
  ?>
+
+ <?php var_dump($junle_param);?>

@@ -1,4 +1,12 @@
 <?php //var_dump($u); ?>
+
+<div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+<img src="https://graph.facebook.com/<?php echo $u['User']['first_name'];?>.<?php echo $u['User']['last_name'];?>/picture"/>
+<font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Profile');?>
+</div>
+
 <table border=2 width=500 align=center>
 <?php echo "<font color=red>".$session->flash()."</font>"; ?>
 <?php if($user['User']['id']==$u['User']['id']){
@@ -7,10 +15,6 @@ echo __('Edit Profile');
 echo "</a></p>";
 }
 ?>
-
-
-
-<caption><font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Profile');?></caption>
 <tr>
 <td bgcolor="#FFF0F5"><?php echo __('User Name'); ?></td>
 <td><?php echo $u['User']['nickname']; ?></td>

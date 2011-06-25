@@ -14,7 +14,11 @@ class UsersController extends AppController {
     var $components = array('Auth','Facebook.Connect');
 
     function beforeFilter() {
-        pr(Configure::read('uname'));
+        //pr(Configure::read('uname'));
+        Configure::load('messages');
+        $this->set('junle_param',Configure::read('junle'));
+		
+        
         $this->Auth->allow('regist','regist_end');
         
        $list = $this->Photo->find('all',array('order' => array('Photo.id DESC'),  
@@ -92,6 +96,9 @@ class UsersController extends AppController {
                 $data['User']['fb_id']  =  $this->fbuser['id'];
                 $data['User']['email'] = $this->fbuser['email'];
                 $data['User']['location'] = $this->fbuser['hometown']['name'];
+                $data['User']['last_name'] = $this->fbuser['last_name'];
+                $data['User']['first_name'] = $this->fbuser['first_name'];
+        
                 //$data['User']['fb_pic'] = $facebook->picture($fbuser['id'], array('width' => '26', 'height' => '26'));
                 
                 /*
@@ -449,26 +456,29 @@ class UsersController extends AppController {
     	}
     }
     
-    function like()
-    {
-     // validate 
-     $pid = $this->params['pass'][0];
-     $data['Photo_like_log']['fb_id']  =  $this->fbuser['id'];
-     $data['Photo_like_log']['photo_id']  = $pid;
+    function like() {
+        // validate 
+        $pid = $this->params['pass'][0];
+        $data['Photo_like_log']['fb_id'] = $this->fbuser['id'];
+        $data['Photo_like_log']['photo_id'] = $pid;
+        $data_like['Photo_like']['fb_id'] = $this->fbuser['id'];
+        $data_like['Photo_like']['photo_id'] = $pid;
 
-     $res = $this->Photo_like_log->findByPhotoIDAndFbId($pid,$this->fbuser['id']);
-     
-     if ($res == false) {
-         $res = $this->Photo_like->findByPhotoId($pid);
-         var_dump($res);
+        $res = $this->Photo_like_log->findByPhotoIDAndFbId($pid, $this->fbuser['id']);
 
-         //var_dump($this->Photo_like_log->save($data));
-$this->Photo_like->create(null);         
-            var_dump($this->Photo_like->set('photo_id',$pid));
-            var_dump($this->Photo_like->saveField('cnt', ++$res['Photo_like']['cnt']));
-
-            }
-
+        if ($res == false) {
+            // ログ保存
+            $this->Photo_like_log->save($data);
+            $res = $this->Photo_like->findByPhotoId($pid);
+            // countup
+            if ($res !== false) {
+               $this->Photo_like->updateAll(array('cnt' => 'cnt + 1'), array('photo_id' => $pid));
+            } else {
+               var_dump($data_like);
+               $this->Photo_like->save($data_like); // 新規登録 
+            }           
+        }
+            
         //var_dump($this->fbuser);
      $this->set('pid',$pid);
      $this->layout = false;
