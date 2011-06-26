@@ -468,23 +468,23 @@ class UsersController extends AppController {
         $data['Photo_like_log']['photo_id'] = $pid;
         $data_like['Photo_like']['fb_id'] = $this->fbuser['id'];
         $data_like['Photo_like']['photo_id'] = $pid;
+        $data_like['Photo_like']['cnt'] = 1;
 
         $res = $this->Photo_like_log->findByPhotoIDAndFbId($pid, $this->fbuser['id']);
 
         if ($res == false) {
             // ログ保存
             $this->Photo_like_log->save($data);
-            $res = $this->Photo_like->findByPhotoId($pid);
+            $p_res = $this->Photo_like->findByPhotoId($pid);
             // countup
-            if ($res !== false) {
+            if ($p_res !== false) {
                $this->Photo_like->updateAll(array('cnt' => 'cnt + 1'), array('photo_id' => $pid));
             } else {
-               var_dump($data_like);
                $this->Photo_like->save($data_like); // 新規登録 
             }           
         }
             
-        //var_dump($this->fbuser);
+     $this->set('p_res',$p_res);
      $this->set('pid',$pid);
      $this->layout = false;
     }

@@ -58,6 +58,10 @@ msgstr "アクセサリー"
 msgid "Bag"
 msgstr "バッグ"
 
+#: /views/layouts/default.bak0602.ctp:69
+msgid "Shoes"
+msgstr "シューズ"
+
 #: /views/layouts/default.bak0602.ctp:82
 msgid "Gee Gee Ranking"
 msgstr "Gee Geeランキング!!"

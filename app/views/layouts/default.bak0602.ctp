@@ -73,7 +73,8 @@ $('#dialog').jqm({ modal: true });
                 --><a href="/users/top/hair"><?php echo __('Hair Style'); ?></a><span class="delimiter">|</span><!--
                 --><a href="/users/top/fashion"><?php echo __('Fashion'); ?></a><span class="delimiter">|</span><!--
                 --><a href="/users/top/accessory"><?php echo __('Accessory'); ?></a><span class="delimiter">|</span><!--
-                --><a href="/users/top/bag"><?php echo __('Bag'); ?></a>
+                --><a href="/users/top/bag"><?php echo __('Bag'); ?></a></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/shoes"><?php echo __('Shoes'); ?></a>
             </div> 
            
             

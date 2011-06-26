@@ -6,7 +6,6 @@
 
 <img src="<?php echo $lists['Photo']['fbpath'];?>"></img>
 <br/>
-<?php echo $result['Photo_like']['cnt']+1;?>members like this.
 
 <?php if($isLike==false):  ?>
 <script>
@@ -26,7 +25,7 @@ function callBack(data) {
     $('#b_erace').hide();
 }
 </script>
-<span id="change_area"></span>
+<span id="change_area"><?php echo (int)$result['Photo_like']['cnt'];?>members like this</span>
 <div id="b_erace">
 <form action="" id="form1" method="post">
 <button type="button" src="/img/icn_yes.gif" id="change_btn" value="like" /> 
@@ -34,7 +33,8 @@ function callBack(data) {
 </button>    
 </form>
 </div>
-    
+<?php else:  ?>    
+<?php echo (int)$result['Photo_like']['cnt'];?> mebmers like this.
 <?php endif;  ?>
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']));?>
 <?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id'])); ?>
