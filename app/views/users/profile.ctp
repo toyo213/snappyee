@@ -3,7 +3,12 @@
 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;
-<img src="https://graph.facebook.com/<?php echo $u['User']['first_name'];?>.<?php echo $u['User']['last_name'];?>/picture"/>
+
+<?php if(!empty($u['User']['first_name']) && !empty($u['User']['last_name'])){
+echo "<img src=https://graph.facebook.com/".$u['User']['first_name'].".".$u['User']['last_name']."/picture />";
+}
+?>
+
 <font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Profile');?>
 </div>
 
