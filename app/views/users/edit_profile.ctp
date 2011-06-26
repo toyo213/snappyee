@@ -8,7 +8,7 @@
 <?php e($form->input('location', array('type' => 'text', 'value' => $u['User']['location'] ,'div'=>false,'label' =>'','size'=>30)));?>
 <br/>
 <p><?php echo __('Profile');?></p>
-<?php e($form->input('profile', array('type' => 'text','style'=>'width:21em;height:10em','maxlength'=>200, 'value' => $u['User']['profile'] ,'div'=>true,'label' =>'','size'=>30)));?>
+<?php e($form->input('profile', array('type' => 'textarea','style'=>'width:21em;height:10em','maxlength'=>200, 'value' => $u['User']['profile'] ,'div'=>true,'label' =>'','size'=>30)));?>
 <br/>
 <p><?php echo __('Profile URL');?></p>
 <?php e($form->input('blogurl', array('type' => 'text', 'value' => $u['User']['blogurl'] ,'div'=>true,'label' =>'','size'=>30)));?>

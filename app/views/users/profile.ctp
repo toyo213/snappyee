@@ -1,18 +1,19 @@
-<?php var_dump($this->params); ?>
+<?php //var_dump($this->params); ?>
 
-<div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;
-
+<div align="left">
 <?php if(!empty($u['User']['first_name']) && !empty($u['User']['last_name'])){
+echo "<a href=".$u['User']['blogurl'].">";
 echo "<img src=https://graph.facebook.com/".$u['User']['first_name'].".".$u['User']['last_name']."/picture />";
+echo "</a>";
 }
 ?>
-
-<font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Profile');?>
+<br/>
+<a href="<?php echo $u['User']['blogurl']; ?>">
+<font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>
+</a>
 </div>
 
-<table border=2 width=500 align=center>
+<table border=2 width=500 >
 <caption>
 <?php echo "<font color=red>".$session->flash()."</font>"; ?>
 <?php if($user['User']['id']==$u['User']['id']){
@@ -47,7 +48,9 @@ echo "</a>";
 <?php //echo $fb_id;?>
 <br/>
 <br/>
-<h2><font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Photos');?></h2>
+<p align="left">
+<font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Photos');?>
+</p>
 
 <div class="photoList rightMarginS leftcol">
 	<?php $i = 0; ?>

@@ -447,12 +447,14 @@ class UsersController extends AppController {
     	$id = $d['User']['id'];
     	$name = $d['User']['nickname']; 
         $location = $d['User']['location'];
-        $profile = $d['User']['profile'];  
+        $profile = $d['User']['profile'];
+        $blogurl = $d['User']['blogurl'];
         
         $this->User->id = $id;
         $this->User->saveField('nickname',$name);
         $this->User->saveField('location',$location);
         $this->User->saveField('profile',$profile);
+        $this->User->saveField('blogurl',$blogurl);
         
     	//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
 		$this->Session->setFlash(__('Updated!', true));
