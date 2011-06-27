@@ -1,7 +1,7 @@
-<div>
+<h1>
 <font size="4"><?php echo __('You Like This Photo?');?></font> 
 <div class="like_on like_button radiux3px"><?php echo __('Like!'); ?></div>
-</div>
+</h1>
 
 <?php //echo $facebook->picture($fbuser['id']); ?>
 <br/>
