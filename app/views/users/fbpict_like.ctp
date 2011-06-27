@@ -1,4 +1,8 @@
-<h1><font size="4"><?php echo __('You Like This Photo?');?></font></h1>
+<div>
+<font size="4"><?php echo __('You Like This Photo?');?></font> 
+<div class="like_on like_button radiux3px"><?php echo __('Like!'); ?></div>
+</div>
+
 <?php //echo $facebook->picture($fbuser['id']); ?>
 <br/>
 <?php echo __('Uploaded');?> by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><font size="3"><?php echo $lists['User']['nickname'];?> </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo $lists['User']['blogurl'];?>">Blog </font></a> <br>

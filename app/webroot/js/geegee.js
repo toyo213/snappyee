@@ -1,0 +1,9 @@
+$(function(){ 
+   $(".like_button").each(function(){
+        $(this).hover(function(){
+            $(this).addClass("like_hover");
+        },function(){
+            $(this).removeClass("like_hover");
+        });
+    });
+});

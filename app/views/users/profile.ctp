@@ -1,5 +1,6 @@
 <?php //var_dump($this->params); ?>
 
+
 <div align="left">
 <?php if(!empty($u['User']['first_name']) && !empty($u['User']['last_name'])){
 echo "<a href=".$u['User']['blogurl'].">";

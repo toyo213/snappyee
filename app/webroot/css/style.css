@@ -1,4 +1,4 @@
-@charset "UTF-8";
+　@charset "UTF-8";
 
 /*-------------------------------------------*/
 /* reset
@@ -326,6 +326,70 @@ span.hover {
     font-weight: normal;
 }
 
+.like_button {
+}
+
+.like_on,
+.like_off {
+    padding: 3px 3px 3px 20px;
+    width: 47px;
+    height: 14px;
+    font-size: 85%;
+    font-weight: bold;
+    line-height: 14px;
+    text-align: center;
+    color: #285096;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.like_on {
+    color: #e73659;
+    border: 1px solid #e73659;
+    background: #feeaef url(../img/like_heart_on.png) no-repeat;
+}
+
+.like_off {
+    color: #f09eb3;
+    border: 1px solid #f09eb3;
+    background: #feeaef url(../img/like_heart_off.png) no-repeat;
+    cursor: default;
+}
+
+.like_on_big,
+.like_off_big {
+    padding: 3px 3px 3px 30px;
+    width: 60px;
+    height: 23px;
+    font-size: 117%;
+    font-weight: bold;
+    line-height: 23px;
+    text-align: center;
+    color: #285096;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.like_on_big {
+    color: #e73659;
+    border: 1px solid #e73659;
+    background: #feeaef url(../img/like_heart_on_big.png) no-repeat;
+}
+
+.like_off_big {
+    color: #f09eb3;
+    border: 1px solid #f09eb3;
+    background: #feeaef url(../img/like_heart_off_big.png) no-repeat;
+    cursor: default;
+}
+
+
+.like_hover {
+    background-color: #FFDA46;
+    border: 1px solid #f09eb3;
+    text-decoration: none;
+}
+
 /*-------------------------------------------*/
 /* header
 /*-------------------------------------------*/
@@ -569,28 +633,4 @@ span.hover {
     width: 153px;
     border-top: 1px dashed #ddd;
     overflow:hidden;
-}
-/* add */
-ul#banner {
-  margin: 10px 10px 10px 10px;
-  padding: 0;
-}
-
-ul#banner li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-ul#banner li a {
-  margin: 0;
-  padding: 0;
-}
-
-ul#banner li a img {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  clip: rect(100px auto 30px auto);
-
 }

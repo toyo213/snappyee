@@ -139,6 +139,10 @@ msgid "You Like This Photo?"
 msgstr "この写真は好きですか？"
 
 #: /views/users/fbpict_like.ctp:3
+msgid "Like!"
+msgstr "いいね！"
+
+#: /views/users/fbpict_like.ctp:3
 msgid "Uploaded"
 msgstr "アップロード"
 
