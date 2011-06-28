@@ -8,10 +8,43 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     padding:0;
     line-height: 1.41;
 }
-table {
-    border-collapse:collapse;
-    border-spacing:0;
+
+/* table */
+table{
+	border-collapse: collapse;
+	clear:both ;
+	}
+td,th{
+    font-size: small;
+	padding: 10px 4px;
+	border-style: solid;
+	border-width: 1px 1px;
+	border-color: #aaaaaa;
+	}
+th{
+	text-align : center ;
+    font-size: small;
+    color: white;
+    /*font-weight: bold;*/
+    /*background-color:#edeff4*/;
+    background-color:#3b5998;
+	}
+h2{font-size:18px; padding:4px 4px;
+     background: #f8f8f8;  
+     border-left: 7px solid #224466;  
+	 font-weight:bold;
+	 margin-bottom:10px; 
 }
+h3,h4{font-size:16px;
+	 font-weight:bold; 
+}
+
+.selector05 {  
+     background: #f8f8f8;  
+     border-left: 7px solid #CCCCCC;  
+     padding:0.8em 0.9em;  
+}
+
 fieldset,img { 
     border:0;
 }

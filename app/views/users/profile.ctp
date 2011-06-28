@@ -1,7 +1,8 @@
 <?php //var_dump($this->params); ?>
 
 
-<div align="left">
+<table border=2 width=500 align="center">
+<caption>
 <?php if(!empty($u['User']['first_name']) && !empty($u['User']['last_name'])){
 echo "<a href=".$u['User']['blogurl'].">";
 echo "<img src=https://graph.facebook.com/".$u['User']['first_name'].".".$u['User']['last_name']."/picture />";
@@ -12,10 +13,7 @@ echo "</a>";
 <a href="<?php echo $u['User']['blogurl']; ?>">
 <font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>
 </a>
-</div>
-
-<table border=2 width=500 >
-<caption>
+&nbsp;&nbsp;
 <?php echo "<font color=red>".$session->flash()."</font>"; ?>
 <?php if($user['User']['id']==$u['User']['id']){
 echo "<a href=/users/edit_profile?uid=".$u['User']['id'].">";
@@ -27,19 +25,19 @@ echo "</a>";
 
 <?php //var_dump($category);?>
 <tr>
-<td bgcolor="#FFF0F5"><?php echo __('User Name'); ?></td>
-<td><?php echo $u['User']['nickname']; ?></td>
+<td bgcolor="#FFF0F5" width="20%"><b><?php echo __('User Name'); ?></b></td>
+<td width="80%"><?php echo $u['User']['nickname']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><?php echo __('Location'); ?></td>
+<td bgcolor="#FFF0F5"><b><?php echo __('Location'); ?></b></td>
 <td><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><?php echo __('Profile'); ?></td>
+<td bgcolor="#FFF0F5"><b><?php echo __('Profile'); ?></b></td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><?php echo __('Profile URL'); ?></td>
+<td bgcolor="#FFF0F5"><b><?php echo __('Profile URL'); ?></b></td>
 <td><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
 </tr>
 </table>

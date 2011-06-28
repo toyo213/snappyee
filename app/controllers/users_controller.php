@@ -17,9 +17,6 @@ class UsersController extends AppController {
         Configure::load('messages');
         preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
         if(count($match) > 0 ) {
-        //App::import('core', 'l10n');
-        //$this->L10n = new L10n();
-        //var_dump($this->L10n->get());
             $this->set('category',Configure::read('category.jpn'));
         } else {            
            $this->set('category',Configure::read('category.en'));
@@ -35,6 +32,9 @@ class UsersController extends AppController {
         // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
         // ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
         $this->fbuser = $this->Connect->user();
+        
+        // fbに登録していないユーザはFBログインをうながす
+        
         $user_data = $this->Connect->user();
         $this->set('fbuser',$this->Connect->user());
         
@@ -447,7 +447,7 @@ class UsersController extends AppController {
     	$id = $d['User']['id'];
     	$name = $d['User']['nickname']; 
         $location = $d['User']['location'];
-        $profile = $d['User']['profile'];
+        $profile = $d['User']['profile'];  
         $blogurl = $d['User']['blogurl'];
         
         $this->User->id = $id;
