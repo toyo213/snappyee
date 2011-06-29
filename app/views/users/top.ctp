@@ -1,5 +1,5 @@
 <?php
-$numbers = range(1, 19);
+$numbers = range(0, 19);
 shuffle($numbers);
 ?>
 
