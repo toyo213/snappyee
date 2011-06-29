@@ -3,9 +3,9 @@
 
 <table border=2 width=500 align="center">
 <caption>
-<?php if(!empty($u['User']['first_name']) && !empty($u['User']['last_name'])){
+<?php if(!empty($u['User']['fb_id'])){
 echo "<a href=".$u['User']['blogurl'].">";
-echo "<img src=https://graph.facebook.com/".$u['User']['first_name'].".".$u['User']['last_name']."/picture />";
+echo "<img src=https://graph.facebook.com/".$u['User']['fb_id']."/picture />";
 echo "</a>";
 }
 ?>
