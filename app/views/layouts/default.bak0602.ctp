@@ -106,37 +106,7 @@ $('#dialog').jqm({ modal: true });
         </div>
 
         <div class="bgWhile" style="margin-top:10px;">    
-			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-            <script>
-            new TWTR.Widget({
-              version: 2,
-              type: 'profile',
-              rpp: 4,
-              interval: 6000,
-              width: 240,
-              height: 300,
-              theme: {
-                shell: {
-                  background: '#FFFFFF',
-                  color: '#e73658'
-                },
-                tweets: {
-                  background: '#FFFFFF',
-                  color: '#e73658',
-                  links: '#e73658'
-                }
-              },
-              features: {
-                scrollbar: false,
-                loop: false,
-                live: false,
-                hashtags: true,
-                timestamp: true,
-                avatars: false,
-                behavior: 'all'
-              }
-            }).render().setUser('Gee_Gee__').start();
-            </script>
+<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FGee-Gee%2F214073558614020%3Fnotif_t%3Dfbpage_admin&amp;width=240&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=true&amp;header=true&amp;height=427" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:427px;" allowTransparency="true"></iframe>
 		</div>        
     </div> 
 </div>

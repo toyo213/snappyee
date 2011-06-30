@@ -121,7 +121,8 @@ class UsersController extends AppController {
                 // TODOエラーハンドリング
                 $data = $this->User->save($data);
                 // 登録に成功したら値をセッションに格納
-                if ($data) $this->Session->write('auth', $data['User']);                
+                if ($data) $this->Session->write('auth', $data['User']);
+                
    }
    
    function signup(){
