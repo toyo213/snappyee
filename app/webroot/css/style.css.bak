@@ -1,4 +1,4 @@
-　@charset "UTF-8";
+@charset "UTF-8";
 
 /*-------------------------------------------*/
 /* reset
@@ -8,43 +8,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     padding:0;
     line-height: 1.41;
 }
-
-/* table */
-table{
-	border-collapse: collapse;
-	clear:both ;
-	}
-td,th{
-    font-size: small;
-	padding: 10px 4px;
-	border-style: solid;
-	border-width: 1px 1px;
-	border-color: #aaaaaa;
-	}
-th{
-	text-align : center ;
-    font-size: small;
-    color: white;
-    /*font-weight: bold;*/
-    /*background-color:#edeff4*/;
-    background-color:#3b5998;
-	}
-h2{font-size:18px; padding:4px 4px;
-     background: #f8f8f8;  
-     border-left: 7px solid #224466;  
-	 font-weight:bold;
-	 margin-bottom:10px; 
+table {
+    border-collapse:collapse;
+    border-spacing:0;
 }
-h3,h4{font-size:16px;
-	 font-weight:bold; 
-}
-
-.selector05 {  
-     background: #f8f8f8;  
-     border-left: 7px solid #CCCCCC;  
-     padding:0.8em 0.9em;  
-}
-
 fieldset,img { 
     border:0;
 }
@@ -359,70 +326,6 @@ span.hover {
     font-weight: normal;
 }
 
-.like_button {
-}
-
-.like_on,
-.like_off {
-    padding: 3px 3px 3px 20px;
-    width: 47px;
-    height: 14px;
-    font-size: 85%;
-    font-weight: bold;
-    line-height: 14px;
-    text-align: center;
-    color: #285096;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.like_on {
-    color: #e73659;
-    border: 1px solid #e73659;
-    background: #feeaef url(../img/like_heart_on.png) no-repeat;
-}
-
-.like_off {
-    color: #f09eb3;
-    border: 1px solid #f09eb3;
-    background: #feeaef url(../img/like_heart_off.png) no-repeat;
-    cursor: default;
-}
-
-.like_on_big,
-.like_off_big {
-    padding: 3px 3px 3px 30px;
-    width: 70px;
-    height: 23px;
-    font-size: 117%;
-    font-weight: bold;
-    line-height: 23px;
-    text-align: center;
-    color: #285096;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.like_on_big {
-    color: #e73659;
-    border: 1px solid #e73659;
-    background: #feeaef url(../img/like_heart_on_big.png) no-repeat;
-}
-
-.like_off_big {
-    color: #f09eb3;
-    border: 1px solid #f09eb3;
-    background: #feeaef url(../img/like_heart_off_big.png) no-repeat;
-    cursor: default;
-}
-
-
-.like_hover {
-    background-color: #FFDA46;
-    border: 1px solid #f09eb3;
-    text-decoration: none;
-}
-
 /*-------------------------------------------*/
 /* header
 /*-------------------------------------------*/
@@ -498,6 +401,7 @@ span.hover {
     width: 115px;
     color: #fff;
     padding: 5px;
+		
 }
 
 #header .logout {
@@ -622,10 +526,6 @@ span.hover {
     width: 173px;
 }
 
-#content .photoDetail {
-    width: 273px;
-}
-
 #content .photo {
     margin: 0 0 5px 0;
     padding: 4px;
@@ -670,28 +570,4 @@ span.hover {
     width: 153px;
     border-top: 1px dashed #ddd;
     overflow:hidden;
-}
-/* add */
-ul#banner {
-  margin: 10px 10px 10px 10px;
-  padding: 0;
-}
-
-ul#banner li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-ul#banner li a {
-  margin: 0;
-  padding: 0;
-}
-
-ul#banner li a img {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  clip: rect(100px auto 30px auto);
-
 }

@@ -1,4 +1,4 @@
-<?php //var_dump($this->params); ?>
+
 
 
 <table border=2 width=500 align="center">
