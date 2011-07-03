@@ -11,38 +11,38 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
 /* table */
 table{
-	border-collapse: collapse;
-	clear:both ;
-	}
+    border-collapse: collapse;
+    clear:both ;
+}
 td,th{
     font-size: small;
-	padding: 10px 4px;
-	border-style: solid;
-	border-width: 1px 1px;
-	border-color: #aaaaaa;
-	}
+    padding: 10px 4px;
+    border-style: solid;
+    border-width: 1px 1px;
+    border-color: #aaaaaa;
+}
 th{
-	text-align : center ;
+    text-align : center ;
     font-size: small;
     color: white;
     /*font-weight: bold;*/
     /*background-color:#edeff4*/;
     background-color:#3b5998;
-	}
+}
 h2{font-size:18px; padding:4px 4px;
-     background: #f8f8f8;  
-     border-left: 7px solid #224466;  
-	 font-weight:bold;
-	 margin-bottom:10px; 
+   background: #f8f8f8;  
+   border-left: 7px solid #224466;  
+   font-weight:bold;
+   margin-bottom:10px; 
 }
 h3,h4{font-size:16px;
-	 font-weight:bold; 
+      font-weight:bold; 
 }
 
 .selector05 {  
-     background: #f8f8f8;  
-     border-left: 7px solid #CCCCCC;  
-     padding:0.8em 0.9em;  
+    background: #f8f8f8;  
+    border-left: 7px solid #CCCCCC;  
+    padding:0.8em 0.9em;  
 }
 
 fieldset,img { 
@@ -59,6 +59,7 @@ caption,th {
     text-align:left;
 }
 h1,h2,h3,h4,h5,h6 {
+    margin: 0;
     font-size:100%;
     font-weight:normal;
 }
@@ -469,6 +470,7 @@ span.hover {
 
 #header #gnavi a {
     color: #FFF;
+    line-height: 21px;
 }
 
 #header #login {
@@ -490,14 +492,18 @@ span.hover {
 }
 
 #header .pic {
+    width: 26px;
+    height: 26px;
     padding: 1px;  
     border: solid 1px #f9a3ba;
 }
 
 #header .username {
-    width: 115px;
+    width: 130px;
     color: #fff;
+    line-height: 21px;
     padding: 5px;
+    orverflow: hidden;
 }
 
 #header .logout {
@@ -673,25 +679,32 @@ span.hover {
 }
 /* add */
 ul#banner {
-  margin: 10px 10px 10px 10px;
-  padding: 0;
+    margin: 10px 10px 10px 10px;
+    padding: 0;
 }
 
 ul#banner li {
-  display: inline;
-  margin: 0;
-  padding: 0;
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
 
 ul#banner li a {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 ul#banner li a img {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  clip: rect(100px auto 30px auto);
-
+    margin: 0;
+    padding: 0;
+    border: 0;
+    clip: rect(100px auto 30px auto);
 }
+
+span.likeFontBig {
+    font-family:Shruti;
+    font-size:100.5px;
+    color:#e73659;
+}
+
+

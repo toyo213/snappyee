@@ -12,7 +12,7 @@
 <script>
 $(function() {
     $('#change_btn').click(function() {
-    $("#change_area").html('<img src="/img/scroll.gif" width="10" height="10" alt="Now Loading..." />');
+    $("#change_area").html('<img src="/img/ajax-loader.gif" width="10" height="10" alt="Now Loading..." />');
     $.post('/users/like/<?php echo $lists['Photo']['id'];?>',
             {
                 name : $('#name').attr('value')
@@ -26,7 +26,7 @@ function callBack(data) {
     $('#b_erace').hide();
 }
 </script>
-<span id="change_area"><span class="likeFontBig"><?php echo (int)$result['Photo_like']['cnt'];?></span>likes</span>
+<span id="change_area"><span class="likeFontBig"><?php echo sprintf("%03d",(int)$result['Photo']['cnt']);?></span>likes</span>
 <div id="b_erace">
 
 <div class="like_on_big like_button radiux3px" id="change_btn"><?php echo __('Like!'); ?></div>
@@ -39,7 +39,7 @@ function callBack(data) {
 -->
 </div>
 <?php else:  ?>    
-<span class="likeFontBig"><?php echo sprintf("%03d",$result['Photo_like']['cnt']);?></span><span style="font-family:Shruti;">likes</span>
+<span class="likeFontBig"><?php echo sprintf("%03d",$result['Photo']['cnt']);?></span><span style="font-family:Shruti;">likes</span>
 <?php endif;  ?>
 <br><?php echo __('Uploaded');?> by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><font size="3"><?php echo $lists['User']['nickname'];?> </a>&nbsp;(<a href="<?php echo $lists['User']['blogurl'];?>">Blog</font></a>)<br>
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']));?>

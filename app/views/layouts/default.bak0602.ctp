@@ -1,6 +1,6 @@
 <?php echo $facebook->html(); ?>
 <head>
-<title>Gee Gee prototype</title>
+<title>Gee Gee Alpha Ver</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="ja" />
 <?php echo $html->css('/css/style.css'); ?>  
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
@@ -50,15 +50,6 @@ $('#dialog').jqm({ modal: true });
             }
             ?>            
             </div>
-        <!--
-                <div id="userStatus" class="radiux3px leftcol">
-                    <div id="fb-root"></div><?php echo $facebook->picture($fbuser['id']); ?>
-    	<br/>
-    	<a href="http://<?php echo $_SERVER["SERVER_NAME"] . "/users/profile"; ?>">	
-                <font size="2" color="red"><?php echo $user['User']['nickname']; ?></font>
-                </a>
-        -->
-            
         </div>
     </div>
 
@@ -96,7 +87,7 @@ $('#dialog').jqm({ modal: true });
     	<div class="partTitle" ><?php echo __('Gee Gee Ranking'); ?></div>
     	<div class="partContent">	
      <?php $i = 1;?>  
-     <?php foreach ($list as $key => $val): ?>
+     <?php foreach ($rank as $key => $val): ?>
             <div class="photo photoRanking radiux3px">
             <a href="/users/fbpict_like/<?php echo $val['Photo']['id'];?>"><img src="<?php echo $val['Photo']['fbpath']; ?>" width="210px" alt="" /></a>
                 <div class="crown">No.<?php echo $i;?></div>

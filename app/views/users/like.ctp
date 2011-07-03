@@ -1,1 +1,1 @@
-<?php echo $pid ; ?> is posted 
+<span class="likeFontBig"><?php echo  sprintf("%03d",$p_res['Photo']['cnt'] + 1) ;?></span>likes

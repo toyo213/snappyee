@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		Configure::load('messages');
 		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
                 if(count($match) > 0 ) {
-                    $isJpn = true;
+                    $this->isJpn = true;
                     $this->set('category',Configure::read('category.jpn'));
 		} else {
 			$this->set('category',Configure::read('category.en'));
@@ -32,9 +32,10 @@ class UsersController extends AppController {
 		$list = $this->Photo->find('all',array('order' => array('Photo.id DESC'),
                                               'conditions' => array('Photo.path' => ''),
                                     'limit' => '20'));
-		$this->set('list', $list);
 
-		// 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
+                $this->set('list', $list);
+
+                // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 		// ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
 		$this->fbuser = $this->Connect->user();
 
@@ -96,8 +97,7 @@ class UsersController extends AppController {
 		return true; //Must return true or will not save.
 	}
 
-	function regist() {
-		 
+	function regist() {	 
 	}
 	 
 	function regist_end() {
@@ -128,15 +128,16 @@ class UsersController extends AppController {
 		// 登録に成功したら値をセッションに格納
 		if ($data) $this->Session->write('auth', $data['User']);
 		
-               
+        		//var_dump($this->isJpn);       
                $feed = $this->fb->api('/me/feed/', 
                                         'post',
                                         array('access_token' => $this->ac,
-                                              'message' => ($isJpn == true)?'ファッション写真共有サービスGee Geeを使い始めました！Gee Geeしよう！':
-                                              "Start using Gee Gee where you can upload your fashion photos in style and share it with the world. Let's Gee Gee!",
-											  'caption'=>'Gee Gee Fashion Photo Sharing.',
+                                              'message' => ($this->isJpn == true)?'ファッション写真共有サービスGee Geeを使い始めました！':
+                                              "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
+											  'name'=>'Gee Gee',
+                                              'caption'=>'Fashion Photo Sharing.',
                                               'link'=>'http://gee-gee.me/',
-                                        	  'picture'=>'http://'.$_SERVER["SERVER_NAME"].'users/fbpict_like/125'            
+                                        	  'picture'=>'http://'.$_SERVER['SERVER_NAME'].'/img/geegee_title_pink.png'            
                                         	)
                                        );
 			}
@@ -149,6 +150,20 @@ class UsersController extends AppController {
 		$this->layout = "default";
 	}
 	 
+        // ランキングを取得する 
+        function getRank($category_id = NULL) 
+        {
+           if($category_id) {
+              $conditions = array('Photo.category_id' =>$category_id ,'Photo.path' => '');
+           } else {
+              $conditions = array('Photo.path' => '');              
+           }
+            $list = $this->Photo->find('all',array('order' => array('Photo.cnt DESC'),
+              'conditions' =>$conditions,
+               'limit' => '10')
+              );
+            return $list;
+        }
 	 
 	function fbphoto_upload() {
 
@@ -209,8 +224,7 @@ class UsersController extends AppController {
 		 
 		$pid = $this->params['pass'][0];
 		$res = $this->Photo_like_log->findByPhotoIdAndFbId($pid,$this->fbuser['id']);
-		$result = $this->Photo_like->findByPhotoId($pid);
-		 
+		$result = $this->Photo->findById($pid);
 		 
 		$this->set('isLike', $res);
 		$list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
@@ -227,19 +241,38 @@ class UsersController extends AppController {
                             $this->set('result', $result);
                             $this->set('lists', $list);
 	}
+        
 	function top() {
-		Configure::load('messages');
-		$junle_param = 'junle.'.$this->params['pass']['0'];
-		$junle = Configure::read($junle_param);
-		$list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle,
-                                                                      'Photo.path'     => ''),
-                                          'order' => array('Photo.id DESC'), 
-                                          'limit' => '20'
-                                          ));
-                                          $this->set('list',$list);
-	}
+        Configure::load('messages');
+        $junle_param = 'junle.' . $this->params['pass']['0'];
+        $junle = Configure::read($junle_param);
+        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle,
+                        'Photo.path' => ''),
+                    'order' => array('Photo.id DESC'),
+                    'limit' => '20'
+                ));
+	
+        
+        
+        $this->set('list', $list);
+        foreach ($list as $key => $val) {
+                    $data[] = $val['Photo']['id'];
+        }
+        $result = $this->Photo_like_log->find('all',array('conditions' =>
+                                                         array('Photo_like_log.fb_id'=>$this->fbuser['id'],
+                                                               'Photo_like_log.photo_id'=> $data)
+                                                         )
+                                              );
+        $userIsLike = array();
+	foreach ( $result as $key => $val) {
+            $userIsLike[$val['Photo_like_log']['photo_id']]++;
+        }
 
-	function fbpict_up() {
+        $this->set('userIsLike', $userIsLike);
+        // pager
+    }
+
+    function fbpict_up() {
 		if (isset($this->params['url']['pid'])) {
 			$fql_query = array(
                 'method' => 'fql.query',
@@ -294,6 +327,7 @@ class UsersController extends AppController {
 
 	function login()
 	{
+            $this->set('rank',$this->getRank());
 		//pr($this->params);exit;
 
 		//        // ページタイトルの設定
@@ -485,21 +519,21 @@ class UsersController extends AppController {
 			$pid = $this->params['pass'][0];
 			$data['Photo_like_log']['fb_id'] = $this->fbuser['id'];
 			$data['Photo_like_log']['photo_id'] = $pid;
-			$data_like['Photo_like']['fb_id'] = $this->fbuser['id'];
-			$data_like['Photo_like']['photo_id'] = $pid;
-			$data_like['Photo_like']['cnt'] = 1;
+			$data_like['Photo']['fb_id'] = $this->fbuser['id'];
+			$data_like['Photo']['id'] = $pid;
+			$data_like['Photo']['cnt'] = 1;
 
 			$res = $this->Photo_like_log->findByPhotoIDAndFbId($pid, $this->fbuser['id']);
 
 			if ($res == false) {
 				// ログ保存
 				$this->Photo_like_log->save($data);
-				$p_res = $this->Photo_like->findByPhotoId($pid);
+				$p_res = $this->Photo->findById($pid);
 				// countup
 				if ($p_res !== false) {
-					$this->Photo_like->updateAll(array('cnt' => 'cnt + 1'), array('photo_id' => $pid));
+					$this->Photo->updateAll(array('cnt' => 'cnt + 1'), array('id' => $pid));
 				} else {
-					$this->Photo_like->save($data_like); // 新規登録
+					$this->Photo->save($data_like); // 新規登録
 				}
 			}
 
