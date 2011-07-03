@@ -1,7 +1,7 @@
 <table border="0">
 <tr>
 <td>
-<table border="0" width=400 align="left">
+<table border="0" width=450 align="left">
 
 <caption>
 <?php if(!empty($u['User']['fb_id'])){
@@ -10,7 +10,6 @@ echo "<img src=https://graph.facebook.com/".$u['User']['fb_id']."/picture />";
 echo "</a>";
 }
 ?>
-<br/>
 <a href="<?php echo $u['User']['blogurl']; ?>">
 <font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>
 </a>
@@ -26,8 +25,8 @@ echo "</a>";
 
 <?php //var_dump($category);?>
 <tr>
-<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Location'); ?></span></td>
-<td><?php echo $u['User']['location']; ?></td>
+<td bgcolor="#FFF0F5" width=30%><span class="profileFont"><?php echo __('Location'); ?></span></td>
+<td width=70%><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
 <td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile'); ?></span></td>
@@ -41,7 +40,7 @@ echo "</a>";
 </td>
 
 <td>
-<table border="0" width=350 align="right">
+<table border="0" align="right">
 
 </table>
 </td>

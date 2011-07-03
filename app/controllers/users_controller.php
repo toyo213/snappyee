@@ -30,7 +30,7 @@ class UsersController extends AppController {
 		$this->Auth->allow('regist','regist_end');
 
 		$list = $this->Photo->find('all',array('order' => array('Photo.id DESC'),
-                                              'conditions' => array('Photo.path' => ''),
+                                              'conditions' => array(),
                                     'limit' => '20'));
 
                 $this->set('list', $list);
@@ -151,12 +151,14 @@ class UsersController extends AppController {
 	}
 	 
         // ランキングを取得する 
-        function getRank($category_id = NULL) 
+        function getRank($category_id = NULL,$fb_id = NULL) 
         {
-           if($category_id) {
-              $conditions = array('Photo.category_id' =>$category_id ,'Photo.path' => '');
+           if ($fb_id) {
+              $conditions = array('Photo.fb_id' =>$fb_id );            
+           } elseif($category_id) {
+              $conditions = array('Photo.category_id' =>$category_id );
            } else {
-              $conditions = array('Photo.path' => '');              
+              $conditions = array();              
            }
             $list = $this->Photo->find('all',array('order' => array('Photo.cnt DESC'),
               'conditions' =>$conditions,
@@ -221,40 +223,35 @@ class UsersController extends AppController {
 	}
 
 	function fbpict_like() {
-		 
-		$pid = $this->params['pass'][0];
-		$res = $this->Photo_like_log->findByPhotoIdAndFbId($pid,$this->fbuser['id']);
-		$result = $this->Photo->findById($pid);
-		 
-		$this->set('isLike', $res);
-		$list = $this->Photo->find('first', array('fields'=>array('Photo.*','User.*'),
-                                                 'conditions' => array('Photo.id' => $this->params['pass'][0]),
-                 'joins' => array(array(
-                        'table' => 'users',
-                        'alias' =>'User',
-                        'type' => 'LEFT',
-                        'conditions' => array(
-                            'Photo.fb_id = User.fb_id'
-                            )
-                            )
-                            )));
-                            $this->set('result', $result);
-                            $this->set('lists', $list);
 
-        	$result = $this->Photo->find('all',
-                         array('conditions' => array('Photo.fb_id' => $list['User']['fb_id'])
-                          ));
-                var_dump($result);
-	                    
-                            
-        }
-        
-	function top() {
+        $pid = $this->params['pass'][0];
+        $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
+        $result = $this->Photo->findById($pid);
+
+        $this->set('isLike', $res);
+        $list = $this->Photo->find('first', array('fields' => array('Photo.*', 'User.*'),
+                    'conditions' => array('Photo.id' => $this->params['pass'][0]),
+                    'joins' => array(array(
+                            'table' => 'users',
+                            'alias' => 'User',
+                            'type' => 'LEFT',
+                            'conditions' => array(
+                                'Photo.fb_id = User.fb_id'
+                            )
+                        )
+                        )));
+        $this->set('result', $result);
+        $this->set('lists', $list);
+
+        // ランキング
+        $this->set('rank', $this->getRank(NULL, $list['User']['fb_id']));
+    }
+
+    function top() {
         Configure::load('messages');
         $junle_param = 'junle.' . $this->params['pass']['0'];
         $junle = Configure::read($junle_param);
-        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle,
-                        'Photo.path' => ''),
+        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle),
                     'order' => array('Photo.id DESC'),
                     'limit' => '20'
                 ));
@@ -458,18 +455,26 @@ class UsersController extends AppController {
             $photo_details['image'] = '@' . $path;
             $photo_details['access_token'] = $this->ac;
 
-            $this->fb->api('/' . $album_uid . '/photos', 'post', $photo_details);
+            $create_album = $this->fb->api('/' . $album_uid . '/photos', 'post', $photo_details);
+
+            // 直近のupした画像のURLを取得する
+            $url = sprintf('https://graph.facebook.com/%s?access_token=%s&fields=picture,name',
+                               $create_album['id'],
+                               $this->ac);
+            $url = file_get_contents($url);
+	    $json_data = (json_decode($url,true));
 
             // DB保存
-            //$data['Photo']['category_id']  = $this->params['data']['users']['category_id'][0];
             $data['Photo']['path'] = $path;
             $data['Photo']['fb_id'] = $this->fbuser['id'];
+            $data['Photo']['fbpath'] = $json_data['picture'];
+
             $this->Photo->save($data);
             $l_id = $this->Photo->getLastInsertID();
             //$this->Photo->findById($l_id);
             $this->set('img_path', sprintf('http://%s/users/uphoto/id/%s', $_SERVER['HTTP_HOST'], $l_id));
             $this->set('l_id', $l_id);
-		}
+            }
 
 		/*-- Author Toyo --*/
 		function profile(){
@@ -625,12 +630,19 @@ class UsersController extends AppController {
 			// save
 			// redirect
 			pr($this->params);
-			$data['Photo']['category_id'] = $this->params['data']['users']['category_id'][0];
+			$data['Photo']['category_id'] = $this->params['data']['users']['category_id'];
 			$data['Photo']['id'] = $this->params['data']['Photo']['id'];
 			$data['Photo']['fb_id'] = $this->fbuser['id'];
 			$this->Photo->save($data);
 		}
+		
+		function tc(){			
+		}
+		
+                function tc_jp(){			
+		}
 
+                
 }
 
 
