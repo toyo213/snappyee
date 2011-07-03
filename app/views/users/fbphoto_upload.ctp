@@ -10,7 +10,7 @@ if (isset($prm['aid'])) {
     echo '</ul>';
     
 } else {
-    echo __('<h1>Select Albums</h1>');
+    echo __('<h1>Select Album</h1><p>Please make sure your photo album privacy setting is set to either <b>Everyone</b> or <b>Friends Only</b></p>');
     foreach ($albums as $key => $val) {    
     $pt = '<a href="/users/fbphoto_upload?aid=%s"><img src="%s" /></a>';
     echo sprintf($pt, $val['aid'], $val['src']);

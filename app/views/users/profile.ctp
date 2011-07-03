@@ -1,7 +1,8 @@
+<table border="0">
+<tr>
+<td>
+<table border="0" width=400 align="left">
 
-
-
-<table border=2 width=500 align="center">
 <caption>
 <?php if(!empty($u['User']['fb_id'])){
 echo "<a href=".$u['User']['blogurl'].">";
@@ -25,21 +26,27 @@ echo "</a>";
 
 <?php //var_dump($category);?>
 <tr>
-<td bgcolor="#FFF0F5" width="20%"><b><?php echo __('User Name'); ?></b></td>
-<td width="80%"><?php echo $u['User']['nickname']; ?></td>
-</tr>
-<tr>
-<td bgcolor="#FFF0F5"><b><?php echo __('Location'); ?></b></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Location'); ?></span></td>
 <td><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><b><?php echo __('Profile'); ?></b></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile'); ?></span></td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><b><?php echo __('Profile URL'); ?></b></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile URL'); ?></span></td>
 <td><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
 </tr>
+</table>
+</td>
+
+<td>
+<table border="0" width=350 align="right">
+
+</table>
+</td>
+</tr>
+
 </table>
 
 
@@ -47,6 +54,8 @@ echo "</a>";
 <?php //echo $fb_id;?>
 <br/>
 <br/>
+
+
 <p align="left">
 <font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Photos');?>
 </p>

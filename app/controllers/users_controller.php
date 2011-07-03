@@ -240,7 +240,14 @@ class UsersController extends AppController {
                             )));
                             $this->set('result', $result);
                             $this->set('lists', $list);
-	}
+
+        	$result = $this->Photo->find('all',
+                         array('conditions' => array('Photo.fb_id' => $list['User']['fb_id'])
+                          ));
+                var_dump($result);
+	                    
+                            
+        }
         
 	function top() {
         Configure::load('messages');
@@ -252,7 +259,8 @@ class UsersController extends AppController {
                     'limit' => '20'
                 ));
 	
-        
+        // ランキング
+       $this->set('rank',$this->getRank($junle)); 
         
         $this->set('list', $list);
         foreach ($list as $key => $val) {

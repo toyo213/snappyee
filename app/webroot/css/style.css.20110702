@@ -16,8 +16,10 @@ table{
 }
 td,th{
     font-size: small;
-    padding: 5px 2px;
-    border:none;
+    padding: 10px 4px;
+    border-style: solid;
+    border-width: 1px 1px;
+    border-color: #aaaaaa;
 }
 th{
     text-align : center ;
@@ -57,7 +59,6 @@ caption,th {
     text-align:left;
 }
 h1,h2,h3,h4,h5,h6 {
-    margin: 0;
     font-size:100%;
     font-weight:normal;
 }
@@ -468,7 +469,6 @@ span.hover {
 
 #header #gnavi a {
     color: #FFF;
-    line-height: 21px;
 }
 
 #header #login {
@@ -490,18 +490,14 @@ span.hover {
 }
 
 #header .pic {
-    width: 26px;
-    height: 26px;
     padding: 1px;  
     border: solid 1px #f9a3ba;
 }
 
 #header .username {
-    width: 130px;
+    width: 115px;
     color: #fff;
-    line-height: 21px;
     padding: 5px;
-    orverflow: hidden;
 }
 
 #header .logout {
@@ -702,11 +698,6 @@ ul#banner li a img {
 span.likeFontBig {
     font-family:Shruti;
     font-size:100.5px;
-    color:#e73659;
-}
-span.profileFont {
-    font-family:Shruti;
-    font-size:15px;
     color:#e73659;
 }
 
