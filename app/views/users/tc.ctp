@@ -3,8 +3,10 @@
 <br/>
 <br/>
 In Fashion category, Full body photos are recommended.
+Anything considered inappropriate for Gee Gee or infringe any of following guidelines could be deleted.
 
-Outfits must be unobstructed, clearly visible and free from unnecessary distractions.
+In Hair Style, Shoes, Nails and other categories, 
+Objects such as Outfits, Hair Style, Shoes, Nails must be unobstructed, clearly visible and free from unnecessary distractions.
 If an outfit is partially obstructed from view or not FULLY and CLEARLY visible for ANY reason (blurriness, poor lighting, subject fails to take up a significant portion of the photo) it will be deleted. Excessive photo editing in the form of skewing, stretching, colorizing, or adding gratuitous text is also prohibited.
 
 No more than one look per photo.
