@@ -61,7 +61,7 @@ echo "</a>";
 
 <div class="photoList rightMarginS leftcol">
 	<?php $i = 0; ?>
-    <?php while ($i < 5): ?>
+    <?php while ($i <= 5): ?>
     <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
     echo "<div class=photo radiux3px>";
    	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 

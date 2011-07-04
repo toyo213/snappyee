@@ -1,5 +1,7 @@
  
 <h1>BEFORE POSTING, PLEASE READ AND AGREE TO THE RULES:</h1>
+<br/>
+<br/>
 In Fashion category, Full body photos are recommended.
 
 Outfits must be unobstructed, clearly visible and free from unnecessary distractions.
