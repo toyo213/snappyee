@@ -1,5 +1,5 @@
  
-<h1>BEFORE POSTING, PLEASE READ AND AGREE TO THE RULES:    <a href="../users/fbphoto_upload">Agree the followings and go back to the previous page</a></h1>　
+<h1>BEFORE POSTING, PLEASE READ AND AGREE TO THE RULES:    <a href="javascript:history.go(-1)">Agree the followings and go to upload page</a></h1>　
 <br/>
 <br/>
 In Fashion category, Full body photos are recommended.<br/>

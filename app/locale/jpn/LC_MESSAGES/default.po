@@ -186,6 +186,10 @@ msgstr "<h1>アルバムを選択してください</h1> <p>（アルバムの�
 msgid "<p>Please Read <a href= ../users/tc>Photo Upload Guidelines</a> before Upload.</p>"
 msgstr "<p>アップロードする前に<a href= ../users/tc_jp>ガイドライン</a>を読んでください</p>"
 
+#: /views/users/photo_upload.ctp:2
+msgid "<p>Please Read <a href= ../users/tc>Photo Upload Guidelines</a> before Upload.</p>"
+msgstr "<p>アップロードする前に<a href= ../users/tc_jp>ガイドライン</a>を読んでください</p>"
+
 #: /views/users/regist_end.ctp:2
 msgid "Your Account has been created and now you are ready to Gee Gee!"
 msgstr "Gee Geeのアカウント登録が完了しました。Let's Gee Gee!"

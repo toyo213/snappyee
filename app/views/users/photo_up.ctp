@@ -1,6 +1,8 @@
 
 <img src="<?php echo $img_path; ?>" width="600" height="600"></img>
 
+
+
 <?php
 echo $form->create('users', array('type' => 'post', 'action' => 'photo_update'));
 echo '<br>';
