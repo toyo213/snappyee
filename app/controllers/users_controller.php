@@ -41,15 +41,18 @@ class UsersController extends AppController {
 
 		// fbに登録していないユーザはFBログインをうながす
 
+                $user_data = array();
 		$user_data = $this->Connect->user();
 		$this->set('fbuser',$user_data);
 
-                 if (!$user_data　&& $this->action !='login') {
+                if (is_null($user_data)&& $this->action =='firstlogin') {
+	                $this->render('/users/firstlogin', 'default.bak0602');                    
+                }elseif (is_null($user_data) && $this->action !='login') {
                    // facebookにログインしてねページ！
-                   $this->redirect('/users/login/');
+                   $this->redirect('/users/firstlogin/');
                 }
-                var_dump($user_data);
-		//TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
+
+                //TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
 		$user_list = $this->User->findByFbId($user_data['id']);
 
 		// FBにログインがあってかつDBに登録がないユーザは初回登録が必要
@@ -373,6 +376,11 @@ class UsersController extends AppController {
 	function home() {
 	}
 
+        function firstlogin()
+	{
+            $this->set('rank',$this->getRank());
+        }
+        
 	function login()
 	{
             $this->set('rank',$this->getRank());
