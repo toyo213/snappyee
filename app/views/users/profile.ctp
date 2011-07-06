@@ -59,72 +59,19 @@ echo "</a>";
 <font color="red" size="3"><?php echo $u['User']['nickname']; ?></font>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Photos');?>
 </p>
 
-<div class="photoList rightMarginS leftcol">
-	<?php $i = 0; ?>
-    <?php while ($i <= 5): ?>
-    <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
-    echo "<div class=photo radiux3px>";
-   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
-   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
-   	echo "</img>";
-   	echo "</a>";
-   	echo "</div>";
-    }
-    
-    ?>
-    <?php  $i++; ?>
-    <?php endwhile; ?>
-</div>
 
-<div class="photoList rightMarginS leftcol">
-    <?php $i = 6; ?>
-    <?php while ($i <= 10): ?>
-        <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
-    echo "<div class=photo radiux3px>";
-   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
-   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
-   	echo "</img>";
-   	echo "</a>";
-   	echo "</div>";
-    } 
-    ?>
-    <?php  $i++; ?>
-    <?php endwhile; ?>
-</div>
-<!-- /photo list Normal 1 -->
 
-<!-- photo list Normal 1 -->
-<div class="photoList rightMarginS leftcol">
-    <?php $i = 11; ?>
-    <?php while ($i <= 15): ?>
-        <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
-    echo "<div class=photo radiux3px>";
-   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
-   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
-   	echo "</img>";
-   	echo "</a>";
-   	echo "</div>";
-    } 
-    ?>
-    <?php  $i++; ?>
-    <?php endwhile; ?>
-</div>
-<!-- /photo list Normal 1 -->
 
-<!-- photo list Normal 2 -->
-<div class="photoList leftcol">
-    <?php $i = 16; ?>
-    <?php while ($i <= 20): ?>
-      <?php if(!empty($photo_list[$i]['Photo']['fbpath'])){	
-    echo "<div class=photo radiux3px>";
-   	echo "<a href=/users/fbpict_like/".$photo_list[$i]['Photo']['id'].">"; 
-   	echo "<img src=".$photo_list[$i]['Photo']['fbpath']." width=163 alt= >";
+<?php 
+foreach( $photo_list as $pho ){
+  //echo $key. "：" .$value."<br />\n"; // 改行しながら値を表示
+  echo "<div class=photoProfile radiux3px>";
+   	echo "<a href=/users/fbpict_like/".$pho['Photo']['id'].">"; 
+   	echo "<img src=".$pho['Photo']['fbpath']." width=163 alt= >";
    	echo "</img>";
    	echo "</a>";
    	echo "</div>";
-    } 
-    ?>
-  <?php  $i++; ?>
-    <?php endwhile; ?>
-</div>
+}
+
+?>
 

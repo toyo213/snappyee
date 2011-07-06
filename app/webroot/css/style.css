@@ -626,6 +626,14 @@ span.hover {
     width: 173px;
 }
 
+#content .photoProfile {
+    float:left;
+	margin: 0 0 5px 0;
+    padding: 4px;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
 #content .photoDetail {
     width: 273px;
 }

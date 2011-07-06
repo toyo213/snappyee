@@ -148,7 +148,7 @@ class UsersController extends AppController {
 		$data['User']['blogurl']  =  $this->params['data']['User']['blogurl'];
 		$data['User']['fb_id']  =  $this->fbuser['id'];
 		$data['User']['email'] = $this->fbuser['email'];
-		$data['User']['location'] = $this->fbuser['hometown']['name'];
+		$data['User']['location'] = $this->fbuser['location']['name'];
 		$data['User']['last_name'] = $this->fbuser['last_name'];
 		$data['User']['first_name'] = $this->fbuser['first_name'];
 
@@ -540,7 +540,7 @@ class UsersController extends AppController {
 				$this->set('u',$u);
 				$this->set('fb_id',$fb_id);
 
-		        // ランキング
+		        // ranking
         		$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
 			}else{
 				$fb_id = $this->fbuser['id'];
@@ -550,7 +550,7 @@ class UsersController extends AppController {
 				$this->set('u',$u);
 				$this->set('fb_id',$fb_id);
 				
-		        // ランキング
+		        // ranking
         		$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
 			}
 		}
