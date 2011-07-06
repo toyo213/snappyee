@@ -578,9 +578,9 @@ class UsersController extends AppController {
 				$this->User->saveField('blogurl',$blogurl);
 
 				//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
-				$this->Session->setFlash(__('Updated!', true));
+				$this->Session->setFlash($this->isJpn == true ? 'アップデートされました！':'Updated!', true);
 				$this->redirect(array('action'=>'profile'));
-
+				
 			}
 		}
 
