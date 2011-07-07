@@ -55,7 +55,7 @@ $('#dialog').jqm({ modal: true });
 
 <div id="content" class="clearfix">
 	<div id="topContent" class="radiux5px clearfix"> 
-         <?php echo __('Gee Gee is a web service where you can upload fashion photos in your style and share it with the world.');?>   <br/>
+         <?php echo __('Gee Gee is a web service where you can upload fashion photos in style and share it with the world.');?>   <br/>
 	</div>
     <div id="leftContent" class="radiux5px leftcol">    
         <div id="photoContent" class="radiux5px clearfix">

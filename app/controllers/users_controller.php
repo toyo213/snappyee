@@ -38,6 +38,7 @@ class UsersController extends AppController {
                 // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 		// ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
 		$this->fbuser = $this->Connect->user();
+		
 
 		// fbに登録していないユーザはFBログインをうながす
 
@@ -151,25 +152,26 @@ class UsersController extends AppController {
 		$data['User']['location'] = $this->fbuser['location']['name'];
 		$data['User']['last_name'] = $this->fbuser['last_name'];
 		$data['User']['first_name'] = $this->fbuser['first_name'];
+		
+		
+		$work=end($this->fbuser['work']);
+		$edu = end($this->fbuser['education']);
+		
+		$data['User']['work'] = $work['employer']['name'];		
+		$data['User']['education'] = $edu['school']['name'];
+		
+		
+		//var_dump($data);
 
-		//$data['User']['fb_pic'] = $facebook->picture($fbuser['id'], array('width' => '26', 'height' => '26'));
-
-		/*
-		 $last = end($this->fbuser['work']);
-		 $location = $last['location']['name'];
-
-		 if(!empty($location)){
-		 $data['User']['location'] = $location;
-		 }else{
-		 $data['User']['location'] = $this->fbuser['hometown']['name'];
-		 }
-		 somehow garbled with the above  */
-
-		//$data['User']['fb_pic'] = $this->fbuser[''];
 		// TODOエラーハンドリング
 		$data = $this->User->save($data);
+		//$this->User->saveField('work',$work['employer']['name']);
+		//$this->User->saveField('education',$edu['school']['name']);
+		 
+	
 		// 登録に成功したら値をセッションに格納
 		if ($data) $this->Session->write('auth', $data['User']);
+		
 		
         		//var_dump($this->isJpn);       
                /* $feed = $this->fb->api('/me/feed/', 

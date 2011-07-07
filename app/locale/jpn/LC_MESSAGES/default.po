@@ -27,7 +27,7 @@ msgid "How to Gee Gee!"
 msgstr "Gee Geeの楽しみ方"
 
 #: /views/layouts/default.bak0602.ctp:57
-msgid "Gee Gee is a web service where you can upload fashion photos in your style and share it with the world."
+msgid "Gee Gee is a web service where you can upload fashion photos in style and share it with the world."
 msgstr "ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！！"
 
 #: /views/layouts/default.bak0602.ctp:62
