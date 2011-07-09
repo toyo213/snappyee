@@ -143,7 +143,8 @@ shuffle($numbers);
     <?php while ($i < 5): ?>
     <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath'];?>" width="163px" alt="" /></a>
-        </div>
+            <?php echo $list[$numbers[$i]]['Photo']['cnt'];?><img src="/img/like_heart_on.png"></img>
+    </div>
     <?php  $i++; ?>
     <?php endwhile; ?>
 
@@ -156,6 +157,7 @@ shuffle($numbers);
     <?php while ($i < 10): ?>
         <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
+            <?php echo $list[$numbers[$i]]['Photo']['cnt'];?><img src="/img/like_heart_on.png"></img>
         </div>
     <?php  $i++; ?>
     <?php endwhile; ?>
@@ -168,6 +170,7 @@ shuffle($numbers);
     <?php while ($i < 15): ?>
         <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
+            <?php echo $list[$numbers[$i]]['Photo']['cnt'];?><img src="/img/like_heart_on.png"></img>
         </div>
     <?php  $i++; ?>
     <?php endwhile; ?>
@@ -180,7 +183,8 @@ shuffle($numbers);
     <?php while ($i < 20): ?>
     <div class="photo radiux3px">
             <a href="/users/fbpict_like/<?php echo $list[$numbers[$i]]['Photo']['id'];?>"><img src="<?php echo $list[$numbers[$i]]['Photo']['fbpath']; ?>" width="163px" alt="" /></a>
-        </div>
+            <?php echo $list[$numbers[$i]]['Photo']['cnt'];?><img src="/img/like_heart_on.png"></img>
+    </div>
     <?php  $i++; ?>
     <?php endwhile; ?>
 </div>     
