@@ -182,9 +182,13 @@ msgstr "プロフィール URL"
 msgid "Create Account"
 msgstr "アカウント登録"
 
-#: /views/users/fbphoto_upload.ctp:13
-msgid "<h1>Select Album</h1><p>Please make sure your photo album privacy setting is set to either <b>Everyone</b> or <b>Friends Only</b></p>"
-msgstr "<h1>アルバムを選択してください</h1> <p>（アルバムのプライバシー設定を"<b>全てのユーザ</b>"もしくは"<b>友達のみ</b>"にしてください）</p>"
+#: /views/users/fbphoto_upload.ctp:3
+msgid "<h1><font color =red><b>Select Photos to Upload</b></font></h1>"
+msgstr "<h1><font color =red><b>アップロードする写真を選択してください</b></font></h1>"
+
+#: /views/users/fbphoto_upload.ctp:11
+msgid "<h1><font color =red><b>Select Album</b></font></h1><p>Please make sure your photo album privacy setting is set to either <b>Everyone</b> or <b>Friends Only</b></p>"
+msgstr "<h1><font color =red><b>アルバムを選択してください</b></font></h1> <p>（アルバムのプライバシー設定を"<b>全てのユーザ</b>"もしくは"<b>友達のみ</b>"にしてください）</p>"
 
 #: /views/users/fbphoto_upload.ctp:14
 msgid "<p>Please Read <a href= ../users/tc>Photo Upload Guidelines</a> before Upload.</p>"

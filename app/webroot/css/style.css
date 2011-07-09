@@ -653,6 +653,12 @@ span.hover {
     position: relative;
 }
 
+#content .photoFloat {
+    margin: 0 1px 1px 0;
+    float:left;
+}
+
+
 #content .photoRanking {
     width: 210px;
     height: 140px;
@@ -661,6 +667,15 @@ span.hover {
 #content .photoRanking img {
     position: absolute;
     clip: rect(0 auto 140px auto);
+}
+
+#content .photoRankingAlbum {
+    width: 210px;
+    height: 100px;
+}
+#content .photoRankingAlbum img{
+    position: absolute;
+    clip: rect(0px auto 90px auto);
 }
 
 #content .photoUnderBig {
@@ -706,13 +721,6 @@ ul#banner li {
 ul#banner li a {
     margin: 0;
     padding: 0;
-}
-
-ul#banner li a img {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    clip: rect(100px auto 30px auto);
 }
 
 span.likeFontBig {
