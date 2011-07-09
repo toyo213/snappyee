@@ -67,10 +67,11 @@ foreach( $photo_list as $pho ){
   //echo $key. "：" .$value."<br />\n"; // 改行しながら値を表示
   echo "<div class=photoProfile radiux3px>";
    	echo "<a href=/users/fbpict_like/".$pho['Photo']['id'].">"; 
-   	echo "<img src=".$pho['Photo']['fbpath']." width=163 alt= >";
+   	echo "<img src=".$pho['Photo']['fbpath']." width=90 alt= >";
    	echo "</img>";
    	echo "</a>";
    	echo "</div>";
+   	//echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 }
 
 ?>

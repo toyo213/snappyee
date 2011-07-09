@@ -313,6 +313,13 @@ a:hover span,
     display: none;
 }
 
+.radiux6px {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	height: 50px;
+}
+
 .radiux5px {
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -628,10 +635,11 @@ span.hover {
 
 #content .photoProfile {
     float:left;
-	margin: 0 0 5px 0;
-    padding: 4px;
-    border: 1px solid #ddd;
+	margin: 0px 0px 5px 5px;
+    padding: 3px;
+    border: 2px solid #ddd;
     position: relative;
+	height:120px;
 }
 
 #content .photoDetail {

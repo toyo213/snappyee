@@ -30,6 +30,10 @@ msgstr "Gee Geeの楽しみ方"
 msgid "Gee Gee is a web service where you can upload fashion photos in style and share it with the world."
 msgstr "ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！！"
 
+#: /views/layouts/default.ctp:60
+msgid "Gee Gee is a web service where you can upload fashion photos in style and share it with the world."
+msgstr "ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！！"
+
 #: /views/layouts/default.bak0602.ctp:62
 msgid "Check Trending Photos!"
 msgstr "ジャンル別にチェック！"
