@@ -3,7 +3,7 @@ class UsersController extends AppController {
 
 	var $helpers = array('Form', 'Html', 'Javascript', 'Time', 'Session', 'Facebook.Facebook');
 	var $name = 'Users';
-	var $uses = array('User','Photo' ,'People','Photo_like','Photo_like_log');
+	var $uses = array('User','Photo','Photo_like_log');
 	//var $uses = array('User','Photo' ,'Photo_like');
 
         // 言語判定
@@ -51,6 +51,9 @@ class UsersController extends AppController {
                 }elseif (is_null($user_data) && $this->action !='login') {
                    // facebookにログインしてねページ！
                    $this->redirect('/users/firstlogin/');
+                } elseif (!is_null($user_data)&& $this->action =='firstlogin') {
+                   // facebookにログインしてねページ！
+                   $this->redirect('/');                    
                 }
 
                 //TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
@@ -107,90 +110,43 @@ class UsersController extends AppController {
 	}
 
 	function regist() {
-		/*
-		$t=$this->data;
-		if(!empty($t)){
-		$data['User']['nickname']  =  $this->params['data']['User']['nickname'];
-		$data['User']['blogurl']  =  $this->params['data']['User']['blogurl'];
-		$data['User']['fb_id']  =  $this->fbuser['id'];
-		$data['User']['email'] = $this->fbuser['email'];
-		$data['User']['location'] = $this->fbuser['hometown']['name'];
-		$data['User']['last_name'] = $this->fbuser['last_name'];
-		$data['User']['first_name'] = $this->fbuser['first_name'];
-
-		//$data['User']['fb_pic'] = $this->fbuser[''];
-		// TODOエラーハンドリング
-		$data = $this->User->save($data);
-		// 登録に成功したら値をセッションに格納
-		if ($data) $this->Session->write('auth', $data['User']);
 		
-        		//var_dump($this->isJpn);       
-              	  $feed = $this->fb->api('/me/feed/', 
-                                        'post',
-                                        array('access_token' => $this->ac,
-                                              'message' => ($this->isJpn == true)?'ファッション写真共有サービスGee Geeを使い始めました！':
-                                              "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
-											  'name'=>'Gee Gee',
-                                              'caption'=>'Fashion Photo Sharing.',
-                                              'link'=>'http://gee-gee.me/',
-                                        	  'picture'=>'http://'.$_SERVER['SERVER_NAME'].'/img/geegee_title_pink.png'            
-                                        	)
-                                       );
-                                       
-                                       
-              	$this->Session->setFlash(__('Now Ready to Gee Gee!', true));
-				$this->redirect(array('action'=>'login'));                                                
-		}
-		*/
 	}
 	 
 	function regist_end() {
-		$data['User']['nickname']  =  $this->params['data']['User']['nickname'];
-		$data['User']['blogurl']  =  $this->params['data']['User']['blogurl'];
-		$data['User']['fb_id']  =  $this->fbuser['id'];
-		$data['User']['email'] = $this->fbuser['email'];
-		$data['User']['location'] = $this->fbuser['location']['name'];
-		$data['User']['last_name'] = $this->fbuser['last_name'];
-		$data['User']['first_name'] = $this->fbuser['first_name'];
-		
-		
-		$work=end($this->fbuser['work']);
-		$edu = end($this->fbuser['education']);
-		
-		$data['User']['work'] = $work['employer']['name'];		
-		$data['User']['education'] = $edu['school']['name'];
-		
-		
-		//var_dump($data);
+            $data['User']['nickname'] = $this->params['data']['User']['nickname'];
+            $data['User']['blogurl'] = $this->params['data']['User']['blogurl'];
+            $data['User']['fb_id'] = $this->fbuser['id'];
+            $data['User']['email'] = $this->fbuser['email'];
+            $data['User']['location'] = $this->fbuser['location']['name'];
+            $data['User']['last_name'] = $this->fbuser['last_name'];
+            $data['User']['first_name'] = $this->fbuser['first_name'];
+            $work = end($this->fbuser['work']);
+            $edu = end($this->fbuser['education']);
 
-		// TODOエラーハンドリング
-		$data = $this->User->save($data);
-		//$this->User->saveField('work',$work['employer']['name']);
-		//$this->User->saveField('education',$edu['school']['name']);
-		 
-	
-		// 登録に成功したら値をセッションに格納
-		if ($data) $this->Session->write('auth', $data['User']);
-		
-		
-        		//var_dump($this->isJpn);       
-               /* $feed = $this->fb->api('/me/feed/', 
-                                        'post',
-                                        array('access_token' => $this->ac,
-                                              'message' => ($this->isJpn == true)?'ファッション写真共有サービスGee Geeを使い始めました！':
-                                              "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
-											  'name'=>'Gee Gee',
-                                              'caption'=>'Fashion Photo Sharing.',
-                                              'link'=>'http://gee-gee.me/',
-                                        	  'picture'=>'http://'.$_SERVER['SERVER_NAME'].'/img/geegee_title_pink.png'            
-                                        	)
-                                       );
-               	*/
-                        
-                                       
-			}
-	 
-	function signup(){
+            $data['User']['work'] = $work['employer']['name'];
+            $data['User']['education'] = $edu['school']['name'];
+
+            // TODOエラーハンドリング
+            $data = $this->User->save($data);
+
+            // 登録に成功したら値をセッションに格納
+            if ($data)
+                $this->Session->write('auth', $data['User']);
+
+
+            $feed = $this->fb->api('/me/feed/', 'post', array('access_token' => $this->ac,
+                    'message' => ($this->isJpn == true) ? 'ファッション写真共有サービスGee Geeを使い始めました！' :
+                            "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
+                    'name' => 'Gee Gee',
+                    'caption' => 'Fashion Photo Sharing.',
+                    'link' => 'http://gee-gee.me/',
+                    'picture' => 'http://' . $_SERVER['SERVER_NAME'] . '/img/geegee_title_pink.png'
+                        )
+            );    
+    }
+
+    function signup(){
 
 	}
 	 
@@ -217,50 +173,47 @@ class UsersController extends AppController {
 	 
 	function fbphoto_upload() {
 
-		if (isset($this->params['url']['aid'])) {
-			$fql_query = array(
+        if (isset($this->params['url']['aid'])) {
+            $fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,pid,aid,src_small  FROM photo WHERE aid IN  ( SELECT aid FROM album WHERE aid = %s )', $this->params['url']['aid']
-			)
-			);
-		} elseif (isset($this->params['url']['pid'])) {
-			$fql_query = array(
+                )
+            );
+        } elseif (isset($this->params['url']['pid'])) {
+            $fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,pid,aid  FROM photo WHERE pid =%s )', $this->params['url']['pid']
-			)
-			);
-		} else {
-			// TODO visibleがeveryone or custmor のものだけ表示させる
-			$fql_query = array(
+                )
+            );
+        } else {
+            // TODO visibleがeveryone or custmor のものだけ表示させる
+            $fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,src_small,pid,aid  FROM photo WHERE pid IN ( SELECT cover_pid FROM album WHERE owner=%s )',
-			//$this->params['url']['aid'],
-			$this->fbuser['id']
-			)
-			);
-		}
+                        //$this->params['url']['aid'],
+                        $this->fbuser['id']
+                )
+            );
+        }
 
-		//pr($fql_query);
-		$albums =  $this->fb->api($fql_query, array('access_token' => $this->ac));
-		//var_dump($albums);
-		$friends = $this->fb->api('/me/friends', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,picture'));
-		// facebook album一覧を取得する
-		// album一覧からalbumの中身をみる
-		// 選んだ写真を投票する(DBにいれる)
-		// ユーザが投稿した写真を一覧で表示
-		// ユーザがいいね写真を投票できる
-		// 投票データを集計する
-		// ランキングを一覧で表示する
-		// 写真に似ている洋服名をタグ付けできる
-		//$albums = $this->fb->api('/me/albums', 'GET', array('access_token' => $this->ac), array('fields' => 'id,aid,name,location,description'));
-		//$url = file_get_contents('https://graph.facebook.com/1713040105885/photos?access_token=' . $this->ac);
-		//$data = (json_decode($url));
-		$this->set('prm',$this->params['url']);
-		$this->set('friends',$friends);
-		$this->set('albums',$albums);
-	}
+        //pr($fql_query);
+        $albums = $this->fb->api($fql_query, array('access_token' => $this->ac));
+        //var_dump($albums);
+        $friends = $this->fb->api('/me/friends', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,picture'));
+        // facebook album一覧を取得する
+        // album一覧からalbumの中身をみる
+        // 選んだ写真を投票する(DBにいれる)
+        // ユーザが投稿した写真を一覧で表示
+        // ユーザがいいね写真を投票できる
+        // 投票データを集計する
+        // ランキングを一覧で表示する
+        // 写真に似ている洋服名をタグ付けできる
+        $this->set('prm', $this->params['url']);
+        $this->set('friends', $friends);
+        $this->set('albums', $albums);
+    }
 
-	// ユーザがuploadした画像を表示する
+    // ユーザがuploadした画像を表示する
 	function upict_up($fb_id) {
 		$path = sprintf('/home/soogle/tmp/pict/%s/%s', $this->fbuser['id'], $img_name);
 	}
@@ -275,7 +228,8 @@ class UsersController extends AppController {
         $pid = $this->params['pass'][0];
         $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
         $result = $this->Photo->findById($pid);
-
+        $album = $this->Photo->find('all',array('conditions'=> array('Photo.fb_id'=>$result['Photo']['fb_id'])));
+        
         $this->set('isLike', $res);
         $list = $this->Photo->find('first', array('fields' => array('Photo.*', 'User.*'),
                     'conditions' => array('Photo.id' => $this->params['pass'][0]),
@@ -288,6 +242,7 @@ class UsersController extends AppController {
                             )
                         )
                         )));
+        $this->set('album', $album);
         $this->set('result', $result);
         $this->set('lists', $list);
 
@@ -343,7 +298,8 @@ class UsersController extends AppController {
 		// redirect
 		$data['Photo']['category_id']  = $this->params['data']['users']['category_id'];
 		$data['Photo']['fbpath']  = $this->params['data']['Photo']['fb_path'];
-		$data['Photo']['fb_id']  =  $this->fbuser['id'];
+		$data['Photo']['comment']  = $this->params['data']['Photo']['comment'];
+                $data['Photo']['fb_id']  =  $this->fbuser['id'];
 		$this->Photo->save($data);
 
 	}

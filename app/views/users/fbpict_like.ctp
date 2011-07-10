@@ -12,7 +12,7 @@
 <script>
 $(function() {
     $('#change_btn').click(function() {
-    $("#change_area").html('<img src="/img/ajax-loader.gif" width="10" height="10" alt="Now Loading..." />');
+    $("#change_area").html('<img src="/img/ajax-loader.gif" width="30" height="30" alt="Now Loading..." />');
     $.post('/users/like/<?php echo $lists['Photo']['id'];?>',
             {
                 name : $('#name').attr('value')
@@ -42,6 +42,20 @@ function callBack(data) {
 <span class="likeFontBig"><?php echo sprintf("%03d",$result['Photo']['cnt']);?></span><span style="font-family:Shruti;">likes</span>
 <?php endif;  ?>
 <br><?php echo __('Uploaded');?> by <a href="../profile?pid=<?php echo $lists['Photo']['id'];?>"><font size="3"><?php echo $lists['User']['nickname'];?> </a>&nbsp;(<a href="<?php echo $lists['User']['blogurl'];?>">Blog</font></a>)<br>
+<?php echo $lists['Photo']['comment'];?><br>
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']));?>
+
+<!-- my album-->
+<?php
+echo '<ul id="banner">';
+    foreach ($album as $key => $val) {
+        echo '<li><div class="photo photoFloat">';
+        $pt = '<a href="/users/fbpict_like/%s"><img src="%s" height="30px" /></a></div></li>';
+        echo sprintf($pt, $val['Photo']['id'], $val['Photo']['fbpath']) . "\n";
+    }
+    echo '</ul>';
+?>
+<!-- my album-->
+
 </div>
-<?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id'])); ?>
+<?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$lists['Photo']['id']), array('width' => '300')); ?>

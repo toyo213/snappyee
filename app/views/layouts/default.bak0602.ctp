@@ -91,11 +91,7 @@ $('#dialog').jqm({ modal: true });
             <div class="photo photoRanking radiux3px">
             <a href="/users/fbpict_like/<?php echo $val['Photo']['id'];?>"><img src="<?php echo $val['Photo']['fbpath']; ?>" width="210px" alt="" /></a>
                 <div class="crown">No.<?php echo $i;?></div>
-                <div style="position: absolute; top: 7px; left: 5px;">
-                <font color="red"><b><?php echo $val['Photo']['cnt']; ?></b></font>
-                </div>
-                &nbsp;&nbsp;
-                <img src="/img/like_heart_on.png"></img>
+                <div class="rankinglike"><?php echo $val['Photo']['cnt']; ?></div>
             </div>
      <?php $i++;if($i ==6 ) break;  ?>
      <?php endforeach; ?>
