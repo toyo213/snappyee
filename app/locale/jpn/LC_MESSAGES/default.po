@@ -154,6 +154,14 @@ msgstr "アップロード"
 msgid "Upload"
 msgstr "アップロード"
 
+#: /views/users/fbpict_up.ctp:13
+msgid "Category"
+msgstr "カテゴリ"
+
+#: /views/users/fbpict_up.ctp:22
+msgid "Comment"
+msgstr "コメント"
+
 #: /views/users/photo_update.ctp:1
 msgid "Photos successfully uploaded!"
 msgstr "Gee Geeにフォトがアップロードされました"

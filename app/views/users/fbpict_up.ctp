@@ -10,7 +10,7 @@ echo '<br>';
 ?>
 </div>
 <div class="rightMarginS leftcol"> 
-Category<div style="float: left;font-family:Shruti;font-size:15px;color:#e73659;">*</div><br>
+<?php echo __("Category");?><div style="float: left;font-family:Shruti;font-size:15px;color:#e73659;">*</div><br>
 <?php   
 echo $form->input(
 	'category_id',
@@ -19,7 +19,7 @@ echo $form->input(
 );
 ?>
 <br><br>
-Comment<div style="float: left;font-family:Shruti;font-size:15px;color:#e73659;">*</div><br>
+<?php echo __("Comment");?><div style="float: left;font-family:Shruti;font-size:15px;color:#e73659;">*</div><br>
 <?php echo $form->input('Photo.comment', array('cols' => 20, 'rows' => 10,'label'=>false));?>
 <input type="submit" value="<?php echo __('Upload'); ?>" />
 <?php 
