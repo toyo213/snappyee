@@ -23,10 +23,26 @@
 <script type="text/javascript">
 $(function() {
 //$('#dialog').jqm();
-$('#dialog').jqm({ modal: true });
+$('#dialog').jqm({ modal: true });'
 });
 </script>
 <!-- /jQuery-->
+<?php 
+if( $_SERVER['SERVER_NAME'] == 'gee-gee.me') {
+print <<< DOC_END
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12261300-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+DOC_END;
+}
+?>
 </head>
 <body id="home" onLoad="MM_preloadImages('img/images/btn_createmyaccount_on.gif')">
 <?= $facebook->init(); ?>

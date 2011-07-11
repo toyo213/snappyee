@@ -1,6 +1,8 @@
 <?php foreach ( $list as $key => $val):?>
 <div class="rightMarginS leftcol"> 
+<div class="photo">
 <a href="/users/fbpict_like/<?php echo $val['Photo']['id'];?>"><img src="<?php echo $val['Photo']['fbpath'];?>"  width="400"></img></a>
+</div>
 <br/>
 </div>
 <div class="photoDetail rightMarginS rightcol"> 
@@ -38,5 +40,6 @@ function callBack(data) {
 
 <?php echo $facebook->like(array('show_faces'=>"false",'href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$val['Photo']['id']));?>
 </div>
-<?php echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$val['Photo']['id'],'width'=>400)); ?>
+<?php //echo $facebook->comments(array('href'=>"http://".$_SERVER['SERVER_NAME']."/users/fbpict_like/".$val['Photo']['id'],'width'=>400)); ?>
+
 <?php endforeach; ?>
