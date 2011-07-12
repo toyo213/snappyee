@@ -210,6 +210,10 @@ msgstr "<p>アップロードする前に<a href= ../users/tc_jp>ガイドライ
 msgid "Your Account has been created and now you are ready to Gee Gee!"
 msgstr "Gee Geeのアカウント登録が完了しました。Let's Gee Gee!"
 
+#: /views/users/firstlogin:4
+msgid "<b>Please Use Facebook account to login <img src=/img/geegee_title.png width=90 height=30></img></b>"
+msgstr "<b>Facebookアカウントを使用して　<img src="/img/geegee_title.png" width="90" height="30"></img> &nbsp;&nbsp;にログインしてください。</b>"
+
 #: /webroot/test.php:99
 msgid "Debug setting does not allow access to this url."
 msgstr ""

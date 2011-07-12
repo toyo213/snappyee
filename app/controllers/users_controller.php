@@ -226,7 +226,14 @@ class UsersController extends AppController {
 	function fbpict_like() {
 
         $pid = $this->params['pass'][0];
+        // Likeボタン用
         $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
+        // Likeユーザを表示
+        $logres = $this->Photo_like_log->find('all',array('conditions'=> array('Photo_like_log.photo_id'=>$pid),
+                                                 'fields' => array('Photo_like_log.fb_id'))
+                                           ); 
+
+        
         $result = $this->Photo->findById($pid);
         $album = $this->Photo->find('all',array('conditions'=> array('Photo.fb_id'=>$result['Photo']['fb_id'])));
         
@@ -242,6 +249,7 @@ class UsersController extends AppController {
                             )
                         )
                         )));
+        $this->set('likeuser', $logres);
         $this->set('album', $album);
         $this->set('result', $result);
         $this->set('lists', $list);
