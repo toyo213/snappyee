@@ -224,8 +224,11 @@ class UsersController extends AppController {
 	}
 
 	function fbpict_like() {
-
+          
         $pid = $this->params['pass'][0];
+        // ロギング
+        CakeLog::write('fbpict_like', sprintf("%s %s",$this->fbuser['id'],(int)$pid));
+
         // Likeボタン用
         $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
         // Likeユーザを表示

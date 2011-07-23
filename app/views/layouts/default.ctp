@@ -12,7 +12,8 @@
 <link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
 <link href="/css/login.css" rel="stylesheet" type="text/css" />
 <script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
-<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>  
+<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>
+<script src="/js/jQuery/MyThumbnail.js"></script>
 <script type="text/javascript">
 $(function() {
 //$('#dialog').jqm();

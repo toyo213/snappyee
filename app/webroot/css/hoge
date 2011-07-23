@@ -1,0 +1,208 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml"><head>
+<title>Gee Gee Alpha Ver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="ja" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+
+<script src="/js/geegee.js" type="text/javascript"></script>
+<script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
+<script src="/js/jQuery/MyThumbnail.js" type="text/javascript"></script>  
+<link href="/css/MyThumbnail.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body id="home" onLoad="MM_preloadImages('img/images/btn_createmyaccount_on.gif')">
+<div id="fb-root"></div><script type="text/javascript">
+//<![CDATA[
+
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId   : '102978646442980',
+						session : null, // don't refetch the session when PHP already has it
+						status  : true, // check login status
+						cookie  : true, // enable cookies to allow the server to access the session
+						xfbml   : true // parse XFBML
+					});
+					// whenever the user logs in, we refresh the page
+					FB.Event.subscribe('auth.login', function() {
+						window.location.reload();
+					});
+				};
+				(function() {
+					var e = document.createElement('script');
+					e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+					e.async = true;
+					document.getElementById('fb-root').appendChild(e);
+				}());
+				
+//]]>
+</script>    <div id="header">
+	<div class="headerInnner">
+    	<a href="/"><h1 class="leftcol">Gee Gee</h1></a>
+        <div id="gnavi" class="leftcol">
+            <a href="/users/fbphoto_upload">Facebookフォトをアップロード</a><span class="delimiter">|</span><!--
+            --><a href="/users/photo_upload">PCからフォトをアップロード</a><span class="delimiter">|</span><!--
+            --><a href="/users/howto">Gee Geeの楽しみ方</a>
+
+        </div>
+        <div id="userStatus" class="leftcol">
+
+            <div class="pic leftcol"><fb:profile-pic uid='1234627252' facebook-logo='1' width='26' height='26'></fb:profile-pic></div><div class="username leftcol"><!--morelink--><a href=/users/profile><font color=white size=2>Suguru Oiwa</font></a><!--morelink--></div><div class="logout radiux3px leftcol"><a href="#" onclick="FB.logout(function(response){window.location = &#039;/users/logout&#039;});">logout</a></div>            
+            </div>
+        </div>
+    </div>
+
+<div id="content" class="clearfix">
+	<div id="topContent" class="radiux5px clearfix"> 
+         ジージーはお気に入りの自分フォトをアップロードして、みんなで楽しむサイトです！！   <br/>
+
+	</div>
+    <div id="leftContent" class="radiux5px leftcol">    
+        <div id="photoContent" class="radiux5px clearfix">
+            <div class="tagList radiux5px">
+                ジャンル別にチェック！                <a href="/users/top/nail">ネイル</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/makeup">メイク</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/hair">ヘアスタイル</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/fashion">ファッション</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/accessory">アクセサリー</a><span class="delimiter">|</span><!--
+                --><a href="/users/top/bag">バッグ</a></a><span class="delimiter">|</span><!--
+                --><a href="/users/top/shoes">シューズ</a>
+
+            </div> 
+           
+            
+<!-- ここがビューを表示させたい場所 -->
+<table border="0">
+<tr>
+<td>
+<table border="0" width=450 align="left">
+
+<caption>
+<a href=http://www.facebook.com/suguru.oiwa><img src=https://graph.facebook.com/1234627252/picture /></a><a href="http://www.facebook.com/suguru.oiwa">
+<font color="red" size="3">Suguru Oiwa</font>
+</a>
+&nbsp;&nbsp;
+<font color=red></font><a href=/users/edit_profile?uid=174>プロフィールを編集</a></caption>
+
+<tr>
+<td bgcolor="#FFF0F5" width=30%><span class="profileFont">ロケーション</span></td>
+<td width=70%>千葉県千葉市</td>
+</tr>
+<tr>
+<td bgcolor="#FFF0F5"><span class="profileFont">プロフィール</span></td>
+<td></td>
+</tr>
+<tr>
+<td bgcolor="#FFF0F5"><span class="profileFont">プロフィール URL</span></td>
+<td><a href="http://www.facebook.com/suguru.oiwa">http://www.facebook.com/suguru.oiwa</a></td>
+
+</tr>
+</table>
+</td>
+
+<td>
+<table border="0" align="right">
+
+</table>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+<a href=http://www.facebook.com/suguru.oiwa><img src=https://graph.facebook.com/1234627252/picture /></a>
+<p>Suguru Oiwa &nbsp;&nbsp;&nbsp;&nbsp; 千葉県千葉市</p>
+
+<p>http://www.facebook.com/suguru.oiwa</p>
+
+<table>
+<tr>
+</tr>
+</table>
+
+
+
+<br/>
+<br/>
+
+
+<p align="left">
+<font color="red" size="3">Suguru Oiwa</font>&nbsp;&nbsp;&nbsp;&nbsp;さんのフォト</p>
+
+<script>
+$("#thumbnail img").MyThumbnail({ 
+    thumbWidth:10, 
+    thumbHeight:10, 
+    backgroundColor:"#ccc", 
+    imageDivClass:"myPic"
+}); 
+</script>
+
+<div id="thumbnail"> 
+<a href='http://www.google.com'><img src='http://www.kfsoft.info/MyThumbnail/images/1.jpg' class="myPic"></a> 
+<a href='http://www.yahoo.com'><img src='http://www.kfsoft.info/MyThumbnail/images/2.jpg' class="myPic"></a> 
+<a href='http://www.kfsoft.info'><img src='http://www.kfsoft.info/MyThumbnail/images/3.jpg' class="myPic"></a> 
+</div>
+
+<div class="thumbnailList1"><a href=/users/fbpict_like/76><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/68><img src=http://a2.sphotos.ak.fbcdn.net/hphotos-ak-ash4/254252_2163531647892_1234627252_2664219_4924097_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/67><img src=http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/261529_2173593619435_1234627252_2674074_5034115_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/65><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/66><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/72><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/73><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/253572_2173592979419_1234627252_2674073_4977942_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/74><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/75><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/78><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/263817_2173643620685_1234627252_2674115_7581519_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/80><img src=http://a2.sphotos.ak.fbcdn.net/hphotos-ak-snc6/248904_2173692821915_1234627252_2674140_7855980_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/90><img src=http://a7.sphotos.ak.fbcdn.net/hphotos-ak-snc6/73919_1713040985907_1234627252_1935181_7519151_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/89><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-snc4/72739_1713010985157_1234627252_1935037_2845855_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/137><img src=http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/268276_2240720497565_1234627252_2730615_7666267_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/130><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-ash4/188595_1956379829226_1234627252_2395469_4935530_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/135><img src=http://a3.sphotos.ak.fbcdn.net/hphotos-ak-snc6/270553_2240570653819_1234627252_2730017_281503_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/132><img src=http://a1.sphotos.ak.fbcdn.net/hphotos-ak-ash4/264263_2240546133206_1234627252_2729950_6290286_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/133><img src=http://a7.sphotos.ak.fbcdn.net/hphotos-ak-ash4/265000_2240552573367_1234627252_2729966_5509678_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/144><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/260221_2190413399919_1234627252_2696026_5510413_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/147><img src=http://a3.sphotos.ak.fbcdn.net/hphotos-ak-snc6/73910_1713042025933_1234627252_1935188_585614_n.jpg></img></a></div><div class="thumbnailList1"><a href=/users/fbpict_like/149><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/282745_2266927952735_1234627252_2768905_2648017_n.jpg></img></a></div>
+<div class=photoProfile radiux3px><a href=/users/fbpict_like/76><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/68><img src=http://a2.sphotos.ak.fbcdn.net/hphotos-ak-ash4/254252_2163531647892_1234627252_2664219_4924097_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/67><img src=http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/261529_2173593619435_1234627252_2674074_5034115_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/65><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/66><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/72><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/73><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/253572_2173592979419_1234627252_2674073_4977942_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/74><img src=http://a6.sphotos.ak.fbcdn.net/hphotos-ak-snc6/264637_2173591579384_1234627252_2674070_2529790_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/75><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/78><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/263817_2173643620685_1234627252_2674115_7581519_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/80><img src=http://a2.sphotos.ak.fbcdn.net/hphotos-ak-snc6/248904_2173692821915_1234627252_2674140_7855980_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/90><img src=http://a7.sphotos.ak.fbcdn.net/hphotos-ak-snc6/73919_1713040985907_1234627252_1935181_7519151_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/89><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-snc4/72739_1713010985157_1234627252_1935037_2845855_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/137><img src=http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/268276_2240720497565_1234627252_2730615_7666267_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/130><img src=http://a4.sphotos.ak.fbcdn.net/hphotos-ak-ash4/188595_1956379829226_1234627252_2395469_4935530_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/135><img src=http://a3.sphotos.ak.fbcdn.net/hphotos-ak-snc6/270553_2240570653819_1234627252_2730017_281503_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/132><img src=http://a1.sphotos.ak.fbcdn.net/hphotos-ak-ash4/264263_2240546133206_1234627252_2729950_6290286_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/133><img src=http://a7.sphotos.ak.fbcdn.net/hphotos-ak-ash4/265000_2240552573367_1234627252_2729966_5509678_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/144><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/260221_2190413399919_1234627252_2696026_5510413_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/147><img src=http://a3.sphotos.ak.fbcdn.net/hphotos-ak-snc6/73910_1713042025933_1234627252_1935188_585614_n.jpg width=90 alt= ></img></a></div><div class=photoProfile radiux3px><a href=/users/fbpict_like/149><img src=http://a8.sphotos.ak.fbcdn.net/hphotos-ak-ash4/282745_2266927952735_1234627252_2768905_2648017_n.jpg width=90 alt= ></img></a></div>        </div>
+    </div>
+      
+    
+    
+
+    <div id="rightContent" class="leftcol">
+        <div class="bgWhile">
+
+            <div id="fb-root"></div>
+           <!-- <script src="http://connect.facebook.net/ja_JP/all.js#xfbml=1"></script><fb:like-box href="#" width="240" show_faces="true" stream="false" header="false"></fb:like-box> -->
+        </div>
+    	<div class="partTitle" >Gee Geeランキング!!</div>
+    	<div class="partContent">	
+       
+                 <div class="photo photoRanking radiux3px">
+            <a href="/users/fbpict_like/89"><img src="http://a8.sphotos.ak.fbcdn.net/hphotos-ak-snc4/72739_1713010985157_1234627252_1935037_2845855_n.jpg" width="210px" alt="" /></a>
+                <div class="crown">No.1</div>
+
+                <div class="rankinglike">5</div>
+            </div>
+                      <div class="photo photoRanking radiux3px">
+            <a href="/users/fbpict_like/80"><img src="http://a2.sphotos.ak.fbcdn.net/hphotos-ak-snc6/248904_2173692821915_1234627252_2674140_7855980_n.jpg" width="210px" alt="" /></a>
+                <div class="crown">No.2</div>
+                <div class="rankinglike">4</div>
+            </div>
+
+                      <div class="photo photoRanking radiux3px">
+            <a href="/users/fbpict_like/130"><img src="http://a4.sphotos.ak.fbcdn.net/hphotos-ak-ash4/188595_1956379829226_1234627252_2395469_4935530_n.jpg" width="210px" alt="" /></a>
+                <div class="crown">No.3</div>
+                <div class="rankinglike">4</div>
+            </div>
+                      <div class="photo photoRanking radiux3px">
+            <a href="/users/fbpict_like/132"><img src="http://a1.sphotos.ak.fbcdn.net/hphotos-ak-ash4/264263_2240546133206_1234627252_2729950_6290286_n.jpg" width="210px" alt="" /></a>
+                <div class="crown">No.4</div>
+
+                <div class="rankinglike">4</div>
+            </div>
+                      <div class="photo photoRanking radiux3px">
+            <a href="/users/fbpict_like/75"><img src="http://a4.sphotos.ak.fbcdn.net/hphotos-ak-snc6/260406_2173592219400_1234627252_2674071_4217512_n.jpg" width="210px" alt="" /></a>
+                <div class="crown">No.5</div>
+                <div class="rankinglike">3</div>
+            </div>
+
+             </div>
+
+        <div class="bgWhile" style="margin-top:10px;">    
+<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FGee-Gee%2F214073558614020%3Fnotif_t%3Dfbpage_admin&amp;width=240&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=true&amp;header=true&amp;height=427" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:427px;" allowTransparency="true"></iframe>
+		</div>        
+    </div> 
+</div>
+<div id="footer" class="clearfix">
+	<div class="footerInner">
+    <a href="http://213stomperz.com/">	&copy;2011 gee-gee. All Rights Reserved. </a>
+
+    </div>
+</div>
+</body>
+</html>
+

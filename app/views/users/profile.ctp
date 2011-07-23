@@ -23,7 +23,7 @@ echo "</a>";
 ?>
 </caption>
 
-<?php //var_dump($category);?>
+
 <tr>
 <td bgcolor="#FFF0F5" width=30%><span class="profileFont"><?php echo __('Location'); ?></span></td>
 <td width=70%><?php echo $u['User']['location']; ?></td>
@@ -48,9 +48,26 @@ echo "</a>";
 
 </table>
 
+<br/>
+<br/>
+<?php if(!empty($u['User']['fb_id'])){
+echo "<a href=".$u['User']['blogurl'].">";
+echo "<img src=https://graph.facebook.com/".$u['User']['fb_id']."/picture />";
+echo "</a>";
+}
+?>
 
-<?php //var_dump($photo_list);?>
-<?php //echo $fb_id;?>
+<p><?php echo $u['User']['nickname']; ?> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $u['User']['location']; ?></p>
+<p><?php echo $u['User']['blogurl']; ?></p>
+
+<table>
+<tr>
+<?php echo $u['User']['profile']; ?>
+</tr>
+</table>
+
+
+
 <br/>
 <br/>
 
@@ -60,8 +77,26 @@ echo "</a>";
 </p>
 
 
-
-
+<div id="thumbnail"> 
+<a href="http://www.google.com"><img src="http://www.kfsoft.info/MyThumbnail/images/1.jpg" class="myPic"></a> 
+<a href="http://www.yahoo.com"><img src="http://www.kfsoft.info/MyThumbnail/images/2.jpg" class="myPic"></a> 
+<a href="http://www.kfsoft.info"><img src="http://www.kfsoft.info/MyThumbnail/images/3.jpg" class="myPic"></a> 
+<?php foreach( $photo_list as $pho):?>
+  <a href="/users/fbpict_like/<?php echo $pho['Photo']['id']; ?>">
+  <img src="<?php echo $pho['Photo']['fbpath']; ?>" class="myPic"></img>
+  </a>
+<?php endforeach; ?>
+</div>
+  
+<script>
+$("#thumbnail img").MyThumbnail({ 
+    thumbWidth:100, 
+    thumbHeight:100, 
+    backgroundColor:"#ccc", 
+    imageDivClass:"myPic"
+}); 
+</script>
+  
 <?php 
 foreach( $photo_list as $pho ){
   //echo $key. "：" .$value."<br />\n"; // 改行しながら値を表示
@@ -75,4 +110,3 @@ foreach( $photo_list as $pho ){
 }
 
 ?>
-

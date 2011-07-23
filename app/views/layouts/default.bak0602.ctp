@@ -7,26 +7,10 @@
 
 <?php echo $scripts_for_layout ?>
 
-<link rel="stylesheet" href="/css/login.css" type="text/css" media="screen, projection" />   
-<link href="/css/signup.css" rel="stylesheet" type="text/css" />	 
-<link href="/js/jQuery/jqModal/jqModal.css" rel="stylesheet" type="text/css" />
-<link href="/css/login.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/DropDownMenu.css" rel="stylesheet" type="text/css" media="all">
-<script src="/js/navi.js" type="text/javascript"></script>
-<script src="/js/DropDownMenu.js" type="text/javascript"></script>
-
 <script src="/js/geegee.js" type="text/javascript"></script>
-
 <script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
-<script src="/js/jQuery/jqModal/jqModal.js" type="text/javascript"></script>  
-<script type="text/javascript">
-$(function() {
-//$('#dialog').jqm();
-$('#dialog').jqm({ modal: true });'
-});
-</script>
-<!-- /jQuery-->
+<script src="/js/jQuery/MyThumbnail.js" type="text/javascript"></script>  
+<link href="/css/MyThumbnail.css" type="text/css" rel="stylesheet" />
 <?php 
 if( $_SERVER['SERVER_NAME'] == 'gee-gee.me') {
 print <<< DOC_END

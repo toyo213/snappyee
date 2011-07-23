@@ -747,5 +747,11 @@ span.profileFont {
     font-size:15px;
     color:#e73659;
 }
+.myPic
+{
+	margin:10px;
+	border-radius:10px;
+	border:1px solid #ccc;
+}
 
 
