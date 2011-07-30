@@ -111,7 +111,8 @@
  * differentiating error logging and debugging. Currently PHP supports LOG_DEBUG.
  */
 	define('LOG_ERROR', 2);
-
+$log_path = LOGS.DS.date('Ymd').'_';
+CakeLog::config('default', array('engine' => 'FileLog', 'path' => $log_path));
 /**
  * The preferred session handling method. Valid values:
  *

@@ -16,7 +16,10 @@ class UsersController extends AppController {
 
 	// ログイン必須のフラグ
 	var $components = array('Auth','Facebook.Connect');
-	function beforeFilter() {
+        
+
+        
+        function beforeFilter() {
 
 		Configure::load('messages');
 		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
@@ -38,15 +41,16 @@ class UsersController extends AppController {
                 // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 		// ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
 		$this->fbuser = $this->Connect->user();
-		
-
+        
 		// fbに登録していないユーザはFBログインをうながす
 
                 $user_data = array();
 		$user_data = $this->Connect->user();
 		$this->set('fbuser',$user_data);
 
-                if (is_null($user_data)&& $this->action =='firstlogin') {
+                if($this->action == 'howto') {
+                        
+                }elseif (is_null($user_data)&& $this->action =='firstlogin') {
 	                $this->render('/users/firstlogin', 'default.bak0602');                    
                 }elseif (is_null($user_data) && $this->action !='login') {
                    // facebookにログインしてねページ！
@@ -102,7 +106,7 @@ class UsersController extends AppController {
 		$this->set('user', $this->Session->read('user'));
 		$this->layout = "default.bak0602";
 	}
-
+        
 	//Add an email field to be saved along with creation.
 	function beforeFacebookSave() {
 		$this->Connect->authUser['User']['email'] = $this->Connect->user('email');
