@@ -1,7 +1,7 @@
 
 <img src="/img/geegee_title_pink.png" width="200" height="66"></img>
 
-<?php var_dump($fbuser);?>
+<?php //var_dump($this->params);?>
 
 <?php foreach ($fbuser as $key => $val):?>
 <?php // echo $key.' : '.$val; ?>
@@ -39,13 +39,69 @@ echo "<br/><dd>";?>
 <dt class="textbold">
 <?php echo __('Fashion Magazines you often read'); ?>
 </dt>
-<?php echo $form->input('magazines',array('type'=>'text','label'=>''));?>
+<?php //echo $form->input('magazines',array('type'=>'checkbox'));?>
 
+<?php //$magazines = array('CanCan'=>'CanCan','JJ'=>'JJ'); ?>
+<?php //var_dump($magazines);?>
+<?php
+$t = array(1,2,4,5); 
+echo $form->input("magazines", 
+                  array('type' => 'select', 'multiple' => 'checkbox', 
+                        'options' =>$t));
+?>
+
+
+<?php //var_dump($magazines);?>
+
+
+
+<?php //echo $form->checkbox('magazines',array('multiples'=>array(1,2,3)));?>
+
+
+<input type="checkbox" name="magazines" value="ELLE"> Elle
+<input type="checkbox" name="magazines" value="MORE"> More
+<input type="checkbox" name="magazines" value="CanCan"> CanCan
+<input type="checkbox" name="magazines" value="JJ"> JJ
+<input type="checkbox" name="magazines" value="NYLON"> NYLON
+<input type="checkbox" name="magazines" value="GQ"> GQ
+<input type="checkbox" name="magazines" value="SAFARI"> SAFARI
+<input type="checkbox" name="magazines" value="OCEANS"> OCEANS
+<input type="checkbox" name="magazines" value="SEDA"> SEDA
+<input type="checkbox" name="magazines" value="VERY"> VERY
+<input type="checkbox" name="magazines" value="InRed"> InRed
+<input type="checkbox" name="magazines" value="Egg"> Egg
+<input type="checkbox" name="magazines" value="Seventeen"> Seventeen
+<input type="checkbox" name="magazines" value="PopTeen"> PopTeen
+<input type="checkbox" name="magazines" value="AneCan"> AneCan
+<input type="checkbox" name="magazines" value="LEON"> LEON
+<input type="checkbox" name="magazines" value="Precious"> Precious
+<input type="checkbox" name="magazines" value="Glitter"> Glitter
+<input type="checkbox" name="magazines" value="Domani"> Domani
+<input type="checkbox" name="magazines" value="Cawaii"> Cawaii
+<input type="checkbox" name="magazines" value="CUTiE"> CUTiE
+<input type="checkbox" name="magazines" value="JILLE"> JILLE
+<input type="checkbox" name="magazines" value="PS"> PS
+<input type="checkbox" name="magazines" value="ViVi"> ViVi
+
+<br/>
+<br/>
 
 <dt class="textbold">
 <?php echo __('Occupations'); ?>
 </dt>
-<?php echo $form->input('occupations',array('type'=>'text','label'=>''));?>
+
+<?php
+$ocu = array('Clothes Store Staff','Fashion Model','Photographer','Nail Artist','Cosmetician', 'Hairdresser','Magazine Editor','Designer','Dr','IT','Finance','Strategy Consulting','Scientist','Unemployed','Other');
+
+echo $form->input("occupations",
+                  array('type' => 'select', 'options' =>$ocu,'label'=>''));
+      
+?>
+
+<?php //echo $form->input('occupations',array('type'=>'text','label'=>''));?>
+
+
+
 
 <dt class="textbold">
 <?php echo __('Interests'); ?>
@@ -55,71 +111,7 @@ echo "<br/><dd>";?>
 <dt class="textbold">
 Locations
 </dt>
-
-
-<script type="text/javascript"> 
-//<![CDATA[
-var gLocalSerch;
-var gMap;
- 
-function serch(){
-	//検索対象の地域を地図の表示位置に設定
-	gLocalSearch.setCenterPoint(gMap);
-	//テキストボックスの値で検索
-	gLocalSearch.execute(document.getElementById('q').value)
-}
-function onLocalSearch(){
-	//取得できたか判定
-	if(gLocalSearch.results.length > 0){
-		//検索結果からマーカーを作成
-		for(var i = 0;i < gLocalSearch.results.length;i++ ){
-			setMarker(gLocalSearch.results[i]);
-		}
-		//検索結果の最初の座標に移動
-		gMap.setCenter(new GLatLng(gLocalSearch.results[0].lat,gLocalSearch.results[0].lng));
-	}
-	else{
-		window.alert("見つかりません");
-	}
-}
- 
-function setMarker(result){
-	//マーカーを作成
-	var marker = new GMarker(new GLatLng(parseFloat(result.lat),parseFloat(result.lng)));
-	GEvent.addListener(marker, "click", function() {
-		marker.openInfoWindow(result.html);
-	});
-	gMap.addOverlay(marker);
-}
- 
-//]]>
-</script> 
-
-
-<div id="map" style="width:500px;height:400px;"></div> 
-<input type="text" id="q" style="width:400px;"  /> 
-<input type="button" id="s"  value="検索" onclick="serch();"/><br> 
-<a href="http://www.google.com/uds/samples/places.html">http://www.google.com/uds/samples/places.html</a>を参考に作成しました。<br> 
-ＡＰＩの解説は<a href="http://code.google.com/apis/ajaxsearch/">http://code.google.com/apis/ajaxsearch/</a><br> 
-<script type="text/javascript"> 
-	//<![CDATA[
- 
-	//Google Maps APIオブジェクト作成＆初期化
-	gMap = new GMap2(document.getElementById("map"));
-	gMap.addControl(new GLargeMapControl());
-	gMap.addControl(new GMapTypeControl());
-	gMap.addControl(new GScaleControl());
-	gMap.setCenter(new GLatLng(36.566486260884,137.66196124364),13,G_NORMAL_MAP);
- 
-	//Google AJAX Search APIのlocalserchするためのオブジェクト作成
-	gLocalSearch = new GlocalSearch();
-	//検索結果が返ってきたときに実行するメソッドを設定
-	gLocalSearch.setSearchCompleteCallback(null, onLocalSearch);
- 
-	//]]>
-</script> 
-
-<div id="map" style="width:500px;height:400px;"></div> 
+<?php echo $form->input('location',array('type'=>'text','label'=>'','value'=>$fbuser["location"]["name"]));?>
 
 <input type="submit" value="<?php echo __('Create Account'); ?>" />
 

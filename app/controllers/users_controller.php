@@ -114,10 +114,14 @@ class UsersController extends AppController {
 	}
 
 	function regist() {
-		
+		Configure::load('magazines');
+		$mag_param = 'magazines.'.$this->params['pass']['0'];
+        $magazines = Configure::read($mag_param);
+        
+		$this->set('magazines',$magazines);
 	}
 	 
-	function regist_end() {
+	function regist_end() {		
             $data['User']['nickname'] = $this->params['data']['User']['nickname'];
             $data['User']['blogurl'] = $this->params['data']['User']['blogurl'];
             $data['User']['fb_id'] = $this->fbuser['id'];
@@ -125,11 +129,17 @@ class UsersController extends AppController {
             $data['User']['location'] = $this->fbuser['location']['name'];
             $data['User']['last_name'] = $this->fbuser['last_name'];
             $data['User']['first_name'] = $this->fbuser['first_name'];
+            
+            
             $work = end($this->fbuser['work']);
             $edu = end($this->fbuser['education']);
-
+            //$magazines = array_values($this->params['data']['User']['magazines']);
+                             
             $data['User']['work'] = $work['employer']['name'];
             $data['User']['education'] = $edu['school']['name'];
+			$data['User']['magazines'] = $this->params['data']['User']['magazines'];        
+            
+			var_dump($this->params);
 
             // TODOエラーハンドリング
             $data = $this->User->save($data);
@@ -137,8 +147,8 @@ class UsersController extends AppController {
             // 登録に成功したら値をセッションに格納
             if ($data)
                 $this->Session->write('auth', $data['User']);
-
-
+			//FB wall post
+			/*
             $feed = $this->fb->api('/me/feed/', 'post', array('access_token' => $this->ac,
                     'message' => ($this->isJpn == true) ? 'ファッション写真共有サービスGee Geeを使い始めました！' :
                             "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
@@ -147,7 +157,8 @@ class UsersController extends AppController {
                     'link' => 'http://gee-gee.me/',
                     'picture' => 'http://' . $_SERVER['SERVER_NAME'] . '/img/geegee_title_pink.png'
                         )
-            );    
+            );
+            */    
     }
 
     function signup(){
