@@ -115,12 +115,11 @@ class UsersController extends AppController {
 
 	function regist() {
 		Configure::load('magazines');
-		$mag_param = 'magazines.'.$this->params['pass']['0'];
-        $magazines = Configure::read($mag_param);
-        
-		$this->set('magazines',$magazines);
+        $mag = Configure::read('magazines.name1');
+        var_dump($mag);
+        $this->set('magazines',$mag);
 	}
-	 
+
 	function regist_end() {		
             $data['User']['nickname'] = $this->params['data']['User']['nickname'];
             $data['User']['blogurl'] = $this->params['data']['User']['blogurl'];
@@ -164,11 +163,11 @@ class UsersController extends AppController {
     function signup(){
 
 	}
-	 
+
 	function howto(){
 		$this->layout = "default";
 	}
-	 
+
         // ランキングを取得する 
         function getRank($category_id = NULL,$fb_id = NULL) 
         {
@@ -185,7 +184,7 @@ class UsersController extends AppController {
               );
             return $list;
         }
-	 
+
 	function fbphoto_upload() {
 
         if (isset($this->params['url']['aid'])) {
@@ -284,7 +283,7 @@ class UsersController extends AppController {
                     'order' => array('Photo.id DESC'),
                     'limit' => '20'
                 ));
-	
+
         // ランキング
        $this->set('rank',$this->getRank($junle)); 
         
@@ -533,7 +532,7 @@ class UsersController extends AppController {
 				$this->set('photo_list',$photo_list);
 				$this->set('u',$u);
 				$this->set('fb_id',$fb_id);
-				
+
 		        // ranking
         		$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
 			}
@@ -545,9 +544,9 @@ class UsersController extends AppController {
 				$u = $this->User->find('first',array('conditions' => array('User.id' =>$uid)));
 				$this->set('u',$u);
 			}
-			 
+
 			$d = $this->data;
-			 
+
 			if(!empty($d)){
 				$id = $d['User']['id'];
 				$name = $d['User']['nickname'];
@@ -564,7 +563,7 @@ class UsersController extends AppController {
 				//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
 				$this->Session->setFlash($this->isJpn == true ? 'アップデートされました！':'Updated!', true);
 				$this->redirect(array('action'=>'profile'));
-				
+
 			}
 		}
 
@@ -676,14 +675,14 @@ class UsersController extends AppController {
 			$data['Photo']['fb_id'] = $this->fbuser['id'];
 			$this->Photo->save($data);
 		}
-		
-		function tc(){			
+
+		function tc(){
+				
+	
 		}
-		
+
                 function tc_jp(){			
 		}
 
                 
 }
-
-

@@ -11,8 +11,6 @@
 <script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
 <script src="/js/jQuery/MyThumbnail.js" type="text/javascript"></script>  
 <link href="/css/MyThumbnail.css" type="text/css" rel="stylesheet" />
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAw5YB10nSTwNHUipBq8QTBhQOPCFUnxol5HgaXnMAxNpaxUWHWxRXgu5Xsx6CaAAkd3f9yX69TvERQg" type="text/javascript"></script> 
-<script src="http://www.google.com/uds/api?file=uds.js&amp;v=0.1&amp;key=ABQIAAAAw5YB10nSTwNHUipBq8QTBhQOPCFUnxol5HgaXnMAxNpaxUWHWxRXgu5Xsx6CaAAkd3f9yX69TvERQg" type="text/javascript"></script> 
 <script type="text/javascript"> 
 
 <?php 

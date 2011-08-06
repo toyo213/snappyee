@@ -8,6 +8,14 @@ $config['magazines']['MORE'] = '500';
 $config['magazines']['ELLE'] = '600';
 $config['magazines']['Cawaii'] = '700';
 
+$config['magazines']['name1'] = 'CanCan';
+$config['magazines']['200'] = 'JJ';
+$config['magazines']['300'] = 'ViVi';
+$config['magazines']['400'] = 'NYLON';
+$config['magazines']['500'] = 'MORE';
+$config['magazines']['600'] = 'ELLE';
+$config['magazines']['700'] = 'Cawaii';
+
 /*
 $config['magazines']['en']['100']='CanCan';
 $config['magazines']['en']['200']='JJ';
