@@ -68,7 +68,11 @@ class UsersController extends AppController {
 			if ($this->params['action'] == 'regist_end') {
 				$this->render('/users/regist_end', 'default.bak0602');
 			} else {
-				$this->render('/users/regist', 'default.bak0602');
+				//$this->redirect('/users/login/');
+				//$this->redirect(array('action' => 'regist'));
+				//$this->render('/users/regist', 'default.bak0602');
+				//$this->redirect('/users/regist/');
+				$this->super_render();			
 			}
 		}else {
 			// FB基本設定
@@ -106,6 +110,14 @@ class UsersController extends AppController {
 		$this->set('user', $this->Session->read('user'));
 		$this->layout = "default.bak0602";
 	}
+	
+		function super_render(){
+        	$this->render('/users/regist','default.bak0602');
+        	Configure::load('magazines');
+        	$mag = Configure::read('magazines.name1');
+            var_dump($mag);
+        	$this->set('magazines',$mag);
+        }
         
 	//Add an email field to be saved along with creation.
 	function beforeFacebookSave() {
@@ -116,7 +128,7 @@ class UsersController extends AppController {
 	function regist() {
 		Configure::load('magazines');
         $mag = Configure::read('magazines.name1');
-        var_dump($mag);
+        //var_dump($mag);
         $this->set('magazines',$mag);
 	}
 
