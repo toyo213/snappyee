@@ -696,5 +696,69 @@ class UsersController extends AppController {
                 function tc_jp(){			
 		}
 
+		function test(){
+
+$url ='http://www.fujisan.co.jp/product/2';
+
+$num = 1;
+$end = 10;
+while ($num <= $end) {
+    //print $url.$num;
+    $p_url[] = $url.$num;
+    $num++;
+    //print "\n";
+}
+
+$pt = '/^<li><a href="(.*)">(.*)<\/a><span>\([0-9]*\)<\/span><\/li>$/';
+
+
+
+$base_url = 'http://www.fujisan.co.jp';
+foreach ($p_url as $key => $val) {
+    $p_content = file($val);
+	var_dump ($p_content);    
+    print "/n";
+    break;
+}
+
+$p_ar = takeDetail($p_content,$pt);
+
+foreach ($p_ar as $key => $val) {
+    $p_content = file($base_url.$key);
+    $ar[$val] = takeDetail($p_content,$pt);
+}
+
+var_dump($ar);
+
+
+$p_ar = array();
+function takeDetail ($file ,$pt) {
+    foreach ($file as $key => $val){ 
+      preg_match($pt,mb_convert_encoding($val,'UTF-8','EUC-JP'),$match);
+        if ($match[1]) {
+          $p_ar[$match[1]]= $match[2]; 
+        } 
+    }
+    return $p_ar;
+}
+
+include_once('../db.class.php');
+$dbObj = new dbClass();
+$db    = $dbObj->getDbConn();
+
+$stmt = $db->query("SET NAMES utf8;");
+
+foreach ( $ar as $key => $val) {
+    foreach ( $val as $key2 => $val2) {
+     
+        $sql = sprintf("insert into test (name,url) values  ('%s','%d')",$val2,$key,$key2,3);
+var_dump($sql);
+        $stmt = $db->prepare($sql);
+        //$stmt->execute();
+        var_dump($stmt->execute());
+    }
+}
+			
+		}
                 
 }

@@ -11,8 +11,6 @@
 <script src="/js/jQuery/jquery-1.2.6.js" type="text/javascript"></script>  
 <script src="/js/jQuery/MyThumbnail.js" type="text/javascript"></script>  
 <link href="/css/MyThumbnail.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript"> 
-
 <?php 
 if( $_SERVER['SERVER_NAME'] == 'gee-gee.me') {
 print <<< DOC_END
@@ -30,7 +28,7 @@ DOC_END;
 }
 ?>
 </head>
-<body id="home" onLoad="MM_preloadImages('img/images/btn_createmyaccount_on.gif')">
+<body>
 <?= $facebook->init(); ?>
     <div id="header">
 	<div class="headerInnner">
@@ -38,7 +36,8 @@ DOC_END;
         <div id="gnavi" class="leftcol">
             <a href="/users/fbphoto_upload"><?php echo __('Upload FB photo'); ?></a><span class="delimiter">|</span><!--
             --><a href="/users/photo_upload"><?php echo __('Upload photo from your PC'); ?></a><span class="delimiter">|</span><!--
-            --><a href="/users/howto"><?php echo __('How to Gee Gee!'); ?></a>
+            --><a href="/users/howto"><?php echo __('How to Gee Gee!'); ?></a><span class="delimiter">|</span><!--
+            --><a href="/photos/main"><?php echo __('Viewd page'); ?></a>
         </div>
         <div id="userStatus" class="leftcol">
 
