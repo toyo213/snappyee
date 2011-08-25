@@ -37,7 +37,7 @@ DOC_END;
             <a href="/users/fbphoto_upload"><?php echo __('Upload FB photo'); ?></a><span class="delimiter">|</span><!--
             --><a href="/users/photo_upload"><?php echo __('Upload photo from your PC'); ?></a><span class="delimiter">|</span><!--
             --><a href="/users/howto"><?php echo __('How to Gee Gee!'); ?></a><span class="delimiter">|</span><!--
-            --><a href="/photos/main"><?php echo __('Viewd page'); ?></a>
+            --><a href="/photos/main"><?php echo __('Stats'); ?></a>
         </div>
         <div id="userStatus" class="leftcol">
 
