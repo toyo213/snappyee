@@ -115,11 +115,7 @@ class UsersController extends AppController {
 	function super_render(){
 		$this->render('/users/regist','default.bak0602');
 		Configure::load('magazines');
-		//$junle_param = 'junle.' . $this->params['pass']['0'];
-		//$magazine_param = 'magazine.'.$this->params['pass']['0'];
 		$mag = Configure::read('magazines');
-		//var_dump($mag);
-		$this->set('mag',$mag);
 		
 	}
 	
@@ -149,7 +145,7 @@ class UsersController extends AppController {
 		$data['User']['location'] = $this->fbuser['location']['name'];
 		$data['User']['last_name'] = $this->fbuser['last_name'];
 		$data['User']['first_name'] = $this->fbuser['first_name'];
-
+		$data['User']['occupations'] = $this->params['data']['User']['occupations'];
 
 		$work = end($this->fbuser['work']);
 		$edu = end($this->fbuser['education']);
@@ -157,9 +153,12 @@ class UsersController extends AppController {
 		 
 		$data['User']['work'] = $work['employer']['name'];
 		$data['User']['education'] = $edu['school']['name'];
-		$data['User']['magazines'] = $this->params['data']['User']['magazines'];
-
+		
+		$magazines = json_encode($this->params['data']['User']['magazines']);
+		$data['User']['magazines'] = $magazines; 
+		
 		var_dump($this->params);
+		var_dump($magazines);
 
 		// TODOエラーハンドリング
 		$data = $this->User->save($data);

@@ -28,23 +28,33 @@ echo "</b>";
 
 echo $form->input('nickname' ,array('type'=>'text','label'=>'','value'=>$fbuser["name"], 'vertical-align'=>'middle','text-align'=>'right'));
 echo "<br/>";
+echo "<b>";
 echo "<dt class=txtbold>";
 echo __('Profile URL');
 echo "</dt>";
+echo "</b>";
 echo $form->input('blogurl', array('type'=>'text','label'=>'','value'=>$fbuser["link"]));
 //echo $form->hidden('id', array('value'=>$list[0]['People']['id']));
 echo "</dl>";
-echo "<br/><dd>";?>
+echo "<dd>";
+?>
 
+<dt>
+<b>Locations</b>
+<?php echo $form->input('location',array('type'=>'text','label'=>'','value'=>$fbuser["location"]["name"]));?>
+</dt>
+<br>
+
+<dt>
 <b>
 <?php echo __('Fashion Magazines you often read'); ?>
 </b>
-
+</dt>
 
 <?php
 
 Configure::load('magazines');
-$mag = Configure::read('magazines');
+$mag = Configure::read('magazines.regist');
  
 echo $form->input("magazines", 
                   array('type' => 'select', 'multiple' => 'checkbox', 
@@ -56,17 +66,14 @@ echo $form->input("magazines",
 
 <?php
 
-Configure::load('ocupations');
-$ocupations = Configure::read('ocupations');
+Configure::load('occupations');
+$ocupations = Configure::read('occupations.regist');
 
 echo $form->input("occupations",
                   array('type' => 'select', 'options' =>$ocupations,'label'=>''));
       
 ?>
 
-<b>Locations</b>
-
-<?php echo $form->input('location',array('type'=>'text','label'=>'','value'=>$fbuser["location"]["name"]));?>
 
 <input type="submit" value="<?php echo __('Create Account'); ?>" />
 

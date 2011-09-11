@@ -1,15 +1,14 @@
 <?php
 // ネイル|メイク|ヘアスタイル|ファッション|アクセ|バッグ
 
-$config['magazines']['1'] = 'CanCan';
-$config['magazines']['2'] = 'JJ';
-$config['magazines']['3'] = 'ViVi';
-$config['magazines']['4'] = 'NYLON';
-$config['magazines']['5'] = 'MORE';
-$config['magazines']['6'] = 'ELLE';
-$config['magazines']['7'] = 'Cawaii';
+$config['magazines']['regist']['1'] = 'CanCan';
+$config['magazines']['regist']['2'] = 'JJ';
+$config['magazines']['regist']['3'] = 'ViVi';
+$config['magazines']['regist']['4'] = 'NYLON';
+$config['magazines']['regist']['5'] = 'MORE';
+$config['magazines']['regist']['6'] = 'ELLE';
+$config['magazines']['regist']['7'] = 'Cawaii';
 
-/*
 $config['magazines']['CanCan'] = '1';
 $config['magazines']['JJ'] = '2';
 $config['magazines']['ViVi'] = '3';
@@ -17,6 +16,8 @@ $config['magazines']['NYLON'] = '4';
 $config['magazines']['MORE'] = '5';
 $config['magazines']['ELLE'] = '6';
 $config['magazines']['Cawaii'] = '7';
+
+/*
 
 $config['magazines']['en']['100']='CanCan';
 $config['magazines']['en']['200']='JJ';
