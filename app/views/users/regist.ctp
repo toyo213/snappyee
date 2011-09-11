@@ -22,9 +22,9 @@ echo "</font>";
 echo "</legend>";
 echo "<br/>";
 
-echo "<dt class=txtbold>";
+echo "<b>";
 echo __('User Name');
-echo "</dt>";
+echo "</b>";
 
 echo $form->input('nickname' ,array('type'=>'text','label'=>'','value'=>$fbuser["name"], 'vertical-align'=>'middle','text-align'=>'right'));
 echo "<br/>";
@@ -36,81 +36,36 @@ echo $form->input('blogurl', array('type'=>'text','label'=>'','value'=>$fbuser["
 echo "</dl>";
 echo "<br/><dd>";?>
 
-<dt class="textbold">
+<b>
 <?php echo __('Fashion Magazines you often read'); ?>
-</dt>
-<?php //echo $form->input('magazines',array('type'=>'checkbox'));?>
+</b>
 
-<?php //$magazines = array('CanCan'=>'CanCan','JJ'=>'JJ'); ?>
-<?php //var_dump($magazines);?>
+
 <?php
-$t = array(1,2,4,5); 
+
+Configure::load('magazines');
+$mag = Configure::read('magazines');
+ 
 echo $form->input("magazines", 
                   array('type' => 'select', 'multiple' => 'checkbox', 
-                        'options' =>$t));
+                        'options' =>$mag));
 ?>
 
+<b><?php echo __('Occupations'); ?></b>
 
-<?php //var_dump($magazines);?>
-
-
-
-<?php //echo $form->checkbox('magazines',array('multiples'=>array(1,2,3)));?>
-
-
-<input type="checkbox" name="magazines" value="ELLE"> Elle
-<input type="checkbox" name="magazines" value="MORE"> More
-<input type="checkbox" name="magazines" value="CanCan"> CanCan
-<input type="checkbox" name="magazines" value="JJ"> JJ
-<input type="checkbox" name="magazines" value="NYLON"> NYLON
-<input type="checkbox" name="magazines" value="GQ"> GQ
-<input type="checkbox" name="magazines" value="SAFARI"> SAFARI
-<input type="checkbox" name="magazines" value="OCEANS"> OCEANS
-<input type="checkbox" name="magazines" value="SEDA"> SEDA
-<input type="checkbox" name="magazines" value="VERY"> VERY
-<input type="checkbox" name="magazines" value="InRed"> InRed
-<input type="checkbox" name="magazines" value="Egg"> Egg
-<input type="checkbox" name="magazines" value="Seventeen"> Seventeen
-<input type="checkbox" name="magazines" value="PopTeen"> PopTeen
-<input type="checkbox" name="magazines" value="AneCan"> AneCan
-<input type="checkbox" name="magazines" value="LEON"> LEON
-<input type="checkbox" name="magazines" value="Precious"> Precious
-<input type="checkbox" name="magazines" value="Glitter"> Glitter
-<input type="checkbox" name="magazines" value="Domani"> Domani
-<input type="checkbox" name="magazines" value="Cawaii"> Cawaii
-<input type="checkbox" name="magazines" value="CUTiE"> CUTiE
-<input type="checkbox" name="magazines" value="JILLE"> JILLE
-<input type="checkbox" name="magazines" value="PS"> PS
-<input type="checkbox" name="magazines" value="ViVi"> ViVi
-
-<br/>
-<br/>
-
-<dt class="textbold">
-<?php echo __('Occupations'); ?>
-</dt>
 
 <?php
-$ocu = array('Clothes Store Staff','Fashion Model','Photographer','Nail Artist','Cosmetician', 'Hairdresser','Magazine Editor','Designer','Dr','IT','Finance','Strategy Consulting','Scientist','Unemployed','Other');
+
+Configure::load('ocupations');
+$ocupations = Configure::read('ocupations');
 
 echo $form->input("occupations",
-                  array('type' => 'select', 'options' =>$ocu,'label'=>''));
+                  array('type' => 'select', 'options' =>$ocupations,'label'=>''));
       
 ?>
 
-<?php //echo $form->input('occupations',array('type'=>'text','label'=>''));?>
+<b>Locations</b>
 
-
-
-
-<dt class="textbold">
-<?php echo __('Interests'); ?>
-</dt>
-<?php echo $form->input('interests',array('type'=>'text','label'=>''));?>
-
-<dt class="textbold">
-Locations
-</dt>
 <?php echo $form->input('location',array('type'=>'text','label'=>'','value'=>$fbuser["location"]["name"]));?>
 
 <input type="submit" value="<?php echo __('Create Account'); ?>" />

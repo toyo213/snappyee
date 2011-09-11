@@ -6,26 +6,26 @@ class UsersController extends AppController {
 	var $uses = array('User','Photo','Photo_like_log');
 	//var $uses = array('User','Photo' ,'Photo_like');
 
-        // 言語判定
-        var $isJpn = false;
+	// 言語判定
+	var $isJpn = false;
 
-        
+
 	// アクセストークン
 	var $ac = '';
 	var $needAuth = true;
 
 	// ログイン必須のフラグ
 	var $components = array('Auth','Facebook.Connect');
-        
 
-        
-        function beforeFilter() {
+
+
+	function beforeFilter() {
 
 		Configure::load('messages');
 		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
-                if(count($match) > 0 ) {
-                    $this->isJpn = true;
-                    $this->set('category',Configure::read('category.jpn'));
+		if(count($match) > 0 ) {
+			$this->isJpn = true;
+			$this->set('category',Configure::read('category.jpn'));
 		} else {
 			$this->set('category',Configure::read('category.en'));
 		}
@@ -36,31 +36,31 @@ class UsersController extends AppController {
                                               'conditions' => array(),
                                     'limit' => '20'));
 
-                $this->set('list', $list);
+		$this->set('list', $list);
 
-                // 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
+		// 初回来訪ユーザなら、直接アクセスしてきたページにリダイレクト TODO
 		// ユーザDBに登録がない場合は、遷移してニックネームの登録をうながす
 		$this->fbuser = $this->Connect->user();
-        
+
 		// fbに登録していないユーザはFBログインをうながす
 
-                $user_data = array();
+		$user_data = array();
 		$user_data = $this->Connect->user();
 		$this->set('fbuser',$user_data);
 
-                if($this->action == 'howto') {
-                        
-                }elseif (is_null($user_data)&& $this->action =='firstlogin') {
-	                $this->render('/users/firstlogin', 'default.bak0602');                    
-                }elseif (is_null($user_data) && $this->action !='login') {
-                   // facebookにログインしてねページ！
-                   $this->redirect('/users/firstlogin/');
-                } elseif (!is_null($user_data)&& $this->action =='firstlogin') {
-                   // facebookにログインしてねページ！
-                   $this->redirect('/');                    
-                }
+		if($this->action == 'howto') {
 
-                //TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
+		}elseif (is_null($user_data)&& $this->action =='firstlogin') {
+			$this->render('/users/firstlogin', 'default.bak0602');
+		}elseif (is_null($user_data) && $this->action !='login') {
+			// facebookにログインしてねページ！
+			$this->redirect('/users/firstlogin/');
+		} elseif (!is_null($user_data)&& $this->action =='firstlogin') {
+			// facebookにログインしてねページ！
+			$this->redirect('/');
+		}
+
+		//TODO 毎回DB接続もやなので、一度認証したら、SELECTしないようにする
 		$user_list = $this->User->findByFbId($user_data['id']);
 
 		// FBにログインがあってかつDBに登録がないユーザは初回登録が必要
@@ -72,7 +72,8 @@ class UsersController extends AppController {
 				//$this->redirect(array('action' => 'regist'));
 				//$this->render('/users/regist', 'default.bak0602');
 				//$this->redirect('/users/regist/');
-				$this->super_render();			
+				$this->super_render();
+				
 			}
 		}else {
 			// FB基本設定
@@ -110,15 +111,19 @@ class UsersController extends AppController {
 		$this->set('user', $this->Session->read('user'));
 		$this->layout = "default.bak0602";
 	}
+
+	function super_render(){
+		$this->render('/users/regist','default.bak0602');
+		Configure::load('magazines');
+		//$junle_param = 'junle.' . $this->params['pass']['0'];
+		//$magazine_param = 'magazine.'.$this->params['pass']['0'];
+		$mag = Configure::read('magazines');
+		//var_dump($mag);
+		$this->set('mag',$mag);
+		
+	}
 	
-		function super_render(){
-        	$this->render('/users/regist','default.bak0602');
-        	Configure::load('magazines');
-        	$mag = Configure::read('magazines.name1');
-            var_dump($mag);
-        	$this->set('magazines',$mag);
-        }
-        
+
 	//Add an email field to be saved along with creation.
 	function beforeFacebookSave() {
 		$this->Connect->authUser['User']['email'] = $this->Connect->user('email');
@@ -126,53 +131,57 @@ class UsersController extends AppController {
 	}
 
 	function regist() {
+		
 		Configure::load('magazines');
-        $mag = Configure::read('magazines.name1');
-        //var_dump($mag);
-        $this->set('magazines',$mag);
+		$mag = Configure::read('magazines');
+		$this->set('mag',$mag);
+		
+		$a = 1;
+		$this->set('a', $a);
+		
 	}
 
-	function regist_end() {		
-            $data['User']['nickname'] = $this->params['data']['User']['nickname'];
-            $data['User']['blogurl'] = $this->params['data']['User']['blogurl'];
-            $data['User']['fb_id'] = $this->fbuser['id'];
-            $data['User']['email'] = $this->fbuser['email'];
-            $data['User']['location'] = $this->fbuser['location']['name'];
-            $data['User']['last_name'] = $this->fbuser['last_name'];
-            $data['User']['first_name'] = $this->fbuser['first_name'];
-            
-            
-            $work = end($this->fbuser['work']);
-            $edu = end($this->fbuser['education']);
-            //$magazines = array_values($this->params['data']['User']['magazines']);
-                             
-            $data['User']['work'] = $work['employer']['name'];
-            $data['User']['education'] = $edu['school']['name'];
-			$data['User']['magazines'] = $this->params['data']['User']['magazines'];        
-            
-			var_dump($this->params);
+	function regist_end() {
+		$data['User']['nickname'] = $this->params['data']['User']['nickname'];
+		$data['User']['blogurl'] = $this->params['data']['User']['blogurl'];
+		$data['User']['fb_id'] = $this->fbuser['id'];
+		$data['User']['email'] = $this->fbuser['email'];
+		$data['User']['location'] = $this->fbuser['location']['name'];
+		$data['User']['last_name'] = $this->fbuser['last_name'];
+		$data['User']['first_name'] = $this->fbuser['first_name'];
 
-            // TODOエラーハンドリング
-            $data = $this->User->save($data);
 
-            // 登録に成功したら値をセッションに格納
-            if ($data)
-                $this->Session->write('auth', $data['User']);
-			//FB wall post
-			/*
-            $feed = $this->fb->api('/me/feed/', 'post', array('access_token' => $this->ac,
-                    'message' => ($this->isJpn == true) ? 'ファッション写真共有サービスGee Geeを使い始めました！' :
-                            "Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
-                    'name' => 'Gee Gee',
-                    'caption' => 'Fashion Photo Sharing.',
-                    'link' => 'http://gee-gee.me/',
-                    'picture' => 'http://' . $_SERVER['SERVER_NAME'] . '/img/geegee_title_pink.png'
-                        )
-            );
-            */    
-    }
+		$work = end($this->fbuser['work']);
+		$edu = end($this->fbuser['education']);
+		//$magazines = array_values($this->params['data']['User']['magazines']);
+		 
+		$data['User']['work'] = $work['employer']['name'];
+		$data['User']['education'] = $edu['school']['name'];
+		$data['User']['magazines'] = $this->params['data']['User']['magazines'];
 
-    function signup(){
+		var_dump($this->params);
+
+		// TODOエラーハンドリング
+		$data = $this->User->save($data);
+
+		// 登録に成功したら値をセッションに格納
+		if ($data)
+		$this->Session->write('auth', $data['User']);
+		//FB wall post
+		/*
+		$feed = $this->fb->api('/me/feed/', 'post', array('access_token' => $this->ac,
+		'message' => ($this->isJpn == true) ? 'ファッション写真共有サービスGee Geeを使い始めました！' :
+		"Start using Gee Gee where you can upload your fashion photos in style and share it with the world.",
+		'name' => 'Gee Gee',
+		'caption' => 'Fashion Photo Sharing.',
+		'link' => 'http://gee-gee.me/',
+		'picture' => 'http://' . $_SERVER['SERVER_NAME'] . '/img/geegee_title_pink.png'
+		)
+		);
+		*/
+	}
+
+	function signup(){
 
 	}
 
@@ -180,66 +189,66 @@ class UsersController extends AppController {
 		$this->layout = "default";
 	}
 
-        // ランキングを取得する 
-        function getRank($category_id = NULL,$fb_id = NULL) 
-        {
-           if ($fb_id) {
-              $conditions = array('Photo.fb_id' =>$fb_id );            
-           } elseif($category_id) {
-              $conditions = array('Photo.category_id' =>$category_id );
-           } else {
-              $conditions = array();              
-           }
-            $list = $this->Photo->find('all',array('order' => array('Photo.cnt DESC'),
+	// ランキングを取得する
+	function getRank($category_id = NULL,$fb_id = NULL)
+	{
+		if ($fb_id) {
+			$conditions = array('Photo.fb_id' =>$fb_id );
+		} elseif($category_id) {
+			$conditions = array('Photo.category_id' =>$category_id );
+		} else {
+			$conditions = array();
+		}
+		$list = $this->Photo->find('all',array('order' => array('Photo.cnt DESC'),
               'conditions' =>$conditions,
                'limit' => '10')
-              );
-            return $list;
-        }
+		);
+		return $list;
+	}
 
 	function fbphoto_upload() {
 
-        if (isset($this->params['url']['aid'])) {
-            $fql_query = array(
+		if (isset($this->params['url']['aid'])) {
+			$fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,pid,aid,src_small  FROM photo WHERE aid IN  ( SELECT aid FROM album WHERE aid = %s )', $this->params['url']['aid']
-                )
-            );
-        } elseif (isset($this->params['url']['pid'])) {
-            $fql_query = array(
+			)
+			);
+		} elseif (isset($this->params['url']['pid'])) {
+			$fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,pid,aid  FROM photo WHERE pid =%s )', $this->params['url']['pid']
-                )
-            );
-        } else {
-            // TODO visibleがeveryone or custmor のものだけ表示させる
-            $fql_query = array(
+			)
+			);
+		} else {
+			// TODO visibleがeveryone or custmor のものだけ表示させる
+			$fql_query = array(
                 'method' => 'fql.query',
                 'query' => sprintf('SELECT src,src_big,src_small,pid,aid  FROM photo WHERE pid IN ( SELECT cover_pid FROM album WHERE owner=%s )',
-                        //$this->params['url']['aid'],
-                        $this->fbuser['id']
-                )
-            );
-        }
+			//$this->params['url']['aid'],
+			$this->fbuser['id']
+			)
+			);
+		}
 
-        //pr($fql_query);
-        $albums = $this->fb->api($fql_query, array('access_token' => $this->ac));
-        //var_dump($albums);
-        $friends = $this->fb->api('/me/friends', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,picture'));
-        // facebook album一覧を取得する
-        // album一覧からalbumの中身をみる
-        // 選んだ写真を投票する(DBにいれる)
-        // ユーザが投稿した写真を一覧で表示
-        // ユーザがいいね写真を投票できる
-        // 投票データを集計する
-        // ランキングを一覧で表示する
-        // 写真に似ている洋服名をタグ付けできる
-        $this->set('prm', $this->params['url']);
-        $this->set('friends', $friends);
-        $this->set('albums', $albums);
-    }
+		//pr($fql_query);
+		$albums = $this->fb->api($fql_query, array('access_token' => $this->ac));
+		//var_dump($albums);
+		$friends = $this->fb->api('/me/friends', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,picture'));
+		// facebook album一覧を取得する
+		// album一覧からalbumの中身をみる
+		// 選んだ写真を投票する(DBにいれる)
+		// ユーザが投稿した写真を一覧で表示
+		// ユーザがいいね写真を投票できる
+		// 投票データを集計する
+		// ランキングを一覧で表示する
+		// 写真に似ている洋服名をタグ付けできる
+		$this->set('prm', $this->params['url']);
+		$this->set('friends', $friends);
+		$this->set('albums', $albums);
+	}
 
-    // ユーザがuploadした画像を表示する
+	// ユーザがuploadした画像を表示する
 	function upict_up($fb_id) {
 		$path = sprintf('/home/soogle/tmp/pict/%s/%s', $this->fbuser['id'], $img_name);
 	}
@@ -250,24 +259,24 @@ class UsersController extends AppController {
 	}
 
 	function fbpict_like() {
-          
-        $pid = $this->params['pass'][0];
-        // ロギング
-        CakeLog::write('fbpict_like', sprintf("%s %s",$this->fbuser['id'],(int)$pid));
 
-        // Likeボタン用
-        $res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
-        // Likeユーザを表示
-        $logres = $this->Photo_like_log->find('all',array('conditions'=> array('Photo_like_log.photo_id'=>$pid),
+		$pid = $this->params['pass'][0];
+		// ロギング
+		CakeLog::write('fbpict_like', sprintf("%s %s",$this->fbuser['id'],(int)$pid));
+
+		// Likeボタン用
+		$res = $this->Photo_like_log->findByPhotoIdAndFbId($pid, $this->fbuser['id']);
+		// Likeユーザを表示
+		$logres = $this->Photo_like_log->find('all',array('conditions'=> array('Photo_like_log.photo_id'=>$pid),
                                                  'fields' => array('Photo_like_log.fb_id'))
-                                           ); 
+		);
 
-        
-        $result = $this->Photo->findById($pid);
-        $album = $this->Photo->find('all',array('conditions'=> array('Photo.fb_id'=>$result['Photo']['fb_id'])));
-        
-        $this->set('isLike', $res);
-        $list = $this->Photo->find('first', array('fields' => array('Photo.*', 'User.*'),
+
+		$result = $this->Photo->findById($pid);
+		$album = $this->Photo->find('all',array('conditions'=> array('Photo.fb_id'=>$result['Photo']['fb_id'])));
+
+		$this->set('isLike', $res);
+		$list = $this->Photo->find('first', array('fields' => array('Photo.*', 'User.*'),
                     'conditions' => array('Photo.id' => $this->params['pass'][0]),
                     'joins' => array(array(
                             'table' => 'users',
@@ -275,49 +284,49 @@ class UsersController extends AppController {
                             'type' => 'LEFT',
                             'conditions' => array(
                                 'Photo.fb_id = User.fb_id'
-                            )
-                        )
-                        )));
-        $this->set('likeuser', $logres);
-        $this->set('album', $album);
-        $this->set('result', $result);
-        $this->set('lists', $list);
+                                )
+                                )
+                                )));
+                                $this->set('likeuser', $logres);
+                                $this->set('album', $album);
+                                $this->set('result', $result);
+                                $this->set('lists', $list);
 
-        // ランキング
-        $this->set('rank', $this->getRank(NULL, $list['User']['fb_id']));
-    }
+                                // ランキング
+                                $this->set('rank', $this->getRank(NULL, $list['User']['fb_id']));
+	}
 
-    function top() {
-        Configure::load('messages');
-        $junle_param = 'junle.' . $this->params['pass']['0'];
-        $junle = Configure::read($junle_param);
-        $list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle),
+	function top() {
+		Configure::load('messages');
+		$junle_param = 'junle.' . $this->params['pass']['0'];
+		$junle = Configure::read($junle_param);
+		$list = $this->Photo->find('all', array('conditions' => array('Photo.category_id' => $junle),
                     'order' => array('Photo.id DESC'),
                     'limit' => '20'
-                ));
+                    ));
 
-        // ランキング
-       $this->set('rank',$this->getRank($junle)); 
-        
-        $this->set('list', $list);
-        foreach ($list as $key => $val) {
-                    $data[] = $val['Photo']['id'];
-        }
-        $result = $this->Photo_like_log->find('all',array('conditions' =>
-                                                         array('Photo_like_log.fb_id'=>$this->fbuser['id'],
+                    // ランキング
+                    $this->set('rank',$this->getRank($junle));
+
+                    $this->set('list', $list);
+                    foreach ($list as $key => $val) {
+                    	$data[] = $val['Photo']['id'];
+                    }
+                    $result = $this->Photo_like_log->find('all',array('conditions' =>
+                    array('Photo_like_log.fb_id'=>$this->fbuser['id'],
                                                                'Photo_like_log.photo_id'=> $data)
-                                                         )
-                                              );
-        $userIsLike = array();
-	foreach ( $result as $key => $val) {
-            $userIsLike[$val['Photo_like_log']['photo_id']]++;
-        }
+                    )
+                    );
+                    $userIsLike = array();
+                    foreach ( $result as $key => $val) {
+                    	$userIsLike[$val['Photo_like_log']['photo_id']]++;
+                    }
 
-        $this->set('userIsLike', $userIsLike);
-        // pager
-    }
+                    $this->set('userIsLike', $userIsLike);
+                    // pager
+	}
 
-    function fbpict_up() {
+	function fbpict_up() {
 		if (isset($this->params['url']['pid'])) {
 			$fql_query = array(
                 'method' => 'fql.query',
@@ -336,7 +345,7 @@ class UsersController extends AppController {
 		$data['Photo']['category_id']  = $this->params['data']['users']['category_id'];
 		$data['Photo']['fbpath']  = $this->params['data']['Photo']['fb_path'];
 		$data['Photo']['comment']  = $this->params['data']['Photo']['comment'];
-                $data['Photo']['fb_id']  =  $this->fbuser['id'];
+		$data['Photo']['fb_id']  =  $this->fbuser['id'];
 		$this->Photo->save($data);
 
 	}
@@ -371,14 +380,14 @@ class UsersController extends AppController {
 	function home() {
 	}
 
-        function firstlogin()
+	function firstlogin()
 	{
-            $this->set('rank',$this->getRank());
-        }
-        
+		$this->set('rank',$this->getRank());
+	}
+
 	function login()
 	{
-            $this->set('rank',$this->getRank());
+		$this->set('rank',$this->getRank());
 		//pr($this->params);exit;
 
 		//        // ページタイトルの設定
@@ -408,68 +417,68 @@ class UsersController extends AppController {
 		//                $this->render('login');
 		//            }
 		//       }
-		}
+	}
 
-		function add() {
-			// $this->dataが空でなければ
-			if(!empty($this->data)) {
-				if($this->data) {
-					// ユーザレコードにユーザ情報を保存する
-					$this->User->create();
+	function add() {
+		// $this->dataが空でなければ
+		if(!empty($this->data)) {
+			if($this->data) {
+				// ユーザレコードにユーザ情報を保存する
+				$this->User->create();
 
-					$data = array();
-					$data['User']['password']  = md5($this->params['form']['password']);
-					$data['User']['username']  = $this->data['User']['username'];
-					$this->User->save($data);
-					// 保存したらLoginページにリダイレクト
-					$this->redirect(array('action' => 'login'));
-				}
+				$data = array();
+				$data['User']['password']  = md5($this->params['form']['password']);
+				$data['User']['username']  = $this->data['User']['username'];
+				$this->User->save($data);
+				// 保存したらLoginページにリダイレクト
+				$this->redirect(array('action' => 'login'));
 			}
 		}
+	}
 
-		/*
-		 * ログアウト処理
-		 */
-		function logout()
-		{
-			// セッションを破棄してログイン画面へ
-			$this->Session->delete('auth');
-			$this->Session->delete('fbsession');
-			// 強制ログアウト
-			$this->Auth->logout();
-			$this->redirect('/users/login');
-			exit;
+	/*
+	 * ログアウト処理
+	 */
+	function logout()
+	{
+		// セッションを破棄してログイン画面へ
+		$this->Session->delete('auth');
+		$this->Session->delete('fbsession');
+		// 強制ログアウト
+		$this->Auth->logout();
+		$this->redirect('/users/login');
+		exit;
+	}
+
+	function people_add()
+	{
+		$name = $this->params['named']['name'];
+		$list = $this->People->findAll(array('name' => $name));
+		$this->set('name',$name);
+		$this->set('list',$list);
+	}
+
+	function photo_upload() {
+
+	}
+
+	function photo_up() {
+		$img_name = $_FILES["img_path"]["name"];
+		$img_size = $_FILES["img_path"]["size"];
+		$img_type = $_FILES["img_path"]["type"];
+		$img_tmp = $_FILES["img_path"]["tmp_name"];
+
+		//At the timpre of writing it is necessary to enable upload support in the Facebook SDK, you do this with the line:
+		$this->fb->setFileUploadSupport(true);
+
+		$albums = $this->fb->api('/me/albums', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,location,description'));
+		$alb = array();
+
+		foreach ($albums['data'] as $key => $val) {
+			$alb[$val['name']] = $val['id'];
 		}
-
-		function people_add()
-		{
-			$name = $this->params['named']['name'];
-			$list = $this->People->findAll(array('name' => $name));
-			$this->set('name',$name);
-			$this->set('list',$list);
-		}
-
-		function photo_upload() {
-
-		}
-
-		function photo_up() {
-			$img_name = $_FILES["img_path"]["name"];
-			$img_size = $_FILES["img_path"]["size"];
-			$img_type = $_FILES["img_path"]["type"];
-			$img_tmp = $_FILES["img_path"]["tmp_name"];
-
-			//At the timpre of writing it is necessary to enable upload support in the Facebook SDK, you do this with the line:
-			$this->fb->setFileUploadSupport(true);
-
-			$albums = $this->fb->api('/me/albums', 'GET', array('access_token' => $this->ac), array('fields' => 'id,name,location,description'));
-			$alb = array();
-
-			foreach ($albums['data'] as $key => $val) {
-				$alb[$val['name']] = $val['id'];
-			}
-			//Create an album
-			$album_details = array(
+		//Create an album
+		$album_details = array(
             'message' => 'junle',
             'name' => 'geegee'
             );
@@ -505,10 +514,10 @@ class UsersController extends AppController {
 
             // 直近のupした画像のURLを取得する
             $url = sprintf('https://graph.facebook.com/%s?access_token=%s&fields=picture,name',
-                               $create_album['id'],
-                               $this->ac);
+            $create_album['id'],
+            $this->ac);
             $url = file_get_contents($url);
-	    $json_data = (json_decode($url,true));
+            $json_data = (json_decode($url,true));
 
             // DB保存
             $data['Photo']['path'] = $path;
@@ -520,245 +529,336 @@ class UsersController extends AppController {
             //$this->Photo->findById($l_id);
             $this->set('img_path', sprintf('http://%s/users/uphoto/id/%s', $_SERVER['HTTP_HOST'], $l_id));
             $this->set('l_id', $l_id);
-            }
+	}
 
-		/*-- Author Toyo --*/
-		function profile(){
-			/* others view someones profile from fb_pict like*/
-			if(!empty($_GET['pid'])){
-				$pid = $_GET['pid'];
-				$photo = $this->Photo->find('first',array('conditions' => array('Photo.id' =>$pid)));
-				$fb_id = $photo['Photo']['fb_id'];
-				$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
-				$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id)));
-				$this->set('photo_list',$photo_list);
-				$this->set('u',$u);
-				$this->set('fb_id',$fb_id);
+	/*-- Author Toyo --*/
+	function profile(){
+		/* others view someones profile from fb_pict like*/
+		if(!empty($_GET['pid'])){
+			$pid = $_GET['pid'];
+			$photo = $this->Photo->find('first',array('conditions' => array('Photo.id' =>$pid)));
+			$fb_id = $photo['Photo']['fb_id'];
+			$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
+			$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id)));
+			$this->set('photo_list',$photo_list);
+			$this->set('u',$u);
+			$this->set('fb_id',$fb_id);
 
-		        // ranking
-        		$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
-			}else{
-				$fb_id = $this->fbuser['id'];
-				$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id)));
-				$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
-				$this->set('photo_list',$photo_list);
-				$this->set('u',$u);
-				$this->set('fb_id',$fb_id);
+			// ranking
+			$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
+		}else{
+			$fb_id = $this->fbuser['id'];
+			$u = $this->User->find('first',array('conditions' => array('User.fb_id' =>$fb_id)));
+			$photo_list = $this->Photo->find('all',array('conditions' => array('Photo.fb_id' => $fb_id)));
+			$this->set('photo_list',$photo_list);
+			$this->set('u',$u);
+			$this->set('fb_id',$fb_id);
 
-		        // ranking
-        		$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
+			// ranking
+			$this->set('rank', $this->getRank(NULL, $u['User']['fb_id']));
+		}
+	}
+
+	function edit_profile(){
+		if(!empty($_GET['uid'])){
+			$uid = $_GET['uid'];
+			$u = $this->User->find('first',array('conditions' => array('User.id' =>$uid)));
+			$this->set('u',$u);
+		}
+
+		$d = $this->data;
+
+		if(!empty($d)){
+			$id = $d['User']['id'];
+			$name = $d['User']['nickname'];
+			$location = $d['User']['location'];
+			$profile = $d['User']['profile'];
+			$blogurl = $d['User']['blogurl'];
+
+			$this->User->id = $id;
+			$this->User->saveField('nickname',$name);
+			$this->User->saveField('location',$location);
+			$this->User->saveField('profile',$profile);
+			$this->User->saveField('blogurl',$blogurl);
+
+			//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
+			$this->Session->setFlash($this->isJpn == true ? 'アップデートされました！':'Updated!', true);
+			$this->redirect(array('action'=>'profile'));
+
+		}
+	}
+
+	function like() {
+		// validate
+		$pid = $this->params['pass'][0];
+		$data['Photo_like_log']['fb_id'] = $this->fbuser['id'];
+		$data['Photo_like_log']['photo_id'] = $pid;
+		$data_like['Photo']['fb_id'] = $this->fbuser['id'];
+		$data_like['Photo']['id'] = $pid;
+		$data_like['Photo']['cnt'] = 1;
+
+		$res = $this->Photo_like_log->findByPhotoIDAndFbId($pid, $this->fbuser['id']);
+
+		if ($res == false) {
+			// ログ保存
+			$this->Photo_like_log->save($data);
+			$p_res = $this->Photo->findById($pid);
+			// countup
+			if ($p_res !== false) {
+				$this->Photo->updateAll(array('cnt' => 'cnt + 1'), array('id' => $pid));
+			} else {
+				$this->Photo->save($data_like); // 新規登録
 			}
 		}
 
-		function edit_profile(){
-			if(!empty($_GET['uid'])){
-				$uid = $_GET['uid'];
-				$u = $this->User->find('first',array('conditions' => array('User.id' =>$uid)));
-				$this->set('u',$u);
-			}
+		$this->set('p_res',$p_res);
+		$this->set('pid',$pid);
+		$this->layout = false;
+	}
 
-			$d = $this->data;
+	function people($name = NULL ,$selectname =NULL)
+	{
 
-			if(!empty($d)){
-				$id = $d['User']['id'];
-				$name = $d['User']['nickname'];
-				$location = $d['User']['location'];
-				$profile = $d['User']['profile'];
-				$blogurl = $d['User']['blogurl'];
-
-				$this->User->id = $id;
-				$this->User->saveField('nickname',$name);
-				$this->User->saveField('location',$location);
-				$this->User->saveField('profile',$profile);
-				$this->User->saveField('blogurl',$blogurl);
-
-				//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
-				$this->Session->setFlash($this->isJpn == true ? 'アップデートされました！':'Updated!', true);
-				$this->redirect(array('action'=>'profile'));
-
-			}
+		$fn = 'あ';
+		$selectname=isset($this->params['url']['fn'])?$this->params['url']['fn']:$fn;
+		$likename = sprintf('%s%%',$selectname);
+		if (!is_null($selectname)) {
+			$list = $this->People->find('all',array('name_kana LIKE' => $likename));
+			$this->set('list',$list);
+			$this->set('fn',isset($this->params['url']['fn'])?$this->params['url']['fn']:$fn);
 		}
+	}
 
-		function like() {
-			// validate
-			$pid = $this->params['pass'][0];
-			$data['Photo_like_log']['fb_id'] = $this->fbuser['id'];
-			$data['Photo_like_log']['photo_id'] = $pid;
-			$data_like['Photo']['fb_id'] = $this->fbuser['id'];
-			$data_like['Photo']['id'] = $pid;
-			$data_like['Photo']['cnt'] = 1;
-
-			$res = $this->Photo_like_log->findByPhotoIDAndFbId($pid, $this->fbuser['id']);
-
-			if ($res == false) {
-				// ログ保存
-				$this->Photo_like_log->save($data);
-				$p_res = $this->Photo->findById($pid);
-				// countup
-				if ($p_res !== false) {
-					$this->Photo->updateAll(array('cnt' => 'cnt + 1'), array('id' => $pid));
-				} else {
-					$this->Photo->save($data_like); // 新規登録
-				}
-			}
-
-			$this->set('p_res',$p_res);
-			$this->set('pid',$pid);
-			$this->layout = false;
-		}
-
-		function people($name = NULL ,$selectname =NULL)
-		{
-
-			$fn = 'あ';
-			$selectname=isset($this->params['url']['fn'])?$this->params['url']['fn']:$fn;
-			$likename = sprintf('%s%%',$selectname);
-			if (!is_null($selectname)) {
-				$list = $this->People->find('all',array('name_kana LIKE' => $likename));
-				$this->set('list',$list);
-				$this->set('fn',isset($this->params['url']['fn'])?$this->params['url']['fn']:$fn);
-			}
-		}
-
-		function fblogin() {
-			require('/home/soogle/cake_module/app/plugins/fb/facebook.php');
-			$facebook = new Facebook(array(
+	function fblogin() {
+		require('/home/soogle/cake_module/app/plugins/fb/facebook.php');
+		$facebook = new Facebook(array(
                         'appId' => '102978646442980',
                         'secret' => 'b926e265f482ae97e91e75872000ecd2',
                         'cookie' => true,
-			));
+		));
 
-			$session = $facebook->getSession();
-			var_dump($session);
-			if (!$session) {
-				$url = $facebook->getLoginUrl(array(
+		$session = $facebook->getSession();
+		var_dump($session);
+		if (!$session) {
+			$url = $facebook->getLoginUrl(array(
                             'canvas' => 1,
                             'fbconnect' => 0,
                             'req_perms' => 'status_update,publish_stream' // ステータス更新とフィードへの書き込み許可
-				));
+			));
 
-				print $url;
-				exit;
-				// アプリ未登録ユーザーなら facebook の認証ページへ遷移
-				echo "<script type='text/javascript'>top.location.href = '$url';</script>";
-			} else {
-				try {
-					$me = $facebook->api('/me'); // 自分の情報を取得
-					$uid = $facebook->getUser(); // 自分のユーザー ID を取得
-				} catch (FacebookApiException $e) {
-					$error = "Error : something is wrong, please try again later.";
-					exit();
+			print $url;
+			exit;
+			// アプリ未登録ユーザーなら facebook の認証ページへ遷移
+			echo "<script type='text/javascript'>top.location.href = '$url';</script>";
+		} else {
+			try {
+				$me = $facebook->api('/me'); // 自分の情報を取得
+				$uid = $facebook->getUser(); // 自分のユーザー ID を取得
+			} catch (FacebookApiException $e) {
+				$error = "Error : something is wrong, please try again later.";
+				exit();
+			}
+		}
+		$this->set('uid', $uid);
+		$this->set('me', $me);
+	}
+
+	function uphoto() {
+		$this->layout = false;
+		$this->autoRender = false;
+		//pr($this->params);
+		if (isset($this->params['pass'][1])) {
+			$data = $this->Photo->findById($this->params['pass'][1]);
+		}
+		$file = $data['Photo']['path'];
+		if (is_null($file )) {
+			return;
+		}
+
+		Configure::write('debug', 0);
+
+		if ($img = @imagecreatefromjpeg($file)) {
+			header('Content-type: image/jpeg');
+			imagejpeg($img, null, 100);
+			imagedestroy($img);
+		} else {
+			$this->cakeError('error404');
+		}
+	}
+
+	function photo_update() {
+		// validate
+		// save
+		// redirect
+		pr($this->params);
+		$data['Photo']['category_id'] = $this->params['data']['users']['category_id'];
+		$data['Photo']['id'] = $this->params['data']['Photo']['id'];
+		$data['Photo']['fb_id'] = $this->fbuser['id'];
+		$this->Photo->save($data);
+	}
+
+	function tc(){
+
+
+	}
+
+	function tc_jp(){
+	}
+
+	function test(){
+
+		$url ='http://www.fujisan.co.jp/product/';
+
+		$num = 31;
+		$end = 40;
+		while ($num <= $end) {
+			//print $url.$num;
+			$p_url[] = $url.$num;
+			$num++;
+			//print "\n";
+		}
+
+		$pt = '/^<li><a href="(.*)">(.*)<\/a><span>\([0-9]*\)<\/span><\/li>$/';
+
+
+
+		$base_url = 'http://www.fujisan.co.jp';
+		foreach ($p_url as $key => $val) {
+			$p_content = file($val);
+			var_dump ($p_content);
+			print "/n";
+			break;
+		}
+
+		$p_ar = takeDetail($p_content,$pt);
+
+		foreach ($p_ar as $key => $val) {
+			$p_content = file($base_url.$key);
+			$ar[$val] = takeDetail($p_content,$pt);
+		}
+
+		var_dump($ar);
+
+
+		$p_ar = array();
+		function takeDetail ($file ,$pt) {
+			foreach ($file as $key => $val){
+				preg_match($pt,mb_convert_encoding($val,'UTF-8','EUC-JP'),$match);
+				if ($match[1]) {
+					$p_ar[$match[1]]= $match[2];
 				}
 			}
-			$this->set('uid', $uid);
-			$this->set('me', $me);
+			return $p_ar;
 		}
 
-		function uphoto() {
-			$this->layout = false;
-			$this->autoRender = false;
-			//pr($this->params);
-			if (isset($this->params['pass'][1])) {
-				$data = $this->Photo->findById($this->params['pass'][1]);
-			}
-			$file = $data['Photo']['path'];
-			if (is_null($file )) {
-				return;
-			}
+		include_once('../db.class.php');
+		$dbObj = new dbClass();
+		$db    = $dbObj->getDbConn();
 
-			Configure::write('debug', 0);
+		$stmt = $db->query("SET NAMES utf8;");
 
-			if ($img = @imagecreatefromjpeg($file)) {
-				header('Content-type: image/jpeg');
-				imagejpeg($img, null, 100);
-				imagedestroy($img);
-			} else {
-				$this->cakeError('error404');
+		foreach ( $ar as $key => $val) {
+			foreach ( $val as $key2 => $val2) {
+				 
+				$sql = sprintf("insert into test (name,url) values  ('%s','%d')",$val2,$key,$key2,3);
+				var_dump($sql);
+				$stmt = $db->prepare($sql);
+				//$stmt->execute();
+				var_dump($stmt->execute());
 			}
 		}
-
-		function photo_update() {
-			// validate
-			// save
-			// redirect
-			pr($this->params);
-			$data['Photo']['category_id'] = $this->params['data']['users']['category_id'];
-			$data['Photo']['id'] = $this->params['data']['Photo']['id'];
-			$data['Photo']['fb_id'] = $this->fbuser['id'];
-			$this->Photo->save($data);
-		}
-
-		function tc(){
-				
-	
-		}
-
-                function tc_jp(){			
-		}
-
-		function test(){
-
-$url ='http://www.fujisan.co.jp/product/2';
-
-$num = 1;
-$end = 10;
-while ($num <= $end) {
-    //print $url.$num;
-    $p_url[] = $url.$num;
-    $num++;
-    //print "\n";
-}
-
-$pt = '/^<li><a href="(.*)">(.*)<\/a><span>\([0-9]*\)<\/span><\/li>$/';
-
-
-
-$base_url = 'http://www.fujisan.co.jp';
-foreach ($p_url as $key => $val) {
-    $p_content = file($val);
-	var_dump ($p_content);    
-    print "/n";
-    break;
-}
-
-$p_ar = takeDetail($p_content,$pt);
-
-foreach ($p_ar as $key => $val) {
-    $p_content = file($base_url.$key);
-    $ar[$val] = takeDetail($p_content,$pt);
-}
-
-var_dump($ar);
-
-
-$p_ar = array();
-function takeDetail ($file ,$pt) {
-    foreach ($file as $key => $val){ 
-      preg_match($pt,mb_convert_encoding($val,'UTF-8','EUC-JP'),$match);
-        if ($match[1]) {
-          $p_ar[$match[1]]= $match[2]; 
-        } 
-    }
-    return $p_ar;
-}
-
-include_once('../db.class.php');
-$dbObj = new dbClass();
-$db    = $dbObj->getDbConn();
-
-$stmt = $db->query("SET NAMES utf8;");
-
-foreach ( $ar as $key => $val) {
-    foreach ( $val as $key2 => $val2) {
-     
-        $sql = sprintf("insert into test (name,url) values  ('%s','%d')",$val2,$key,$key2,3);
-var_dump($sql);
-        $stmt = $db->prepare($sql);
-        //$stmt->execute();
-        var_dump($stmt->execute());
-    }
-}
 			
+	}
+	function scraping(){
+		include_once("../Snoopy-1.2.4/snoopy.class.php");
+		//htmlSQLをinclude
+		include_once("../htmlsql-v0.5/htmlsql.class.php");
+
+		//インスタンス生成（Exampleで使われている"$wsql"という変数名は、昔はWebSQLという名前だった名残り）
+		$wsql = new htmlsql();
+		
+		/*
+		if (!$wsql->connect('url', 'http://http://www.fujisan.co.jp/')){
+　		print 'Error while connecting: ' . $wsql->error;
+　		exit;
 		}
-                
+		*/
+		
+		$a = $wsql;
+		var_dump($a);
+		
+	}
+	
+	
+	function scrape(){
+	echo "test";
+			/**
+
+		* おまじない
+
+		* http://www.usamimi.info/~ryouchi/scraping/05.html
+
+		*
+
+		*/
+
+		$config = array('indent' => true,
+
+                  'output-xhtml' => true,
+
+                  'wrap' => 200
+
+		//'quote-nbsp' => false
+
+		);
+
+
+
+		$tidy = new tidy('http://www.rakuteneagles.jp/team/player/pitcher.php', $config, 'UTF8');
+
+		$tidy->cleanRepair();
+
+
+
+		// body の内容を取得してSimpleXMLでパースする
+
+		$sxe = simplexml_load_string(ereg_replace("&nbsp;", ' ', $tidy->body()->value));
+
+
+
+		$players = $sxe->xpath('//div[@id="playerList"]/ul/li');
+
+		$players_info = array();
+
+
+
+		foreach ($players as $player) {
+
+			$no = preg_match('/^[0-9]{1,2}/', trim((string) $player->a), $matches);
+
+			$players_info[$matches[0]]['name'] = trim((string) $player->a);
+
+			$players_info[$matches[0]]['url'] = (string) $player->a->attributes()->href;
+
+		}
+
+
+
+		// とりあえず出力
+
+		foreach ($players_info as $key => $value) {
+
+			printf('<li><a href="http://www.rakuteneagles.jp%s">%s</a></li>',
+
+			$value['url'],
+
+			$value['name']
+
+			);
+
+		}
+	
+	
+	}
+
 }

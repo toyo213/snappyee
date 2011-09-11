@@ -1,7 +1,7 @@
 
 <br/>
 
-<table border="0" width=500 align="center">
+<table border="1" width=500 align="center">
 <caption>
 <?php if(!empty($u['User']['fb_id'])){
 echo "<a href=".$u['User']['blogurl'].">";
@@ -25,15 +25,15 @@ echo "</a>";
 </caption>
 <tr>
 <td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile URL'); ?></span></td>
-<td bgcolor="#FFF0F5" ><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
+<td><a href="<?php echo $u['User']['blogurl']; ?>"><?php echo $u['User']['blogurl']; ?></a></td>
 </tr>
 <tr>
 <td bgcolor="#FFF0F5" width=30%><span class="profileFont"><?php echo __('Location'); ?></span></td>
-<td bgcolor="#FFF0F5" width=70%><?php echo $u['User']['location']; ?></td>
+<td width=70%><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
 <td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile'); ?></span></td>
-<td bgcolor="#FFF0F5"><?php echo $u['User']['profile']; ?></td>
+<td><?php echo $u['User']['profile']; ?></td>
 </tr>
 </table>
 
