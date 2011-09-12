@@ -1,4 +1,11 @@
+<?php 
+Configure::load('magazines');
+$mag = Configure::read('magazines.regist');
 
+Configure::load('occupations');
+$occupations = Configure::read('occupations.regist');
+
+?>
 <br/>
 
 <table border="1" width=500 align="center">
@@ -35,6 +42,33 @@ echo "</a>";
 <td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile'); ?></span></td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
+
+<tr>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Magazines'); ?></span></td>
+<td><?php
+$m = json_decode($u['User']['magazines']);
+
+foreach($m as $key => $value)
+{
+echo $mag[$value]; 
+echo "   ";
+}
+
+?>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Occupation'); ?></span></td>
+<td><?php 
+echo $occupations[$u['User']['occupations']];
+//echo array_slice($occupations,$u['User']['occupations'],1);
+//echo $u['User']['occupations']; 
+?>
+
+</td>
+</tr>
+
 </table>
 
 <p align="left">
