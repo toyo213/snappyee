@@ -44,14 +44,14 @@ echo "</a>";
 </tr>
 
 <tr>
-<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Magazines'); ?></span></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Favorite Magazines'); ?></span></td>
 <td><?php
 $m = json_decode($u['User']['magazines']);
 
 foreach($m as $key => $value)
 {
 echo $mag[$value]; 
-echo "   ";
+echo "    ";
 }
 
 ?>

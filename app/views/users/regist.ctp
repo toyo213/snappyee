@@ -40,7 +40,9 @@ echo "<dd>";
 ?>
 
 <dt>
-<b>Locations</b>
+<b>
+<?php echo __('Location');?>
+</b>
 <?php echo $form->input('location',array('type'=>'text','label'=>'','value'=>$fbuser["location"]["name"]));?>
 </dt>
 <br>
@@ -57,7 +59,7 @@ Configure::load('magazines');
 $mag = Configure::read('magazines.regist');
  
 echo $form->input("magazines", 
-                  array('type' => 'select', 'multiple' => 'checkbox', 
+                  array('type' => 'select', 'multiple' => 'checkbox', 'label' =>'',
                         'options' =>$mag));
 ?>
 

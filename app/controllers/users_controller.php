@@ -573,12 +573,16 @@ class UsersController extends AppController {
 			$location = $d['User']['location'];
 			$profile = $d['User']['profile'];
 			$blogurl = $d['User']['blogurl'];
+			$magazines = json_encode($d['User']['magazines']);
+			$occupations = $d['User']['occupations'];
 
 			$this->User->id = $id;
 			$this->User->saveField('nickname',$name);
 			$this->User->saveField('location',$location);
 			$this->User->saveField('profile',$profile);
 			$this->User->saveField('blogurl',$blogurl);
+			$this->User->saveField('magazines',$magazines);
+			$this->User->saveField('occupations',$occupations);
 
 			//$this->Session->setFlash(__('プロフィールがアップデートされました', true));
 			$this->Session->setFlash($this->isJpn == true ? 'アップデートされました！':'Updated!', true);

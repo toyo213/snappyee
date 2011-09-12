@@ -130,9 +130,27 @@ msgstr "プロフィール"
 msgid "Profile URL"
 msgstr "プロフィールURL"
 
+#: /views/users/edit_profile.ctp:33
+msgid "Favorite Magazines"
+msgstr "読むファッション誌"
+
+#: /views/users/edit_profile.ctp:46
+msgid "Occupations"
+msgstr "職業タイプ"
+
+
 #: /views/users/edit_profile.ctp:17
 msgid "Update"
 msgstr "アップデート"
+
+#: /views/users/edit_profile.ctp:47
+msgid "Favorite Magazines"
+msgstr "読んでるファッション誌"
+
+#: /views/users/edit_profile.ctp:62
+msgid "Occupation"
+msgstr "職業タイプ"
+
 
 #: /views/users/howto.ctp:5
 msgid "/img/howto_en.jpg"
@@ -185,6 +203,18 @@ msgstr "ユーザネーム"
 #: /views/users/regist.ctp:32
 msgid "Profile URL"
 msgstr "プロフィール URL"
+
+#: /views/users/regist.ctp:44
+msgid "Location"
+msgstr "ロケーション"
+
+#: /views/users/regist.ctp:50
+msgid "Fashion Magazines you often read"
+msgstr "読んでるファッション誌"
+
+#: /views/users/regist.ctp:64
+msgid "Occupations"
+msgstr "職業タイプ"
 
 #: /views/users/regist.ctp:39
 msgid "Create Account"

@@ -29,6 +29,34 @@
 </td>
 </tr>
 
+<tr>
+<td bgcolor="#FFF0F5"><b><?php echo __('Favorite Magazines');?></b></td>
+<td>
+<?php 
+Configure::load('magazines');
+$mag = Configure::read('magazines.regist');
+$m = json_decode($u['User']['magazines']);
+
+e($form->input('magazines', array('type' => 'select', 'multiple' => 'checkbox', 'label' =>'',
+                        'options' =>$mag, 'value'=>$m)));
+?>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="#FFF0F5"><b><?php echo __('Occupations');?></b></td>
+<td>
+<?php 
+Configure::load('occupations');
+$occupations = Configure::read('occupations.regist');
+
+e($form->input('occupations', array('type' => 'select', 'label' =>'',
+                        'options' =>$occupations, 'value'=>$u['User']['occupations'])));
+?>
+</td>
+</tr>
+
+
 
 </table>
 </div>
