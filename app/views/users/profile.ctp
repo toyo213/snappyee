@@ -39,7 +39,7 @@ echo "</a>";
 <td width=70%><?php echo $u['User']['location']; ?></td>
 </tr>
 <tr>
-<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Profile'); ?></span></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('About Myself'); ?></span></td>
 <td><?php echo $u['User']['profile']; ?></td>
 </tr>
 
@@ -51,7 +51,7 @@ $m = json_decode($u['User']['magazines']);
 foreach($m as $key => $value)
 {
 echo $mag[$value]; 
-echo "    ";
+echo "&nbsp;&nbsp;";
 }
 
 ?>
@@ -59,7 +59,7 @@ echo "    ";
 </tr>
 
 <tr>
-<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Occupation'); ?></span></td>
+<td bgcolor="#FFF0F5"><span class="profileFont"><?php echo __('Industry'); ?></span></td>
 <td><?php 
 echo $occupations[$u['User']['occupations']];
 //echo array_slice($occupations,$u['User']['occupations'],1);

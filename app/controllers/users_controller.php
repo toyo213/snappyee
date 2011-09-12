@@ -156,6 +156,7 @@ class UsersController extends AppController {
 		
 		$magazines = json_encode($this->params['data']['User']['magazines']);
 		$data['User']['magazines'] = $magazines; 
+		$data['User']['profile'] = $this->params['data']['User']['profile'];
 		
 		var_dump($this->params);
 		var_dump($magazines);

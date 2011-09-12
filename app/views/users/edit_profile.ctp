@@ -15,7 +15,7 @@
 </tr>
 
 <tr>
-<td bgcolor="#FFF0F5"><b><?php echo __('Profile');?></b></td>
+<td bgcolor="#FFF0F5"><b><?php echo __('About Myself');?></b></td>
 <td>
 <?php e($form->input('profile', array('type' => 'textarea','style'=>'width:21em;height:10em','maxlength'=>200, 'value' => $u['User']['profile'] ,'div'=>true,'label' =>'','size'=>30)));?>
 </td>
@@ -44,7 +44,7 @@ e($form->input('magazines', array('type' => 'select', 'multiple' => 'checkbox', 
 </tr>
 
 <tr>
-<td bgcolor="#FFF0F5"><b><?php echo __('Occupations');?></b></td>
+<td bgcolor="#FFF0F5"><b><?php echo __('Industry');?></b></td>
 <td>
 <?php 
 Configure::load('occupations');

@@ -63,7 +63,8 @@ echo $form->input("magazines",
                         'options' =>$mag));
 ?>
 
-<b><?php echo __('Occupations'); ?></b>
+<br>
+<b><?php echo __('Industry'); ?></b>
 
 
 <?php
@@ -74,6 +75,13 @@ $ocupations = Configure::read('occupations.regist');
 echo $form->input("occupations",
                   array('type' => 'select', 'options' =>$ocupations,'label'=>''));
       
+?>
+<br>
+<b><?php echo __('About Myself'); ?></b>
+
+<?php 
+echo $form->input("profile",
+                  array('type' => 'input', 'label'=>''));
 ?>
 
 

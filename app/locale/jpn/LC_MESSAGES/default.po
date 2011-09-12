@@ -98,8 +98,8 @@ msgstr "ユーザネーム"
 msgid "Location"
 msgstr "ロケーション"
 
-#: /views/users/profile.ctp:23
-msgid "Profile"
+#: /views/users/profile.ctp:42
+msgid "About Myself"
 msgstr "プロフィール"
 
 #: /views/users/profile.ctp:25
@@ -122,8 +122,8 @@ msgstr "ユーザネーム"
 msgid "Location"
 msgstr "ロケーション"
 
-#: /views/users/edit_profile.ctp:10
-msgid "Profile"
+#: /views/users/edit_profile.ctp:18
+msgid "About Myself"
 msgstr "プロフィール"
 
 #: /views/users/edit_profile.ctp:13
@@ -135,7 +135,7 @@ msgid "Favorite Magazines"
 msgstr "読むファッション誌"
 
 #: /views/users/edit_profile.ctp:46
-msgid "Occupations"
+msgid "Industry"
 msgstr "職業タイプ"
 
 
@@ -148,7 +148,7 @@ msgid "Favorite Magazines"
 msgstr "読んでるファッション誌"
 
 #: /views/users/edit_profile.ctp:62
-msgid "Occupation"
+msgid "Industry"
 msgstr "職業タイプ"
 
 
@@ -215,6 +215,10 @@ msgstr "読んでるファッション誌"
 #: /views/users/regist.ctp:64
 msgid "Occupations"
 msgstr "職業タイプ"
+
+#: /views/users/regist.ctp:80
+msgid "About Myself"
+msgstr "プロフィール"
 
 #: /views/users/regist.ctp:39
 msgid "Create Account"
