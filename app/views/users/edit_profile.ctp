@@ -47,8 +47,17 @@ e($form->input('magazines', array('type' => 'select', 'multiple' => 'checkbox', 
 <td bgcolor="#FFF0F5"><b><?php echo __('Industry');?></b></td>
 <td>
 <?php 
+
 Configure::load('occupations');
-$occupations = Configure::read('occupations.regist');
+		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
+		if(count($match) > 0 ) {
+			$this->isJpn = true;
+			$occupations = Configure::read('occupations.jpn');
+		} else {
+			$occupations = Configure::read('occupations.en');
+		}
+
+
 
 e($form->input('occupations', array('type' => 'select', 'label' =>'',
                         'options' =>$occupations, 'value'=>$u['User']['occupations'])));

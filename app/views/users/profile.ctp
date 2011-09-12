@@ -5,6 +5,14 @@ $mag = Configure::read('magazines.regist');
 Configure::load('occupations');
 $occupations = Configure::read('occupations.regist');
 
+Configure::load('occupations');
+		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
+		if(count($match) > 0 ) {
+			$this->isJpn = true;
+			$occupations = Configure::read('occupations.jpn');
+		} else {
+			$occupations = Configure::read('occupations.en');
+		}
 ?>
 <br/>
 

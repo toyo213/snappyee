@@ -70,10 +70,16 @@ echo $form->input("magazines",
 <?php
 
 Configure::load('occupations');
-$ocupations = Configure::read('occupations.regist');
+		preg_match(('/.*(ja|jp).*/'),$_SERVER['HTTP_ACCEPT_LANGUAGE'],$match);
+		if(count($match) > 0 ) {
+			$this->isJpn = true;
+			$occupations = Configure::read('occupations.jpn');
+		} else {
+			$occupations = Configure::read('occupations.en');
+		}
 
 echo $form->input("occupations",
-                  array('type' => 'select', 'options' =>$ocupations,'label'=>''));
+                  array('type' => 'select', 'options' =>$occupations,'label'=>''));
       
 ?>
 <br>
